@@ -1,0 +1,8 @@
+[project]
+name = "strengths"
+version = "0.0.7"
+authors = [
+	{name = "Thibault Fillion"},
+	{name = "Francesco Piazza"}]
+description = "A package for the modeling and simulation of reaction-diffusion systems."
+readme = "readme.md"
