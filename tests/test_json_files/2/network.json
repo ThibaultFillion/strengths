@@ -1,0 +1,26 @@
+{
+"environments" :
+  [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9"
+  ],
+"species" :
+  [
+  {"label" : "A", "density" : 2, "D" : 3},
+  {"label" : "B", "density" : 4, "D" : 5},
+  {"label" : "C", "density" : "6 M", "D" : "1 cm2/min"}
+  ],
+"reactions" :
+  [
+  {"eq" : "A + B -> C", "kf" : 1, "kr" : 2},
+  {"eq" : "A + B -> C", "kf" : 3, "kr" : 4},
+  {"eq" : "A + B -> C", "kf" : "5 M-1.s-1", "kr" : "6 min-1"}
+  ]
+}

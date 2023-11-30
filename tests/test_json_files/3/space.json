@@ -1,0 +1,12 @@
+{
+"units" : {
+  "space" : "cm",
+  "time" : "ms",
+  "quantity" : "kmol"
+  },
+"w" : 3,
+"h" : 3,
+"d" : 2,
+"cell_vol" : 1,
+"cell_env" : "env.txt"
+}

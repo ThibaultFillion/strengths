@@ -1,0 +1,68 @@
+* {
+  margin : 0;
+  --sidebar_width: 350px;
+  }
+
+body
+  {
+  height: 100vh;
+  margin : 0;
+  overflow: auto;
+  }
+
+div.body
+  {
+  width : 800px;
+  }
+
+div.body h1
+  {
+  margin: 20px 0 20px 0;
+  }
+
+div.body h2
+  {
+  }
+
+div.document
+  {
+  margin : 0;
+  }
+
+div.documentwrapper
+  {
+  float : none;
+  display: block;
+  }
+
+div.bodywrapper
+  {
+  margin-left: var(--sidebar_width);
+  }
+
+div.sphinxsidebar
+  {
+  width: var(--sidebar_width);
+  background: white;
+  margin : 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: auto;
+  box-shadow: 5px 0px 10px rgba(0,0,0,.2);
+  }
+
+.sig
+  {
+  border-top : 3px solid lightgray;
+  }
+
+/*====================== strengths doc header =====================*/
+
+#strengths_doc_header
+  {
+  margin-left: var(--sidebar_width);
+  width : calc(100 vw - var(--sidebar_width));
+  border-bottom: rgb(255, 138, 124) 3px solid;
+  }

@@ -1,0 +1,37 @@
+{
+"units" : {
+  "space" : "mm",
+  "time" : "ns",
+  "quantity" : "fmol"
+  },
+"environments" :
+  [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9"
+  ],
+"species" :
+  [
+  {"label" : "A", "density" : 2, "D" : 3 ,
+    "units" : {"space" : "pm", "time" : "ps", "quantity" : "pmol"}},
+  {"label" : "B", "density" : 4, "D" : 5,
+    "units" : {"space" : "cm", "time" : "µs", "quantity" : "µmol"}},
+  {"label" : "C", "density" : "6 M", "D" : "1 cm2/min",
+    "units" : {"space" : "dm", "time" : "fs", "quantity" : "dmol"}}
+  ],
+"reactions" :
+  [
+  {"eq" : "A + B -> C", "kf" : 1, "kr" : 2,
+   "units" : {"space" : "nm", "time" : "s", "quantity" : "kmol"}},
+  {"eq" : "A + B -> C", "kf" : 3, "kr" : 4,
+   "units" : {"space" : "fm", "time" : "min", "quantity" : "cmol"}},
+  {"eq" : "A + B -> C", "kf" : "5 M-1.s-1", "kr" : "6 min-1",
+   "units" : {"space" : "km", "time" : "h", "quantity" : "molecule"}}
+  ]
+}
