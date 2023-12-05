@@ -115,7 +115,7 @@ class SimulationAlgorithmGraphBase
                     int j = mesh_neighbor_index[i][n];
 
                     // #########################################################################
-                    // diffusion reaction rate constants are calculated according to David Bernstein's method.
+                    // diffusion coefficient between cells i and j is calculated according to David Bernstein's method.
                     // reference :
                     // Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm.
                     // Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103
@@ -130,10 +130,14 @@ class SimulationAlgorithmGraphBase
                       {
                       Dij = (hi+hj)/(hi/Di + hj/Dj);
                       }
-
+                    // #########################################################################
+                    
+                    // the way the diffusion rate is computed from Dij here have been a bit modified from what is presented in 
+                    // [Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm.
+                    // Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103], 
+                    // in order to take into account the specific exchage surface between cells i and j
                     mesh_kd_out[i][s*mesh_neighbor_n[i]+n] = Dij * mesh_neighbor_sfc[i][n] / (mesh_vol[i] * mesh_neighbor_dst[i][n]);
                     mesh_kd_in [i][s*mesh_neighbor_n[i]+n] = Dij * mesh_neighbor_sfc[i][n] / (mesh_vol[j] * mesh_neighbor_dst[i][n]);
-                    // #########################################################################
                     }
                 }
             }
