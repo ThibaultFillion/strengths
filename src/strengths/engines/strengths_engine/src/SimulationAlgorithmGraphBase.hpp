@@ -132,7 +132,7 @@ class SimulationAlgorithmGraphBase
                       }
                     // #########################################################################
                     
-                    // the way the diffusion rate is computed from Dij here have been a bit modified from what is presented in 
+                    // the way the diffusion rate is computed from Dij here have been slightly extended from what is presented in 
                     // [Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm.
                     // Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103], 
                     // in order to take into account the specific exchage surface between cells i and j
