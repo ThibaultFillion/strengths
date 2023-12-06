@@ -11,8 +11,7 @@ def simulate_script(
         cgmap = None
         ) :
     """
-    Simulates the evolution in time of a reaction diffusion system.
-    it wraps the reaction-diffusion simulation process using a RDSimulationEngine.
+    Simulates the trajectory of a reaction diffusion system, using a given engine.
 
     :param script: the script of the simulation to be run.
     :type script: RDScript
@@ -29,8 +28,8 @@ def simulate_script(
     :param cgmap: optionnal coarse graining index map.
     :type cgmap: array of int or None
     
-    :return: simulation output.
-    :rtype: RDSimulationOutput
+    :return: system trajectory.
+    :rtype: RDTrajectory
     """
     if cgmap is None :
         #initialization phase
@@ -76,8 +75,7 @@ def simulate(
         **script_keyword_arguments
         ) :
     """
-    Simulates the evolution in time of a reaction diffusion system.
-    it wraps the reaction-diffusion simulation process using a RDSimulationEngine.
+    Simulates the trajectory of a reaction diffusion system.
 
     :param engine: the simulation engine that should handle the simulation.
         see the documentation or the engine_collection submodule for more information
@@ -101,8 +99,8 @@ def simulate(
     * rng_seed = None
     * units_system = UnitsSystem()
 
-    :return: simulation output
-    :rtype: RDSimulationOutput
+    :return: system trajectory
+    :rtype: RDTrajectory
     """
 
     if engine is None :
