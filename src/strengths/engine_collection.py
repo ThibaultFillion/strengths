@@ -78,7 +78,7 @@ def euler_engine():
 
 def default_engine():
     """
-    Default engine (among those above) used by functions such as simulate
+    Default engine (among those above) used by functions such as simulate.
     """
         
     return euler_engine()
