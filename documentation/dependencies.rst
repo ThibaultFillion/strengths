@@ -7,7 +7,7 @@ NumPy
 -----
 
 A lot of strengths features and classes, such as the UnitArray class, rely on the numpy package (Harris, 2020) [#numpy]_ and especially its famous numpy.ndarray [#numpy_ndarray]_.
-As a consequence, streghts require that you have NumPy installed. You can refer to the numpy website for more information on numpy :
+As a consequence, strenghts require that you have NumPy installed. You can refer to the numpy website for more information on numpy :
 
 https://numpy.org
 
