@@ -59,7 +59,7 @@ class RDTrajectory :
     @property
     def t(self) :
         """
-        sampling times.
+        sampling time points.
         """
 
         return self._t
@@ -67,7 +67,7 @@ class RDTrajectory :
     @property
     def data(self) :
         """
-        array of the system states sucessively sampled during the simulation at the times defined in t_sample.
+        array of the system states sucessively sampled at the time points in self.t.
         """
 
         return self._data
