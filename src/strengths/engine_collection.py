@@ -26,11 +26,8 @@ def _get_os_specific_engine_lib_name() :
 
 def gillespie_engine():
     """
-    Reference to an engine using the original Gillespie algorithm (Gillespie, 1977) [#Gillespie1977]_.
+    Engine using the original Gillespie algorithm (Gillespie, 1977) [#Gillespie1977]_.
     Diffusion is treated as a first order reaction according to Bernstein's method (Bernstein, 2005) [#Bernstein2005]_.
-    
-    :returns: engine reference.
-    :rtype: LibRDEngineReference
     """
     # references :
     # .. [#Bernstein2005] Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm. Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103
@@ -47,11 +44,8 @@ def gillespie_engine():
 
 def tauleap_engine():  
     """
-    Reference to a LibRDEngine using the Gillespie tau leap method (Gillespie, 2001) [#Gillespie2001]_ with a static time step.
+    Engine using the Gillespie tau leap method (Gillespie, 2001) [#Gillespie2001]_ with a static time step.
     Diffusion is treated as a first order reaction according to Bernstein's method (Bernstein, 2005) [#Bernstein2005]_.
-    
-    :returns: engine reference.
-    :rtype: LibRDEngineReference
     """
     # references :
     # .. [#Bernstein2005] Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm. Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103
@@ -68,11 +62,8 @@ def tauleap_engine():
 
 def euler_engine():
     """
-    Reference to an engine using a simple Euler method with a static time step.
+    Engine using a simple Euler method with a static time step.
     Diffusion is treated as a first order reaction according to Bernstein's method (Bernstein, 2005) [#Bernstein2005]_.
-    
-    :returns: engine reference.
-    :rtype: LibRDEngineReference
     """
     # references :
     # .. [#Bernstein2005] Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm. Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103
@@ -85,21 +76,9 @@ def euler_engine():
         requires_molecules=False
         )
 
-def euler_adapt_engine():
+def default_engine():
     """
-    Reference to an engine using a simple Euler method with an adaptative time step.
-    Diffusion is treated as a first order reaction according to Bernstein's method (Bernstein, 2005) [#Bernstein2005]_.
-    
-    :returns: engine reference.
-    :rtype: LibRDEngineReference
+    Default engine (among those above) used by functions such as simulate
     """
-    # references :
-    # .. [#Bernstein2005] Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm. Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103
-
-    path = _get_strengths_path()+"/engines/strengths_engine/"+_get_os_specific_engine_lib_name()
-    return LibRDEngine(
-        ctypes.CDLL(path),
-        option = "euler_adapt",
-        description = "description",
-        requires_molecules=False
-        )
+        
+    return euler_engine()
