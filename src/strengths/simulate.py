@@ -6,7 +6,7 @@ from strengths.coarsegrain import coarsegrain_system, uncoarsegrain_trajectory
 
 def simulate_script(
         script,
-        engine = engine_collection.euler_engine(),
+        engine,
         print_progress = False,
         cgmap = None
         ) :
@@ -19,7 +19,7 @@ def simulate_script(
 
     :param engine: the simulation engine that should handle the simulation.
         see the documentation or the engine_collection submodule for more information
-        on the engines preinstalled with strengths. (default = engine_collection.euler_engine())
+        on the engines preinstalled with strengths.
     :type engine: RDSimulationEngineBase derived class
 
     :param print_progress: if true, the progression of the simulation (percentage) is printed
@@ -70,7 +70,7 @@ def simulate_script(
 def simulate(
         system,
         t_sample,
-        engine = engine_collection.euler_engine(),
+        engine = None,
         print_progress = False,
         cgmap = None,
         **script_keyword_arguments
@@ -81,7 +81,8 @@ def simulate(
 
     :param engine: the simulation engine that should handle the simulation.
         see the documentation or the engine_collection submodule for more information
-        on the engines preinstalled with strengths. (default = engine_collection.euler_engine())
+        on the engines preinstalled with strengths. if None (default), engine_collection.default_engine()
+        is used.
     :type engine: RDSimulationEngineBase derived class
 
     :param print_progress: if true, the progression of the simulation (percentage) is printed
@@ -103,6 +104,9 @@ def simulate(
     :return: simulation output
     :rtype: RDSimulationOutput
     """
+
+    if engine is None :
+        engine = engine_collection.default_engine() 
 
     d = dict(script_keyword_arguments)
     d["system"] = system
