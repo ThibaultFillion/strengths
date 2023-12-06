@@ -10,7 +10,7 @@ The design of reaction-diffusion systems if facilitated by the use of dictionary
 
 Detailed informations on the package and how to use it are given in the documentation (https://strengths.readthedocs.io/en/latest/). 
 Especially, to get started with the package, you may look at the "Using Strengths" section,
-which presents the key functionalities though examples.
+which presents the key functionalities through examples.
 For detailed and more exhaustive information on the accessible interface,
 please refer to the "API Reference" section, where all relevant functions, classes,
 methods and attributes are covered in detail.
