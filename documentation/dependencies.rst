@@ -6,18 +6,18 @@ Strengths relies on a few external packages.
 NumPy
 -----
 
-A lot of strengths features and classes, such as the UnitArray class, rely on the numpy package (Harris, 2020) [#numpy]_ and especially its famous numpy.ndarray [#numpy_ndarray]_.
-As a consequence, strenghts require that you have NumPy installed. You can refer to the numpy website for more information on numpy :
+A lot of Strengths features and classes, such as the UnitArray class, rely on the NumPy package (Harris, 2020) [#numpy]_ and especially its famous numpy.ndarray [#numpy_ndarray]_.
+As a consequence, Strenghts require that you have NumPy installed. You can refer to the NumPy website for more information on NumPy :
 
 https://numpy.org
 
 Matplotlib
 ----------
 
-Strengths provide some functions facilitating the visualization of simulation data with the strengths.plot submodule.
-Those function rely on the Matplotlib package (Hunter, 2007) [#matplotlib]_, which provide valuable tools for plotting.
+Strengths provides some functions facilitating the visualization of simulation data with the strengths.plot submodule.
+Those functions rely on the Matplotlib package (Hunter, 2007) [#matplotlib]_, which provides valuable tools for plotting.
 If you want to use the strengths.plot utility, you'll need to have Matplotlib installed.
-You can refer to the matplotlib website for more information on matplotlib :
+You can refer to the Matplotlib website for more information on Matplotlib :
 
 https://matplotlib.org
 
