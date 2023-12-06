@@ -10,7 +10,7 @@ import sys
 sys.path.append("../src/")
 
 project = 'Strengths'
-copyright = '2023, no licence yet'
+copyright = '2023 Thibault Fillion and Francesco Piazza'
 author = 'Thibault Fillion, Francesco Piazza'
 
 # -- General configuration ---------------------------------------------------
