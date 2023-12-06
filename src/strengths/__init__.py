@@ -5,4 +5,4 @@ from strengths.simulate import simulate_script, simulate
 from strengths.rdsystem import *
 from strengths.rdspace import *
 from strengths.units import *
-from strengths.engine_collection import euler_engine, gillespie_engine, tauleap_engine, euler_adapt_engine
+from strengths.engine_collection import euler_engine, gillespie_engine, tauleap_engine, default_engine
