@@ -7,7 +7,7 @@ authors :
 affiliations :
   - name : Université d'Orléans, UFR Sciences Techniques, Avenue du Parc Floral, BP 6749, 45067 Orléans, France
   - name : Centre de Biophysique Moléculaire (CBM), CNRS-UPR 4301, Rue Charles Sadron, 45071 Orléans, France
-  - name : Dipartimento di fisica \& Astronomia, Università di Firenze, Via G. Sansone 1, 50019 Sesto Fiorentino, Italy
+  - name : Dipartimento di fisica & Astronomia, Università di Firenze, Via G. Sansone 1, 50019 Sesto Fiorentino, Italy
   - name : INFN sezione di Firenze, Via G. Sansone 1, 50019 Sesto Fiorentino, Italy
 bibliography : references.bib
 
