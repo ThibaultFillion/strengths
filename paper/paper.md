@@ -149,10 +149,7 @@ compartments of arbitrary shape that encode physical and chemical segregation.
 The use of a JSON/dictionary syntax for the definition of reaction-diffusion systems 
 brings readability and simplicity to the workflow.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\includegraphics[width=\linewidth]{example1.png}
-\caption{Example of simulation with STReNGTHS implementing a simple
+![Example of simulation with STReNGTHS implementing a simple
 model  of signal transduction by a single cell. 
 (a) Schematic representation of the system. 
 (b) Layout of the two different system spaces used,
@@ -184,11 +181,8 @@ $D_R = 0.1$ $\mu$m$^2$s$^{-1}$,
 $D_C = 0.1$ $\mu$m$^2$s$^{-1}$,
 $D_X = 10$ $\mu$m$^2$s$^{-1}$,
 $D_Y = 10$ $\mu$m$^2$s$^{-1}$.
-}
-\label{example1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
+
+\label{example1}](example1.png)
 
 # Examples
 
