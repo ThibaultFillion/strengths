@@ -164,24 +164,17 @@ system spaces (see b).
 (g) Distribution of the $Y$ species at different times from the tau-leap simulations.
 The rates used were: 
 $L+R\rightarrow C$: $k_1 = 0.5$ nM$^{-1}$s$^{-1}$. 
-%
 $C\rightarrow L + R$: $k_{-1}=0.5 \times 10^{-3}$ s$^{-1}$.
-%
 $C\rightarrow R$: $k_2= 10^{-2}$ s$^{-1}$.
-%
 $C+X\rightarrow C+Y$: $k_3=1 \ $\ $\mu$M$^{-1}$s$^{-1}$.
-%
 $C+Y\rightarrow C+X$: $k_{-3} = 10^{-4}$ $\mu$M$^{-1}$s$^{-1}$.
-%
 $Y\rightarrow X, \ k_4 = 10^{-2}$ s$^{-1}$.
-%
 The diffusion coefficients for the different species were:
 $D_L = 100$ $\mu$m$^2$s$^{-1}$,
 $D_R = 0.1$ $\mu$m$^2$s$^{-1}$,
 $D_C = 0.1$ $\mu$m$^2$s$^{-1}$,
 $D_X = 10$ $\mu$m$^2$s$^{-1}$,
 $D_Y = 10$ $\mu$m$^2$s$^{-1}$.
-
 \label{example1}](example1.png)
 
 # Examples
