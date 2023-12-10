@@ -224,21 +224,13 @@ trajectory (concentration of the $A$ species).
 (h) States of the system (distribution of the $A$ species) at different time points from one simulation.
 (i) Patterns formed at t = 3500.0 h resulting from 3 different stochastic simulations.
 The rates used were: 
-%
-%  TO COMPLETE WITH THE ACTUAL PARAMETERS
-%
 $\emptyset\rightarrow A$: 
 $k_1 = 10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $a$ and $c$ and $1.05\times10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $b$.
-%
 $A \rightarrow\emptyset$: $k_{-1} = 10^{-3}$ h$^{-1}$.
-%
 $\emptyset\rightarrow B$:  
 $k_2 = 10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $a$ and $b$ and $1.05\times10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $c$.
-%
 $B \rightarrow\emptyset$: $k_{-2} = 0.001 $ h$^{-1}$.
-%
 $A+2B \rightarrow 3B$: $k_3 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
-%
 $B+2A \rightarrow 3A$: $k_4 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
 The diffusion coefficient for the different species were:
 $D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are all 0 in compartment ext. 
