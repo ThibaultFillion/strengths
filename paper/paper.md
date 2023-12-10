@@ -1,3 +1,4 @@
+---
 title : STReNGTHS, a python package to model and simulate reaction-diffusion systems
 authors :
   - name : Thibault Fillion
@@ -14,7 +15,7 @@ affiliations :
   - name : INFN sezione di Firenze, Via G. Sansone 1, 50019 Sesto Fiorentino, Italy
     index : 4
 bibliography : references.bib
-
+---
 # Summary
 
 STReNGTHS is an open-source Python package that provides a simple and intuitive
