@@ -68,17 +68,11 @@ environments or cells. Chemostatted species allow one to model
 non-equilibrium conditions existing in living cells that are associated with 
 chemical potential baths, such as in the case of the tightly regulated
 cytoplasmic levels of ATP or ADP.\\
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\includegraphics[width=\linewidth]{jsonsyntax.png}
-\caption{Definition of a simple reaction-diffusion system implementing an 
+
+![Definition of a simple reaction-diffusion system implementing an 
 association reaction over 3 cells using the JSON/dictionary format.
-The rates used were: $k_+ = 1$ M$^{-1}$s$^{-1}$, $k_-= 1$ s$^{-1}$.}
-\label{jsonsyntax}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
+The rates used were: $k_+ = 1$ M$^{-1}$s$^{-1}$, $k_-= 1$ s$^{-1}$. \label{jsonsyntax} ](jsonsyntax.png)
+
 \indent In STReNGTHS reaction-diffusion systems can be defined either 
 using python dictionaries or through JSON input files, 
 following a specific intuitive syntax, as shown figure~\ref{jsonsyntax}.
