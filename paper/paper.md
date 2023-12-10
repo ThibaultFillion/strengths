@@ -215,11 +215,8 @@ its coarse-grained version, using the tau-leap algorithm~\cite{gillespie_approxi
 and the Euler method, for a total duration of 1 hour using a time step of 1 ms. 
 The global trajectory of $Y$ as well as its distribution at $t=0, 100, 1500$ s 
 are plotted in Fig.~\ref{example1} (f, g). \\
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\includegraphics[width=\linewidth]{example2.png}
-\caption{Example of simulations of different pattern-forming reaction-diffusion systems
+
+![Example of simulations of different pattern-forming reaction-diffusion systems
 at increasing level of environmental complexity. 
 All simulations are performed with the tau leap algorithm~\cite{gillespie_approximate_2001}.
 (a) Description of the chemical reactions and associated rates. 
@@ -251,11 +248,8 @@ $A+2B \rightarrow 3B$: $k_3 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
 $B+2A \rightarrow 3A$: $k_4 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
 The diffusion coefficient for the different species were:
 $D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are all 0 in compartment ext. 
-}
-\label{example2}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
+\label{example2} ](example2.png)
+
 \indent For the second example, we consider a pattern-forming reaction-diffusion 
 network that features two competitive auto-catalytic species $A$ and $B$ 
 mutually converting into each other (Fig.~\ref{example2} (a)). 
