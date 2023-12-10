@@ -96,54 +96,44 @@ operating both on grid and graph spaces,
 with diffusion handled according to the method described in 
 Ref.~\cite{bernstein_simulating_2005}. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # STReNGTHS and similar tools
 
 There already exist various computational tools to model and simulate
 complex reaction-diffusion systems. Some of them are general-purpose 
 tools, while others have been designed to handle more specific systems. 
 Existing simulation packages include:
-%
-%---------------------------------------------------------------------------------
-\begin{itemize}
 
-\item STEPS~\cite{10.3389/neuro.11.015.2009}.
-This is a reaction-diffusion program interfaced with python, which  
-uses Gillespie algorithm. It handles simulations in geometries composed of 
-tetrahedral voxels with faces that can represent biological 
-membranes~\cite{10.3389/neuro.11.015.2009}.
+- STEPS~\cite{10.3389/neuro.11.015.2009}.
+  This is a reaction-diffusion program interfaced with python, which  
+  uses Gillespie algorithm. It handles simulations in geometries composed of 
+  tetrahedral voxels with faces that can represent biological 
+  membranes~\cite{10.3389/neuro.11.015.2009}.
+- Readdy~\cite{hoffmann2019readdy}.
+  This  is a reaction-diffusion tool with a python interface that uses
+  a particle-based approach. An especially interesting feature is that 
+  it can deal with complex molecule geometries and reaction patterns, 
+  such as polymer dynamics~\cite{hoffmann2019readdy}. 
+  A python interface is also available~\cite{hoffmann2019readdy}. 
+- MesoRD~\cite{10.1093/bioinformatics/bti431}.
+  This is a tool that employs a stochastic approach based on the 
+  Next Subvolume Method~\cite{Elf2004}. The simulation 
+  parameters are defined through XML script files, 
+  using the System Biology Markup Language (SBML) 
+  format~\cite{10.1093/bioinformatics/bti431}. 
+  The software relies on Constructive Solid Geometry (CSG) to define the 
+  different reaction-diffusion compartments~\cite{10.1093/bioinformatics/bti431}. 
+  It comes with graphical (Windows) 
+  and command-line (Unix) user interfaces~\cite{10.1093/bioinformatics/bti431}.
+- BioNetGen~\cite{10.1093/bioinformatics/btw469}.
+  This is a modeling and simulation tool 
+  that provides a rich scripting language with a 
+  rule-based approach~\cite{10.1093/bioinformatics/btw469}. Such an approach enables one 
+  to consider systems that may be difficult to apprehend with methods requiring to  
+  define explicitly the full reaction network 
+  (such as polymerization)~\cite{10.1093/bioinformatics/btw469}. 
+  BioNetGen supports both deterministic and stochastic 
+  methods~\cite{10.1093/bioinformatics/btw469}.
 
-\item Readdy~\cite{hoffmann2019readdy}.
-This  is a reaction-diffusion tool with a python interface that uses
-a particle-based approach. An especially interesting feature is that 
-it can deal with complex molecule geometries and reaction patterns, 
-such as polymer dynamics~\cite{hoffmann2019readdy}. 
-A python interface is also available~\cite{hoffmann2019readdy}. 
-
-\item MesoRD~\cite{10.1093/bioinformatics/bti431}.
-This is a tool that employs a stochastic approach based on the 
-Next Subvolume Method~\cite{Elf2004}. The simulation 
-parameters are defined through XML script files, 
-using the System Biology Markup Language (SBML) 
-format~\cite{10.1093/bioinformatics/bti431}. 
-The software relies on Constructive Solid Geometry (CSG) to define the 
-different reaction-diffusion compartments~\cite{10.1093/bioinformatics/bti431}. 
-It comes with graphical (Windows) 
-and command-line (Unix) user interfaces~\cite{10.1093/bioinformatics/bti431}.
-
-\item BioNetGen~\cite{10.1093/bioinformatics/btw469}.
-This is a modeling and simulation tool 
-that provides a rich scripting language with a 
-rule-based approach~\cite{10.1093/bioinformatics/btw469}. Such an approach enables one 
-to consider systems that may be difficult to apprehend with methods requiring to  
-define explicitly the full reaction network 
-(such as polymerization)~\cite{10.1093/bioinformatics/btw469}. 
-BioNetGen supports both deterministic and stochastic 
-methods~\cite{10.1093/bioinformatics/btw469}.
-
-\end{itemize}
-%-----------------------------------------------------------------------------------------------$
-%
 \noindent Compared to the aforementioned tools, STReNGTHS is more rudimentary and only 
 handles reaction networks with explicitly defined species and reactions, as opposed to 
 pattern-based approaches or rule-based approaches used by tools such as 
@@ -319,12 +309,11 @@ reaction-diffusion systems, which aims to provide an extensible collection of
 stochastic and deterministic simulation engines. It has been designed to be easily 
 integrated with new tools and we do hope it will continue to grow.  
 Perspectives for future developments include:
-%
-\begin{itemize}
-\item CPU-GPU massively parallel implementations of the existing simulation methods,
-\item implementing methods with dynamically adaptive time steps,
-\item implementing methods using smart joint use of stochastic and deterministic methods for faster simulations,
-\item developing a GUI that would facilitate the design of the reaction-diffusion system layouts. 
-\end{itemize}
+
+- CPU-GPU massively parallel implementations of the existing simulation methods,
+- implementing methods with dynamically adaptive time steps,
+- implementing methods using smart joint use of stochastic and deterministic methods for faster simulations,
+- developing a GUI that would facilitate the design of the reaction-diffusion system layouts. 
+
 
 
