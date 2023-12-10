@@ -1,9 +1,9 @@
 title : STReNGTHS, a python package to model and simulate reaction-diffusion systems
 authors :
   - name : Thibault Fillion
-    affiliation : 1, 2
+    affiliation : "1, 2"
   - name : Francesco Piazza
-    affiliation : 3, 4
+    affiliation : "3, 4"
 affiliations :
   - name : Université d'Orléans, UFR Sciences Techniques, Avenue du Parc Floral, BP 6749, 45067 Orléans, France
   - name : Centre de Biophysique Moléculaire (CBM), CNRS-UPR 4301, Rue Charles Sadron, 45071 Orléans, France
