@@ -9,7 +9,7 @@ affiliations :
     index : 1
   - name : Centre de Biophysique Moléculaire (CBM), CNRS-UPR 4301, Rue Charles Sadron, 45071 Orléans, France
     index : 2
-  - name : Dipartimento di fisica \& Astronomia, Università di Firenze, Via G. Sansone 1, 50019 Sesto Fiorentino, Italy
+  - name : Dipartimento di fisica & Astronomia, Università di Firenze, Via G. Sansone 1, 50019 Sesto Fiorentino, Italy
     index : 3
   - name : INFN sezione di Firenze, Via G. Sansone 1, 50019 Sesto Fiorentino, Italy
     index : 4
