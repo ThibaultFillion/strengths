@@ -22,7 +22,7 @@ STReNGTHS is an open-source Python package that provides a simple and intuitive
 interface for designing models of discrete 3D heterogeneous reaction-diffusion systems and simulating their trajectories. Different algorithms are available, both stochastic (exact or approximate  solutions of the associated 
 master equation) or deterministic (numerical solutions of the corresponding rate equations). 
 The acronym stands for "Simulation and modeling Tool for REaction-diffusion Networks in Graphs and Tridimensional Heterogeneous Systems" (STReNGTHS). The simulation algorithms are interfaced through a general abstract interface, which makes it easy to extend STReNGTHS with new algorithms and other features.  It is implemented in python (standard library, 
-Numpy~\cite{harris_numpy_2020} and Matplotlib \cite{hunter_matplotlib_2007}) 
+Numpy [@harris_numpy_2020] and Matplotlib [@hunter_matplotlib_2007]) 
 and C++ (standard C++11 or later), and can be easily installed from the Python Package Index (PyPI, https://pypi.org) with (i.e.)
 
 \begin{verbatim}
@@ -48,7 +48,7 @@ STReNGTHS provides an interface to simulate reaction-diffusion systems
 and manipulate their trajectories, as well as full control
 and access to the simulation algorithms themselves.
 
-\indent Reaction-diffusion systems consist primarily 
+  Reaction-diffusion systems consist primarily 
 of a reaction-diffusion network, which is represented by 
 the *RDSystem* class. This defines a set of coupled chemical transformations 
 that is supplemented with a spatial distribution of 
@@ -84,17 +84,17 @@ using python dictionaries or through JSON input files,
 following a specific intuitive syntax, as shown figure~\ref{jsonsyntax}.
 Simulations are handled by objects called *simulation engines*, 
 which offer a general abstract interface for simulation algorithms. 
-The~\textit{simulate} function warps the engine call to run the whole 
+The *simulate* function warps the engine call to run the whole 
 simulation at once. The resulting system trajectory, which is the sequence of 
 system states successively sampled during the simulation and the corresponding 
-sampling times, is stored in a~\textit{RDTrajectory} object. 
+sampling times, is stored in a *RDTrajectory* object. 
 
 So far, STReNGHTS proposes simulation engines implementing the Original 
-Gillespie algorithm~\cite{gillespie_exact_1977}, the $\tau$-leap approximation to 
-the Gillespie algorithm \cite{gillespie_approximate_2001}, and the Euler Method, 
+Gillespie algorithm [@gillespie_exact_1977], the $\tau$-leap approximation to 
+the Gillespie algorithm [@gillespie_approximate_2001], and the Euler Method, 
 operating both on grid and graph spaces, 
 with diffusion handled according to the method described in 
-Ref.~\cite{bernstein_simulating_2005}. 
+Ref. [@bernstein_simulating_2005]. 
 
 # STReNGTHS and similar tools
 
@@ -103,41 +103,41 @@ complex reaction-diffusion systems. Some of them are general-purpose
 tools, while others have been designed to handle more specific systems. 
 Existing simulation packages include:
 
-- STEPS~\cite{10.3389/neuro.11.015.2009}.
+- STEPS [@10.3389/neuro.11.015.2009].
   This is a reaction-diffusion program interfaced with python, which  
   uses Gillespie algorithm. It handles simulations in geometries composed of 
   tetrahedral voxels with faces that can represent biological 
-  membranes~\cite{10.3389/neuro.11.015.2009}.
-- Readdy~\cite{hoffmann2019readdy}.
+  membranes [@10.3389/neuro.11.015.2009].
+- Readdy [@hoffmann2019readdy].
   This  is a reaction-diffusion tool with a python interface that uses
   a particle-based approach. An especially interesting feature is that 
   it can deal with complex molecule geometries and reaction patterns, 
-  such as polymer dynamics~\cite{hoffmann2019readdy}. 
-  A python interface is also available~\cite{hoffmann2019readdy}. 
-- MesoRD~\cite{10.1093/bioinformatics/bti431}.
+  such as polymer dynamics [@hoffmann2019readdy]. 
+  A python interface is also available [@hoffmann2019readdy]. 
+- MesoRD [@10.1093/bioinformatics/bti431].
   This is a tool that employs a stochastic approach based on the 
-  Next Subvolume Method~\cite{Elf2004}. The simulation 
+  Next Subvolume Method [@Elf2004]. The simulation 
   parameters are defined through XML script files, 
   using the System Biology Markup Language (SBML) 
-  format~\cite{10.1093/bioinformatics/bti431}. 
+  format [@10.1093/bioinformatics/bti431]. 
   The software relies on Constructive Solid Geometry (CSG) to define the 
-  different reaction-diffusion compartments~\cite{10.1093/bioinformatics/bti431}. 
+  different reaction-diffusion compartments [@10.1093/bioinformatics/bti431]. 
   It comes with graphical (Windows) 
-  and command-line (Unix) user interfaces~\cite{10.1093/bioinformatics/bti431}.
-- BioNetGen~\cite{10.1093/bioinformatics/btw469}.
+  and command-line (Unix) user interfaces [@10.1093/bioinformatics/bti431].
+- BioNetGen [@10.1093/bioinformatics/btw469].
   This is a modeling and simulation tool 
   that provides a rich scripting language with a 
-  rule-based approach~\cite{10.1093/bioinformatics/btw469}. Such an approach enables one 
+  rule-based approach [@10.1093/bioinformatics/btw469]. Such an approach enables one 
   to consider systems that may be difficult to apprehend with methods requiring to  
   define explicitly the full reaction network 
-  (such as polymerization)~\cite{10.1093/bioinformatics/btw469}. 
+  (such as polymerization) [@10.1093/bioinformatics/btw469]. 
   BioNetGen supports both deterministic and stochastic 
-  methods~\cite{10.1093/bioinformatics/btw469}.
+  methods [@10.1093/bioinformatics/btw469].
 
-\noindent Compared to the aforementioned tools, STReNGTHS is more rudimentary and only 
+Compared to the aforementioned tools, STReNGTHS is more rudimentary and only 
 handles reaction networks with explicitly defined species and reactions, as opposed to 
 pattern-based approaches or rule-based approaches used by tools such as 
-BioNetGen~\cite{10.1093/bioinformatics/btw469}.
+BioNetGen [@10.1093/bioinformatics/btw469].
 Still, it allows one to build in a very intuitive and 
 user-friendly way simulations able to describe a vast range of complex systems. 
 
@@ -148,7 +148,7 @@ simulation methods, leaving the choice at the user's discretion. Moreover, simul
 features can be easily extended using the simulation engine interface. 
 In fact, STReNGTHS has been designed to be extended easily.
 
-One of STReNGTHS's key features is the use of reaction-diffusion environments, which make 
+One of STReNGTHS's key features is the use of *reaction-diffusion environments*, which make 
 it easy to design extremely rich system landscapes, i.e. featuring plenty of different 
 compartments of arbitrary shape that encode physical and chemical segregation. 
 
@@ -185,7 +185,7 @@ $D_Y = 10$ $\mu$m$^2$s$^{-1}$.
 
 # Examples
 
-\noindent For the first example, let us consider a simple model of signal transduction, 
+For the first example, let us consider a simple model of signal transduction, 
 where some extracellular chemical signal is sensed by a cell, which triggers 
 the production of a second messenger, as well as the scavenging of the signal species. 
 The network is designed as follows : The extracellular ligand $L$ can bind to a 
@@ -196,7 +196,7 @@ the internalization of the complex, the degradation of the ligand and full
 recycling of the receptor. No degradation of the receptors (either through the proteasomes
 or lysosomes) is assumed for simplicity,  although it would be straightforward 
 to add additional reactions to implement such reaction channels 
-(see Fig.~\ref{example1} a,c). 
+(see Fig. \ref{example1} a,c). 
 The model features 3 reaction-diffusion environments, ``ext'', ``cyt'' and ``mmb'', 
 accounting, respectively, for the extracellular space, the cytoplasm 
 and the interface between these two compartments containing the plasma membrane. 
