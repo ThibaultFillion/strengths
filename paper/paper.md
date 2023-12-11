@@ -41,7 +41,7 @@ networks, and especially their role in macroscopic *emergent*
 phenomena, convenient, reliable and efficient modeling and simulation tools supporting heterogeneous systems are necessary. Moreover, the choice of the simulation algorithm to be used may depend on the system : deterministic approaches such as ODE integration (rate equations) are effective, but inappropriate for systems that are sensitive to fluctuations, 
 such as systems that operate with species present at low copy numbers 
 (e.g. certain enzymes, many mRNA species) and/or
-in iny reaction volumes (i.e. within mitochondria), 
+in tiny reaction volumes (i.e. within mitochondria), 
 for which stochastic methods should be preferred. 
 This is why one needs to have multiple, flexible approaches available.
 STReNGTHS provides an interface to simulate reaction-diffusion systems 
