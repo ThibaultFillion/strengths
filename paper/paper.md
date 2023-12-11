@@ -260,6 +260,12 @@ the underlying auto-catalytic process with the inhomogeneous reaction landscape.
 Figure \ref{example2} (i) additionally illustrates how, due to the stochastic nature 
 of the process, different patterns may arise from the same homogeneous initial state.  
 
+\begin{figure}
+\includegraphics[width=\linewidth]{jsonsyntax.png}
+\caption{test}
+\label{test}
+\end{figure}
+
 # Source code and documentation
 
 STReNGTHS's source code and documentation are distributed under the term of the 
