@@ -31,13 +31,13 @@ and C++ (standard C++11 or later), and can be easily installed from the Python P
 
 # Statement of need
 
-\noindent Biology at the cell scale relies on complex networks of biochemical reactions, 
+Biology at the cell scale relies on complex networks of biochemical reactions, 
 usually operating across multiple membrane-associated as well as
 membrane-less compartments (i.e. plasma membrane, cytoplasm, cellular
 organelles, stress granules, etc) and driven far from equilibrium by highly regulated species, 
 such as nucleotides (ATP/GTP), amino acids and different 
 ions. In order to understand the properties of such reaction-diffusion 
-networks, and especially their role in macroscopic {\em emergent} 
+networks, and especially their role in macroscopic *emergent* 
 phenomena, convenient, reliable and efficient modeling and simulation tools supporting heterogeneous systems are necessary. Moreover, the choice of the simulation algorithm to be used may depend on the system : deterministic approaches such as ODE integration (rate equations) are effective, but inappropriate for systems that are sensitive to fluctuations, 
 such as systems that operate with species present at low copy numbers 
 (e.g. certain enzymes, many mRNA species) and/or
@@ -50,12 +50,12 @@ and access to the simulation algorithms themselves.
 
 \indent Reaction-diffusion systems consist primarily 
 of a reaction-diffusion network, which is represented by 
-the~\textit{RDSystem} class. This defines a set of coupled chemical transformations 
+the *RDSystem* class. This defines a set of coupled chemical transformations 
 that is supplemented with a spatial distribution of 
 chemical species, whose features describe
 where and how fast each molecule shall diffuse. 
 The system space is discrete, and consists of a 3D mesh of individual 
-volume elements, which we refer to as {\em cells}. 
+volume elements, which we refer to as *cells*. 
 It can be either a regular grid of cubic cells with 
 uniform volumes, or an arbitrary network of cells with different volumes, 
 which can be obtained by coarse-graining a mesh grid.
@@ -67,7 +67,7 @@ with specific reactive and diffusive properties. Many
 properties, such as the initial density of species, diffusion coefficients, or reactions 
 occurrence, can be defined environment-wise.
 
-\indent Importantly, species can be {\em chemostatted}, i.e. kept at 
+\indent Importantly, species can be *chemostatted*, i.e. kept at 
 a fixed, prescribed concentration during the simulation, 
 globally or only in specific 
 environments or cells. Chemostatted species allow one to model 
@@ -82,7 +82,7 @@ The rates used were: $k_+ = 1$ M$^{-1}$s$^{-1}$, $k_-= 1$ s$^{-1}$. \label{jsons
 \indent In STReNGTHS reaction-diffusion systems can be defined either 
 using python dictionaries or through JSON input files, 
 following a specific intuitive syntax, as shown figure~\ref{jsonsyntax}.
-Simulations are handled by objects called {\em simulation engines}, 
+Simulations are handled by objects called *simulation engines*, 
 which offer a general abstract interface for simulation algorithms. 
 The~\textit{simulate} function warps the engine call to run the whole 
 simulation at once. The resulting system trajectory, which is the sequence of 
