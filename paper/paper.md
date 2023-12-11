@@ -183,6 +183,37 @@ $D_X = 10$ $\mu$m$^2$s$^{-1}$,
 $D_Y = 10$ $\mu$m$^2$s$^{-1}$.
 \label{example1}](example1.png)
 
+\begin{figure}
+\includegraphics[width=\linewidth]{example1.png}
+\caption{Example of simulation with STReNGTHS implementing a simple
+model  of signal transduction by a single cell. 
+(a) Schematic representation of the system. 
+(b) Layout of the two different system spaces used,
+the $26 \times 26$ mesh grid (left) and its coarse-grained graph version (right). 
+(c) Set of coupled stoechiometric equations that compose the reaction network. 
+(d) Diffusion coefficients of individual species in the different environments. 
+(e) Initial densities of each species in the different environments. 
+(f) Time course of the transduced signal: Global trajectory of $Y$ obtained 
+from the simulation using the $\tau$-leap 
+algorithm [@gillespie_approximate_2001] and the Euler method using both 
+system spaces (see b). 
+(g) Distribution of the $Y$ species at different times from the $\tau$-leap simulations.
+The rates used were: 
+$L+R\rightarrow C$: $k_1 = 0.5$ nM$^{-1}$s$^{-1}$. 
+$C\rightarrow L + R$: $k_{-1}=0.5 \times 10^{-3}$ s$^{-1}$.
+$C\rightarrow R$: $k_2= 10^{-2}$ s$^{-1}$.
+$C+X\rightarrow C+Y$: $k_3=1 \ $\ $\mu$M$^{-1}$s$^{-1}$.
+$C+Y\rightarrow C+X$: $k_{-3} = 10^{-4}$ $\mu$M$^{-1}$s$^{-1}$.
+$Y\rightarrow X, \ k_4 = 10^{-2}$ s$^{-1}$.
+The diffusion coefficients for the different species were:
+$D_L = 100$ $\mu$m$^2$s$^{-1}$,
+$D_R = 0.1$ $\mu$m$^2$s$^{-1}$,
+$D_C = 0.1$ $\mu$m$^2$s$^{-1}$,
+$D_X = 10$ $\mu$m$^2$s$^{-1}$,
+$D_Y = 10$ $\mu$m$^2$s$^{-1}$.}
+\label{example1}
+\end{figure}
+
 # Examples
 
 For the first example, let us consider a simple model of signal transduction, 
