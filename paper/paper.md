@@ -164,10 +164,10 @@ the $26 \times 26$ mesh grid (left) and its coarse-grained graph version (right)
 (d) Diffusion coefficients of individual species in the different environments. 
 (e) Initial densities of each species in the different environments. 
 (f) Time course of the transduced signal: Global trajectory of $Y$ obtained 
-from the simulation using the tau-leap 
+from the simulation using the $\tau$-leap 
 algorithm [@gillespie_approximate_2001] and the Euler method using both 
 system spaces (see b). 
-(g) Distribution of the $Y$ species at different times from the tau-leap simulations.
+(g) Distribution of the $Y$ species at different times from the $\tau$-leap simulations.
 The rates used were: 
 $L+R\rightarrow C$: $k_1 = 0.5$ nM$^{-1}$s$^{-1}$. 
 $C\rightarrow L + R$: $k_{-1}=0.5 \times 10^{-3}$ s$^{-1}$.
@@ -204,14 +204,14 @@ We use two different system spaces. The first one is a $26 \times 26$ mesh grid 
 1 $\mu$m$^3$ cubic cells, while the second one is a coarse-grained version of the 
 first that contains only 85 nodes/cells (for 676 cells in the grid) (Fig. \ref{example1} b). 
 The trajectory of the system state is simulated, both for the fully detailed grid and for 
-its coarse-grained version, using the tau-leap algorithm [@gillespie_approximate_2001] 
+its coarse-grained version, using the $\tau$-leap algorithm [@gillespie_approximate_2001] 
 and the Euler method, for a total duration of 1 hour using a time step of 1 ms. 
 The global trajectory of $Y$ as well as its distribution at $t=0, 100, 1500$ s 
 are plotted in Fig. \ref{example1} (f, g).
 
 ![Example of simulations of different pattern-forming reaction-diffusion systems
 at increasing level of environmental complexity. 
-All simulations are performed with the tau leap algorithm [@gillespie_approximate_2001].
+All simulations are performed with the $\tau$ leap algorithm [@gillespie_approximate_2001].
 (a) Description of the chemical reactions and associated rates. 
 (c) Evolution of a 1D system in time and space. 
 (d) Pseudo-stationary state of a 2D system. 
@@ -239,7 +239,7 @@ For the second example, we consider a pattern-forming reaction-diffusion
 network that features two competitive auto-catalytic species $A$ and $B$ 
 mutually converting into each other (Fig. \ref{example2} (a)). 
 We first simulate the evolution of the system in 1 dimension using the 
-tau leap algorithm [@gillespie_approximate_2001]. The corresponding 
+$\tau$-leap algorithm [@gillespie_approximate_2001]. The corresponding 
 spatio-temporal evolution of $A$ concentration over time is reported in 
 Fig. \ref{example2} (c) as a 2D heat map. 
 It can be observed how the system, starting from a homogeneous state, 
