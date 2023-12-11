@@ -128,7 +128,7 @@ Existing simulation packages include:
   This is a modeling and simulation tool 
   that provides a rich scripting language with a 
   rule-based approach [@10.1093/bioinformatics/btw469]. Such an approach enables one 
-  to consider systems that may be difficult to apprehend with methods requiring to  
+  to consider systems that may be difficult to apprehend with methods requiring to 
   define explicitly the full reaction network 
   (such as polymerization) [@10.1093/bioinformatics/btw469]. 
   BioNetGen supports both deterministic and stochastic 
