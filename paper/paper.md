@@ -48,7 +48,7 @@ STReNGTHS provides an interface to simulate reaction-diffusion systems
 and manipulate their trajectories, as well as full control
 and access to the simulation algorithms themselves.
 
-  Reaction-diffusion systems consist primarily 
+Reaction-diffusion systems consist primarily 
 of a reaction-diffusion network, which is represented by 
 the *RDSystem* class. This defines a set of coupled chemical transformations 
 that is supplemented with a spatial distribution of 
@@ -60,14 +60,14 @@ It can be either a regular grid of cubic cells with
 uniform volumes, or an arbitrary network of cells with different volumes, 
 which can be obtained by coarse-graining a mesh grid.
 
-\indent In order to account for systems with different compartments, 
+In order to account for systems with different compartments, 
 SReNGTHS implements the system of reaction-diffusion environments, 
 which allow the user to define different types of cells (referred to as environments) 
 with specific reactive and diffusive properties. Many 
 properties, such as the initial density of species, diffusion coefficients, or reactions 
 occurrence, can be defined environment-wise.
 
-\indent Importantly, species can be *chemostatted*, i.e. kept at 
+Importantly, species can be *chemostatted*, i.e. kept at 
 a fixed, prescribed concentration during the simulation, 
 globally or only in specific 
 environments or cells. Chemostatted species allow one to model 
@@ -79,7 +79,7 @@ cytoplasmic levels of ATP or ADP.
 association reaction over 3 cells using the JSON/dictionary format.
 The rates used were: $k_+ = 1$ M$^{-1}$s$^{-1}$, $k_-= 1$ s$^{-1}$. \label{jsonsyntax} ](jsonsyntax.png)
 
-\indent In STReNGTHS reaction-diffusion systems can be defined either 
+In STReNGTHS reaction-diffusion systems can be defined either 
 using python dictionaries or through JSON input files, 
 following a specific intuitive syntax, as shown figure~\ref{jsonsyntax}.
 Simulations are handled by objects called *simulation engines*, 
@@ -202,12 +202,12 @@ accounting, respectively, for the extracellular space, the cytoplasm
 and the interface between these two compartments containing the plasma membrane. 
 We use two different system spaces. The first one is a $26 \times 26$ mesh grid consisting of 
 1 $\mu$m$^3$ cubic cells, while the second one is a coarse-grained version of the 
-first that contains only 85 nodes/cells (for 676 cells in the grid) (Fig.~\ref{example1} b). 
+first that contains only 85 nodes/cells (for 676 cells in the grid) (Fig. \ref{example1} b). 
 The trajectory of the system state is simulated, both for the fully detailed grid and for 
 its coarse-grained version, using the tau-leap algorithm~\cite{gillespie_approximate_2001} 
 and the Euler method, for a total duration of 1 hour using a time step of 1 ms. 
 The global trajectory of $Y$ as well as its distribution at $t=0, 100, 1500$ s 
-are plotted in Fig.~\ref{example1} (f, g).
+are plotted in Fig. \ref{example1} (f, g).
 
 ![Example of simulations of different pattern-forming reaction-diffusion systems
 at increasing level of environmental complexity. 
