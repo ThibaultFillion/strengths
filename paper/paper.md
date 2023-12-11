@@ -155,6 +155,32 @@ compartments of arbitrary shape that encode physical and chemical segregation.
 The use of a JSON/dictionary syntax for the definition of reaction-diffusion systems 
 brings readability and simplicity to the workflow.
 
+# Examples
+
+For the first example, let us consider a simple model of signal transduction, 
+where some extracellular chemical signal is sensed by a cell, which triggers 
+the production of a second messenger, as well as the scavenging of the signal species. 
+The network is designed as follows : The extracellular ligand $L$ can bind to a 
+plasma membrane receptor $R$ to form a complex $C$. This species catalyzes the 
+conversion of the inactive second messenger $X$ to its active form,  $Y$.
+The complex $C$ is directly converted back into $R$, which accounts for 
+the internalization of the complex, the degradation of the ligand and full 
+recycling of the receptor. No degradation of the receptors (either through the proteasomes
+or lysosomes) is assumed for simplicity,  although it would be straightforward 
+to add additional reactions to implement such reaction channels 
+(see Fig. \ref{example1} a,c). 
+The model features 3 reaction-diffusion environments, "ext", "cyt" and "mmb", 
+accounting, respectively, for the extracellular space, the cytoplasm 
+and the interface between these two compartments containing the plasma membrane. 
+We use two different system spaces. The first one is a $26 \times 26$ mesh grid consisting of 
+1 $\mu$m$^3$ cubic cells, while the second one is a coarse-grained version of the 
+first that contains only 85 nodes/cells (for 676 cells in the grid) (Fig. \ref{example1} b). 
+The trajectory of the system state is simulated, both for the fully detailed grid and for 
+its coarse-grained version, using the $\tau$-leap algorithm [@gillespie_approximate_2001] 
+and the Euler method, for a total duration of 1 hour using a time step of 1 ms. 
+The global trajectory of $Y$ as well as its distribution at $t=0, 100, 1500$ s 
+are plotted in Fig. \ref{example1} (f, g).
+
 ![Example of simulation with STReNGTHS implementing a simple
 model  of signal transduction by a single cell. 
 (a) Schematic representation of the system. 
@@ -182,58 +208,6 @@ $D_C = 0.1$ $\mu$m$^2$s$^{-1}$,
 $D_X = 10$ $\mu$m$^2$s$^{-1}$,
 $D_Y = 10$ $\mu$m$^2$s$^{-1}$.
 \label{example1}](example1.png)
-
-# Examples
-
-For the first example, let us consider a simple model of signal transduction, 
-where some extracellular chemical signal is sensed by a cell, which triggers 
-the production of a second messenger, as well as the scavenging of the signal species. 
-The network is designed as follows : The extracellular ligand $L$ can bind to a 
-plasma membrane receptor $R$ to form a complex $C$. This species catalyzes the 
-conversion of the inactive second messenger $X$ to its active form,  $Y$.
-The complex $C$ is directly converted back into $R$, which accounts for 
-the internalization of the complex, the degradation of the ligand and full 
-recycling of the receptor. No degradation of the receptors (either through the proteasomes
-or lysosomes) is assumed for simplicity,  although it would be straightforward 
-to add additional reactions to implement such reaction channels 
-(see Fig. \ref{example1} a,c). 
-The model features 3 reaction-diffusion environments, "ext", "cyt" and "mmb", 
-accounting, respectively, for the extracellular space, the cytoplasm 
-and the interface between these two compartments containing the plasma membrane. 
-We use two different system spaces. The first one is a $26 \times 26$ mesh grid consisting of 
-1 $\mu$m$^3$ cubic cells, while the second one is a coarse-grained version of the 
-first that contains only 85 nodes/cells (for 676 cells in the grid) (Fig. \ref{example1} b). 
-The trajectory of the system state is simulated, both for the fully detailed grid and for 
-its coarse-grained version, using the $\tau$-leap algorithm [@gillespie_approximate_2001] 
-and the Euler method, for a total duration of 1 hour using a time step of 1 ms. 
-The global trajectory of $Y$ as well as its distribution at $t=0, 100, 1500$ s 
-are plotted in Fig. \ref{example1} (f, g).
-
-![Example of simulations of different pattern-forming reaction-diffusion systems
-at increasing level of environmental complexity. 
-All simulations are performed with the $\tau$ leap algorithm [@gillespie_approximate_2001].
-(a) Description of the chemical reactions and associated rates. 
-(c) Evolution of a 1D system in time and space. 
-(d) Pseudo-stationary state of a 2D system. 
-(e) reaction-diffusion environments for the two inhomogeneous systems. 
-(b) Layout of a 3D system where the patterns are forming at the surface of a sphere. 
-(f) States of the 3D system described at different time points along a stochastic 
-trajectory (concentration of the $A$ species). 
-(g) Layout of a 2D system mimicking the shape of an animal.
-(h) States of the system (distribution of the $A$ species) at different time points from one simulation.
-(i) Patterns formed at t = 3500.0 h resulting from 3 different stochastic simulations.
-The rates used were: 
-$\emptyset\rightarrow A$: 
-$k_1 = 10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $a$ and $c$ and $1.05\times10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $b$.
-$A \rightarrow\emptyset$: $k_{-1} = 10^{-3}$ h$^{-1}$.
-$\emptyset\rightarrow B$: 
-$k_2 = 10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $a$ and $b$ and $1.05\times10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $c$.
-$B \rightarrow\emptyset$: $k_{-2} = 0.001$ h$^{-1}$.
-$A+2B \rightarrow 3B$: $k_3 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
-$B+2A \rightarrow 3A$: $k_4 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
-The diffusion coefficient for the different species were:
-$D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are all 0 in compartment ext. 
-\label{example2}](example2.png)
 
 For the second example, we consider a pattern-forming reaction-diffusion 
 network that features two competitive auto-catalytic species $A$ and $B$ 
@@ -274,6 +248,32 @@ demonstrate how to define reaction-diffusion systems by taking advantage of STRe
 features (environments, chemostats, boundary conditions, etc.) as well as how to carry 
 out simulations and post-process the trajectories. The API Reference documents the exposed 
 functions and classes. 
+
+![Example of simulations of different pattern-forming reaction-diffusion systems
+at increasing level of environmental complexity. 
+All simulations are performed with the $\tau$ leap algorithm [@gillespie_approximate_2001].
+(a) Description of the chemical reactions and associated rates. 
+(c) Evolution of a 1D system in time and space. 
+(d) Pseudo-stationary state of a 2D system. 
+(e) reaction-diffusion environments for the two inhomogeneous systems. 
+(b) Layout of a 3D system where the patterns are forming at the surface of a sphere. 
+(f) States of the 3D system described at different time points along a stochastic 
+trajectory (concentration of the $A$ species). 
+(g) Layout of a 2D system mimicking the shape of an animal.
+(h) States of the system (distribution of the $A$ species) at different time points from one simulation.
+(i) Patterns formed at t = 3500.0 h resulting from 3 different stochastic simulations.
+The rates used were: 
+$\emptyset\rightarrow A$: 
+$k_1 = 10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $a$ and $c$ and $1.05\times10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $b$.
+$A \rightarrow\emptyset$: $k_{-1} = 10^{-3}$ h$^{-1}$.
+$\emptyset\rightarrow B$: 
+$k_2 = 10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $a$ and $b$ and $1.05\times10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $c$.
+$B \rightarrow\emptyset$: $k_{-2} = 0.001$ h$^{-1}$.
+$A+2B \rightarrow 3B$: $k_3 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
+$B+2A \rightarrow 3A$: $k_4 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
+The diffusion coefficient for the different species were:
+$D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are all 0 in compartment ext. 
+\label{example2}](example2.png)
 
 # Conclusions and perspectives
 
