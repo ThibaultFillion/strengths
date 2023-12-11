@@ -265,9 +265,7 @@ $D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are 
 STReNGTHS's source code and documentation are distributed under the term of the 
 MIT licence and can be found on the dedicated GitHub repository:
 
-\smallskip
-\texttt{https://github.com/ThibaultFillion/strengths}
-\smallskip
+[STReNGHTS's GitHub Repository](https://github.com/ThibaultFillion/strengths)
 
 The documentation includes tutorials and an API Reference. The tutorials 
 demonstrate how to define reaction-diffusion systems by taking advantage of STReNGTHS's different 
