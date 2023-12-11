@@ -234,21 +234,6 @@ the underlying auto-catalytic process with the inhomogeneous reaction landscape.
 Figure \ref{example2} (i) additionally illustrates how, due to the stochastic nature 
 of the process, different patterns may arise from the same homogeneous initial state.  
 
-# Source code and documentation
-
-STReNGTHS's source code and documentation are distributed under the term of the 
-MIT licence and can be found on the dedicated GitHub repository:
-
-\smallskip
-\texttt{https://github.com/ThibaultFillion/strengths}
-\smallskip
-
-The documentation includes tutorials and an API Reference. The tutorials 
-demonstrate how to define reaction-diffusion systems by taking advantage of STReNGTHS's different 
-features (environments, chemostats, boundary conditions, etc.) as well as how to carry 
-out simulations and post-process the trajectories. The API Reference documents the exposed 
-functions and classes. 
-
 ![Example of simulations of different pattern-forming reaction-diffusion systems
 at increasing level of environmental complexity. 
 All simulations are performed with the $\tau$ leap algorithm [@gillespie_approximate_2001].
@@ -274,6 +259,21 @@ $B+2A \rightarrow 3A$: $k_4 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
 The diffusion coefficient for the different species were:
 $D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are all 0 in compartment ext. 
 \label{example2}](example2.png)
+
+# Source code and documentation
+
+STReNGTHS's source code and documentation are distributed under the term of the 
+MIT licence and can be found on the dedicated GitHub repository:
+
+\smallskip
+\texttt{https://github.com/ThibaultFillion/strengths}
+\smallskip
+
+The documentation includes tutorials and an API Reference. The tutorials 
+demonstrate how to define reaction-diffusion systems by taking advantage of STReNGTHS's different 
+features (environments, chemostats, boundary conditions, etc.) as well as how to carry 
+out simulations and post-process the trajectories. The API Reference documents the exposed 
+functions and classes. 
 
 # Conclusions and perspectives
 
