@@ -104,7 +104,7 @@ tools, while others have been designed to handle more specific systems.
 Existing simulation packages include:
 
 - STEPS [@10.3389/neuro.11.015.2009].
-  This is a reaction-diffusion program interfaced with python, which  
+  This is a reaction-diffusion program interfaced with python, which 
   uses Gillespie algorithm. It handles simulations in geometries composed of 
   tetrahedral voxels with faces that can represent biological 
   membranes [@10.3389/neuro.11.015.2009].
