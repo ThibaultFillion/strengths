@@ -81,7 +81,7 @@ The rates used were: $k_+ = 1$ M$^{-1}$s$^{-1}$, $k_-= 1$ s$^{-1}$. \label{jsons
 
 In STReNGTHS reaction-diffusion systems can be defined either 
 using python dictionaries or through JSON input files, 
-following a specific intuitive syntax, as shown figure~\ref{jsonsyntax}.
+following a specific intuitive syntax, as shown figure \ref{jsonsyntax}.
 Simulations are handled by objects called *simulation engines*, 
 which offer a general abstract interface for simulation algorithms. 
 The *simulate* function warps the engine call to run the whole 
