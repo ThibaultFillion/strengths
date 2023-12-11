@@ -24,6 +24,7 @@ master equation) or deterministic (numerical solutions of the corresponding rate
 The acronym stands for "Simulation and modeling Tool for REaction-diffusion Networks in Graphs and Tridimensional Heterogeneous Systems" (STReNGTHS). The simulation algorithms are interfaced through a general abstract interface, which makes it easy to extend STReNGTHS with new algorithms and other features.  It is implemented in python (standard library, 
 Numpy~\cite{harris_numpy_2020} and Matplotlib \cite{hunter_matplotlib_2007}) 
 and C++ (standard C++11 or later), and can be easily installed from the Python Package Index (PyPI, https://pypi.org) with (i.e.)
+
 \begin{verbatim}
     pip install strengths
 \end{verbatim}
@@ -45,7 +46,8 @@ for which stochastic methods should be preferred.
 This is why one needs to have multiple, flexible approaches available.
 STReNGTHS provides an interface to simulate reaction-diffusion systems 
 and manipulate their trajectories, as well as full control
-and access to the simulation algorithms themselves. \\
+and access to the simulation algorithms themselves.
+
 \indent Reaction-diffusion systems consist primarily 
 of a reaction-diffusion network, which is represented by 
 the~\textit{RDSystem} class. This defines a set of coupled chemical transformations 
@@ -56,20 +58,22 @@ The system space is discrete, and consists of a 3D mesh of individual
 volume elements, which we refer to as {\em cells}. 
 It can be either a regular grid of cubic cells with 
 uniform volumes, or an arbitrary network of cells with different volumes, 
-which can be obtained by coarse-graining a mesh grid.\\ 
+which can be obtained by coarse-graining a mesh grid.
+
 \indent In order to account for systems with different compartments, 
 SReNGTHS implements the system of reaction-diffusion environments, 
 which allow the user to define different types of cells (referred to as environments) 
 with specific reactive and diffusive properties. Many 
 properties, such as the initial density of species, diffusion coefficients, or reactions 
-occurrence, can be defined environment-wise.\\
+occurrence, can be defined environment-wise.
+
 \indent Importantly, species can be {\em chemostatted}, i.e. kept at 
 a fixed, prescribed concentration during the simulation, 
 globally or only in specific 
 environments or cells. Chemostatted species allow one to model 
 non-equilibrium conditions existing in living cells that are associated with 
 chemical potential baths, such as in the case of the tightly regulated
-cytoplasmic levels of ATP or ADP.\\
+cytoplasmic levels of ATP or ADP.
 
 ![Definition of a simple reaction-diffusion system implementing an 
 association reaction over 3 cells using the JSON/dictionary format.
@@ -83,8 +87,8 @@ which offer a general abstract interface for simulation algorithms.
 The~\textit{simulate} function warps the engine call to run the whole 
 simulation at once. The resulting system trajectory, which is the sequence of 
 system states successively sampled during the simulation and the corresponding 
-sampling times, is stored in a~\textit{RDTrajectory} object. \\
-%
+sampling times, is stored in a~\textit{RDTrajectory} object. 
+
 So far, STReNGHTS proposes simulation engines implementing the Original 
 Gillespie algorithm~\cite{gillespie_exact_1977}, the $\tau$-leap approximation to 
 the Gillespie algorithm \cite{gillespie_approximate_2001}, and the Euler Method, 
@@ -136,18 +140,18 @@ pattern-based approaches or rule-based approaches used by tools such as
 BioNetGen~\cite{10.1093/bioinformatics/btw469}.
 Still, it allows one to build in a very intuitive and 
 user-friendly way simulations able to describe a vast range of complex systems. 
-%
+
 So far, as opposed with Readdy, STReNGTHS only implements non particle-based methods, 
 similar to those proposed by the other software. However, rather than proposing only one 
 all-purpose fitting method, STReNGTHS's approach is to display a collection of various 
 simulation methods, leaving the choice at the user's discretion. Moreover, simulation 
 features can be easily extended using the simulation engine interface. 
 In fact, STReNGTHS has been designed to be extended easily.
-%
+
 One of STReNGTHS's key features is the use of reaction-diffusion environments, which make 
 it easy to design extremely rich system landscapes, i.e. featuring plenty of different 
 compartments of arbitrary shape that encode physical and chemical segregation. 
-%
+
 The use of a JSON/dictionary syntax for the definition of reaction-diffusion systems 
 brings readability and simplicity to the workflow.
 
@@ -203,7 +207,7 @@ The trajectory of the system state is simulated, both for the fully detailed gri
 its coarse-grained version, using the tau-leap algorithm~\cite{gillespie_approximate_2001} 
 and the Euler method, for a total duration of 1 hour using a time step of 1 ms. 
 The global trajectory of $Y$ as well as its distribution at $t=0, 100, 1500$ s 
-are plotted in Fig.~\ref{example1} (f, g). \\
+are plotted in Fig.~\ref{example1} (f, g).
 
 ![Example of simulations of different pattern-forming reaction-diffusion systems
 at increasing level of environmental complexity. 
@@ -242,8 +246,8 @@ It can be observed how the system, starting from a homogeneous state,
 progressively builds up spatial reaction-diffusion patterns. 
 We also simulate a square $100 \times 100$ mesh system and plot the 
 final distribution of $A$, so that the shape of the pattern can be 
-appreciated directly (Fig.~\ref{example2} (d)). \\
-%
+appreciated directly (Fig.~\ref{example2} (d)). 
+
 \indent Next, we apply this model to two systems with higher complexity, where the synthesis rates 
 of $A$ and $B$ vary depending on the region (Fig.~\ref{example2} (b), (e), (g)). 
 The first one (Fig.~\ref{example2} (e)) represents pattern formation at the surface of a sphere, 
@@ -264,7 +268,7 @@ MIT licence and can be found on the dedicated GitHub repository:
 \smallskip
 \noindent\texttt{https://github.com/ThibaultFillion/strengths}
 \smallskip\\
-%
+
 \noindent The documentation includes tutorials and an API Reference. The tutorials 
 demonstrate how to define reaction-diffusion systems by taking advantage of STReNGTHS's different 
 features (environments, chemostats, boundary conditions, etc.) as well as how to carry 
