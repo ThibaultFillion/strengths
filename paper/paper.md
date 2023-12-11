@@ -165,7 +165,7 @@ the $26 \times 26$ mesh grid (left) and its coarse-grained graph version (right)
 (e) Initial densities of each species in the different environments. 
 (f) Time course of the transduced signal: Global trajectory of $Y$ obtained 
 from the simulation using the tau-leap 
-algorithm~\cite{gillespie_approximate_2001} and the Euler method using both 
+algorithm [@gillespie_approximate_2001] and the Euler method using both 
 system spaces (see b). 
 (g) Distribution of the $Y$ species at different times from the tau-leap simulations.
 The rates used were: 
@@ -197,21 +197,21 @@ recycling of the receptor. No degradation of the receptors (either through the p
 or lysosomes) is assumed for simplicity,  although it would be straightforward 
 to add additional reactions to implement such reaction channels 
 (see Fig. \ref{example1} a,c). 
-The model features 3 reaction-diffusion environments, ``ext'', ``cyt'' and ``mmb'', 
+The model features 3 reaction-diffusion environments, "ext", "cyt" and "mmb", 
 accounting, respectively, for the extracellular space, the cytoplasm 
 and the interface between these two compartments containing the plasma membrane. 
 We use two different system spaces. The first one is a $26 \times 26$ mesh grid consisting of 
 1 $\mu$m$^3$ cubic cells, while the second one is a coarse-grained version of the 
 first that contains only 85 nodes/cells (for 676 cells in the grid) (Fig. \ref{example1} b). 
 The trajectory of the system state is simulated, both for the fully detailed grid and for 
-its coarse-grained version, using the tau-leap algorithm~\cite{gillespie_approximate_2001} 
+its coarse-grained version, using the tau-leap algorithm [@gillespie_approximate_2001] 
 and the Euler method, for a total duration of 1 hour using a time step of 1 ms. 
 The global trajectory of $Y$ as well as its distribution at $t=0, 100, 1500$ s 
 are plotted in Fig. \ref{example1} (f, g).
 
 ![Example of simulations of different pattern-forming reaction-diffusion systems
 at increasing level of environmental complexity. 
-All simulations are performed with the tau leap algorithm~\cite{gillespie_approximate_2001}.
+All simulations are performed with the tau leap algorithm [@gillespie_approximate_2001].
 (a) Description of the chemical reactions and associated rates. 
 (c) Evolution of a 1D system in time and space. 
 (d) Pseudo-stationary state of a 2D system. 
@@ -235,29 +235,29 @@ The diffusion coefficient for the different species were:
 $D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are all 0 in compartment ext. 
 \label{example2} ](example2.png)
 
-\indent For the second example, we consider a pattern-forming reaction-diffusion 
+For the second example, we consider a pattern-forming reaction-diffusion 
 network that features two competitive auto-catalytic species $A$ and $B$ 
-mutually converting into each other (Fig.~\ref{example2} (a)). 
+mutually converting into each other (Fig. \ref{example2} (a)). 
 We first simulate the evolution of the system in 1 dimension using the 
-tau leap algorithm~\cite{gillespie_approximate_2001}. The corresponding 
+tau leap algorithm [@gillespie_approximate_2001]. The corresponding 
 spatio-temporal evolution of $A$ concentration over time is reported in 
-Fig.~\ref{example2} (c) as a 2D heat map. 
+Fig. \ref{example2} (c) as a 2D heat map. 
 It can be observed how the system, starting from a homogeneous state, 
 progressively builds up spatial reaction-diffusion patterns. 
 We also simulate a square $100 \times 100$ mesh system and plot the 
 final distribution of $A$, so that the shape of the pattern can be 
-appreciated directly (Fig.~\ref{example2} (d)). 
+appreciated directly (Fig. \ref{example2} (d)). 
 
-\indent Next, we apply this model to two systems with higher complexity, where the synthesis rates 
-of $A$ and $B$ vary depending on the region (Fig.~\ref{example2} (b), (e), (g)). 
-The first one (Fig.~\ref{example2} (e)) represents pattern formation at the surface of a sphere, 
-while the second one (Fig.~\ref{example2} (g)) illustrates a similar phenomenon of pattern 
+Next, we apply this model to two systems with higher complexity, where the synthesis rates 
+of $A$ and $B$ vary depending on the region (Fig. \ref{example2} (b), (e), (g)). 
+The first one (Fig. \ref{example2} (e)) represents pattern formation at the surface of a sphere, 
+while the second one (Fig. \ref{example2} (g)) illustrates a similar phenomenon of pattern 
 formation in a domain that takes the shape of an animal. Panels (f) and (h) in 
-Fig.~\ref{example2}  demonstrate the evolution of both systems 
+Fig. \ref{example2}  demonstrate the evolution of both systems 
 (levels of the $A$ species) in time, highlighting the progressive evolution 
 of the spatial patterns that form as a result of the subtle combination of 
 the underlying auto-catalytic process with the inhomogeneous reaction landscape. 
-Figure~\ref{example2} (i) additionally illustrates how, due to the stochastic nature 
+Figure \ref{example2} (i) additionally illustrates how, due to the stochastic nature 
 of the process, different patterns may arise from the same homogeneous initial state.  
 
 # Source code and documentation
@@ -266,10 +266,10 @@ STReNGTHS's source code and documentation are distributed under the term of the
 MIT licence and can be found on the dedicated GitHub repository:
 
 \smallskip
-\noindent\texttt{https://github.com/ThibaultFillion/strengths}
-\smallskip\\
+\texttt{https://github.com/ThibaultFillion/strengths}
+\smallskip
 
-\noindent The documentation includes tutorials and an API Reference. The tutorials 
+The documentation includes tutorials and an API Reference. The tutorials 
 demonstrate how to define reaction-diffusion systems by taking advantage of STReNGTHS's different 
 features (environments, chemostats, boundary conditions, etc.) as well as how to carry 
 out simulations and post-process the trajectories. The API Reference documents the exposed 
@@ -277,7 +277,7 @@ functions and classes.
 
 # Conclusions and perspectives
 
-STReNGHTS is a  new integrated and flexible platform for  modeling and simulation of inhomogeneous 
+STReNGHTS is a new integrated and flexible platform for modeling and simulation of inhomogeneous 
 reaction-diffusion systems, which aims to provide an extensible collection of 
 stochastic and deterministic simulation engines. It has been designed to be easily 
 integrated with new tools and we do hope it will continue to grow.  
@@ -288,5 +288,6 @@ Perspectives for future developments include:
 - implementing methods using smart joint use of stochastic and deterministic methods for faster simulations,
 - developing a GUI that would facilitate the design of the reaction-diffusion system layouts. 
 
+# References
 
 
