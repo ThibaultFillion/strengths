@@ -262,7 +262,7 @@ $D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are 
 
 # Source code and documentation
 
-STReNGTHS's source code and documentation are distributed under the term of the 
+STReNGTHS's source code and documentation are distributed under the terms of the 
 MIT licence and can be found on the dedicated GitHub repository:
 
 [https://github.com/ThibaultFillion/strengths](https://github.com/ThibaultFillion/strengths)
