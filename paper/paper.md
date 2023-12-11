@@ -46,7 +46,6 @@ This is why one needs to have multiple, flexible approaches available.
 STReNGTHS provides an interface to simulate reaction-diffusion systems 
 and manipulate their trajectories, as well as full control
 and access to the simulation algorithms themselves. \\
-%
 \indent Reaction-diffusion systems consist primarily 
 of a reaction-diffusion network, which is represented by 
 the~\textit{RDSystem} class. This defines a set of coupled chemical transformations 
@@ -58,14 +57,12 @@ volume elements, which we refer to as {\em cells}.
 It can be either a regular grid of cubic cells with 
 uniform volumes, or an arbitrary network of cells with different volumes, 
 which can be obtained by coarse-graining a mesh grid.\\ 
-%
 \indent In order to account for systems with different compartments, 
 SReNGTHS implements the system of reaction-diffusion environments, 
 which allow the user to define different types of cells (referred to as environments) 
 with specific reactive and diffusive properties. Many 
 properties, such as the initial density of species, diffusion coefficients, or reactions 
 occurrence, can be defined environment-wise.\\
-%
 \indent Importantly, species can be {\em chemostatted}, i.e. kept at 
 a fixed, prescribed concentration during the simulation, 
 globally or only in specific 
