@@ -127,17 +127,6 @@ std::vector<double> GenerateStochasticDistribution (std::vector<double> mesh_x, 
   return mesh_x_sto;
   }
 
-template <typename T_in, typename T_out>
-std::vector<T_out> ConvertVector(std::vector<T_in> & v_in)
-    {
-    std::vector<T_out> v_out(v_in.size());
-    for(size_t i=0; i<v_in.size(); i++)
-        {
-        v_out[i] = static_cast<T_out>(v_in[i]);
-        }
-    return v_out;
-    }
-
 template<typename T_out, typename T_in> std::vector<T_out> MkVec(T_in * a, int len, bool floor_values = false)
     {
     std::vector<T_out> v(len);
