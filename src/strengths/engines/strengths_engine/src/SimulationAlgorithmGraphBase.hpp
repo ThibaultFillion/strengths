@@ -12,7 +12,7 @@ class SimulationAlgorithmGraphBase
     std::vector<int>    mesh_env;                   // meshes environments
     std::vector<double> mesh_vol;                   // meshes volumes
 
-    std::vector<double> mesh_neighbor_n;           // number of neighbors for each mesh
+    std::vector<int> mesh_neighbor_n;           // number of neighbors for each mesh
     std::vector<std::vector<int>> mesh_neighbor_index;      // neighbor mesh index
     std::vector<std::vector<double>> mesh_neighbor_sfc;      // neighbor contact suface
     std::vector<std::vector<double>> mesh_neighbor_dst;      // neighbor center-center distance
