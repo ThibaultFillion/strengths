@@ -12,7 +12,7 @@ class SimulationAlgorithmGraphBase
     std::vector<int>    mesh_env;                   // meshes environments
     std::vector<double> mesh_vol;                   // meshes volumes
 
-    std::vector<double> mesh_neighbor_n;           // number of neighbors for each mesh
+    std::vector<int> mesh_neighbor_n;           // number of neighbors for each mesh
     std::vector<std::vector<int>> mesh_neighbor_index;      // neighbor mesh index
     std::vector<std::vector<double>> mesh_neighbor_sfc;      // neighbor contact suface
     std::vector<std::vector<double>> mesh_neighbor_dst;      // neighbor center-center distance
@@ -77,7 +77,7 @@ class SimulationAlgorithmGraphBase
           }
       }
 
-    void Build_mesh_kr(const std::vector<double> & k, const std::vector<int> & r_env)
+    void Build_mesh_kr(const std::vector<double> & k, const std::vector<double> & r_env)
     // builds mesh_kr
         {
         mesh_kr.clear();
@@ -86,7 +86,7 @@ class SimulationAlgorithmGraphBase
           {
           for(int r=0; r<n_reactions; r++)
             {
-            int q = 0;
+            double q = 0;
             for(int s=0; s<n_species; s++)
                 q+=sub[s*n_reactions+r];
             mesh_kr[i*n_reactions+r] = k[r]*pow(mesh_vol[i],1-q)*r_env[r*n_env+mesh_env[i]];
@@ -298,7 +298,7 @@ class SimulationAlgorithmGraphBase
         std::vector<double> k,          //reaction rates
         std::vector<double> sub,        //N*M substrate matrix
         std::vector<double> sto,        //N*M stoechiometry matrix
-        std::vector<int>    r_env,      //reactions environments
+        std::vector<double> r_env,      //reactions environments
         std::vector<double> D,          //reactions diffusion coefficients
 
         int sample_n,                   //number of sample timepoints

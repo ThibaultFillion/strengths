@@ -13,6 +13,15 @@
 
 #include <chrono>
 
+#ifdef CPYEMVER
+  #include <Python.h>
+
+  extern "C" PyObject * PyInit_engine()
+    {
+    return NULL;
+    }
+#endif
+
 std::vector<double> GenerateStochasticDistribution (std::vector<double> mesh_x, int n_meshes, int n_species, int seed)
   {
   /// generate a poisson distributed stochastic state that respects the floored total quantities of the input floating point state.
@@ -118,25 +127,12 @@ std::vector<double> GenerateStochasticDistribution (std::vector<double> mesh_x, 
   return mesh_x_sto;
   }
 
-template <typename T_in, typename T_out>
-std::vector<T_out> ConvertVector(std::vector<T_in> & v_in)
-    {
-    std::vector<T_out> v_out(v_in.size());
-    for(size_t i=0; i<v_in.size(); i++)
-        {
-        v_out[i] = static_cast<T_out>(v_in[i]);
-        }
-    return v_out;
-    }
-
-template<typename T_out, typename T_in> std::vector<T_out> MkVec(T_in * a, int len, bool floor_values = false)
+template<typename T_out, typename T_in> std::vector<T_out> MkVec(T_in * a, int len)
     {
     std::vector<T_out> v(len);
     for(int i=0;i<len;i++)
         {
         v[i] = static_cast<T_out>(a[i]);
-        if(floor_values)
-            v[i] = floor(v[i]);
         }
     return v;
     }
@@ -239,14 +235,14 @@ extern "C" int Initialize3D (
     if(is_stochastic)
       {
       mesh_x = GenerateStochasticDistribution (
-        SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species, false), n_species, n_meshes),
+        SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes),
         n_meshes,
         n_species,
         seed);
       }
     else
       {
-      mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species, false), n_species, n_meshes);
+      mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes);
       }
 
     global_grid_algo->Init(
@@ -265,7 +261,7 @@ extern "C" int Initialize3D (
           MkVec<double, double>(k, n_reactions),
           MkVec<double, int   >(sub, n_species*n_reactions),
           MkVec<double, int   >(sto, n_species*n_reactions),
-          MkVec<int,    int   >(r_env, n_reactions*n_env),
+          MkVec<double, int   >(r_env, n_reactions*n_env),
           MkVec<double, double>(D, n_species*n_env),
           boundary_conditions,
           sample_n,
@@ -349,14 +345,14 @@ extern "C" int InitializeGraph (
     if(is_stochastic)
       {
       mesh_x = GenerateStochasticDistribution (
-        SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species, false), n_species, n_meshes),
+        SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes),
         n_meshes,
         n_species,
         seed);
       }
     else
       {
-      mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species, false), n_species, n_meshes);
+      mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes);
       }
 
     global_graph_algo->Init(
@@ -383,7 +379,7 @@ extern "C" int InitializeGraph (
           MkVec<double, double>(k, n_reactions),
           MkVec<double, int   >(sub, n_species*n_reactions),
           MkVec<double, int   >(sto, n_species*n_reactions),
-          MkVec<int,    int   >(r_env, n_reactions*n_env),
+          MkVec<double, int   >(r_env, n_reactions*n_env),
           MkVec<double, double>(D, n_species*n_env),
 
           sample_n,
@@ -408,7 +404,7 @@ extern "C" int Run(int breathe_dt)
         {
         if      (global_space_type == 0) unfinished = global_grid_algo->Iterate();
         else if (global_space_type == 1) unfinished = global_graph_algo->Iterate();
-        int dt = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - t0).count();
+        int dt = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - t0).count());
         if(!unfinished || dt>=breathe_dt)
             break;
         }
@@ -576,6 +572,15 @@ extern "C" int GetNSamples()
       return global_grid_algo->NSamples();
     else
       return global_graph_algo->NSamples();
+    }
+
+extern "C" int Sample()
+    {
+    if (global_space_type == 0)
+      global_grid_algo->Sample();
+    else
+      global_graph_algo->Sample();
+    return 0;
     }
 
 extern "C" int Finalize ()
