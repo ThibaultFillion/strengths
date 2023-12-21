@@ -13,6 +13,15 @@
 
 #include <chrono>
 
+#ifdef CPYEMVER
+  #include <Python.h>
+
+  extern "C" PyObject * PyInit_engine()
+    {
+    return NULL;
+    }
+#endif
+
 std::vector<double> GenerateStochasticDistribution (std::vector<double> mesh_x, int n_meshes, int n_species, int seed)
   {
   /// generate a poisson distributed stochastic state that respects the floored total quantities of the input floating point state.
