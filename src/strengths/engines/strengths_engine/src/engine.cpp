@@ -593,6 +593,7 @@ extern "C" int Sample()
       global_grid_algo->Sample();
     else
       global_graph_algo->Sample();
+    return 0;
     }
 
 extern "C" int Finalize ()
