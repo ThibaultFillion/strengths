@@ -590,9 +590,9 @@ extern "C" int GetNSamples()
 extern "C" int Sample()
     {
     if (global_space_type == 0)
-      return global_grid_algo->Sample();
+      global_grid_algo->Sample();
     else
-      return global_graph_algo->Sample();
+      global_graph_algo->Sample();
     }
 
 extern "C" int Finalize ()
