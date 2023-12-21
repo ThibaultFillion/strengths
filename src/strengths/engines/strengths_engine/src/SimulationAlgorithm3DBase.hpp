@@ -100,7 +100,7 @@ class SimulationAlgorithm3DBase
             }
         }
 
-    void Build_mesh_kr(const std::vector<double> & k, const std::vector<int> & r_env)
+    void Build_mesh_kr(const std::vector<double> & k, const std::vector<double> & r_env)
     // builds mesh_kr
         {
         mesh_kr.clear();
@@ -109,7 +109,7 @@ class SimulationAlgorithm3DBase
           {
           for(int r=0; r<n_reactions; r++)
             {
-            int q = 0;
+            double q = 0;
             for(int s=0; s<n_species; s++)
                 q+=sub[s*n_reactions+r];
             mesh_kr[i*n_reactions+r] = k[r]*pow(mesh_vol,1-q)*r_env[r*n_env+mesh_env[i]];
@@ -317,7 +317,7 @@ class SimulationAlgorithm3DBase
         std::vector<double> k,          //reaction rates
         std::vector<double> sub,        //N*M substrate matrix
         std::vector<double> sto,        //N*M stoechiometry matrix
-        std::vector<int>    r_env,      //reactions environments
+        std::vector<double> r_env,      //reactions environments
         std::vector<double> D,          //reactions diffusion coefficients
         std::vector<int> boundary_conditions,
         int sample_n,                   //number of sample timepoints
