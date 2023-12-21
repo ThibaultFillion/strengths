@@ -404,7 +404,7 @@ extern "C" int Run(int breathe_dt)
         {
         if      (global_space_type == 0) unfinished = global_grid_algo->Iterate();
         else if (global_space_type == 1) unfinished = global_graph_algo->Iterate();
-        int dt = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - t0).count();
+        int dt = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - t0).count());
         if(!unfinished || dt>=breathe_dt)
             break;
         }
