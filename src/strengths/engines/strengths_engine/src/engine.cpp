@@ -587,6 +587,14 @@ extern "C" int GetNSamples()
       return global_graph_algo->NSamples();
     }
 
+extern "C" int Sample()
+    {
+    if (global_space_type == 0)
+      return global_grid_algo->Sample();
+    else
+      return global_graph_algo->Sample();
+    }
+
 extern "C" int Finalize ()
     {
     if(global_algo_freed)
