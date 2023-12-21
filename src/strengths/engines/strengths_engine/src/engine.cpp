@@ -274,7 +274,7 @@ extern "C" int Initialize3D (
           MkVec<double, double>(k, n_reactions),
           MkVec<double, int   >(sub, n_species*n_reactions),
           MkVec<double, int   >(sto, n_species*n_reactions),
-          MkVec<int,    int   >(r_env, n_reactions*n_env),
+          MkVec<double, int   >(r_env, n_reactions*n_env),
           MkVec<double, double>(D, n_species*n_env),
           boundary_conditions,
           sample_n,
@@ -392,7 +392,7 @@ extern "C" int InitializeGraph (
           MkVec<double, double>(k, n_reactions),
           MkVec<double, int   >(sub, n_species*n_reactions),
           MkVec<double, int   >(sto, n_species*n_reactions),
-          MkVec<int,    int   >(r_env, n_reactions*n_env),
+          MkVec<double, int   >(r_env, n_reactions*n_env),
           MkVec<double, double>(D, n_species*n_env),
 
           sample_n,
