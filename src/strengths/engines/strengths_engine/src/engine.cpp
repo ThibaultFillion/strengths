@@ -127,14 +127,12 @@ std::vector<double> GenerateStochasticDistribution (std::vector<double> mesh_x, 
   return mesh_x_sto;
   }
 
-template<typename T_out, typename T_in> std::vector<T_out> MkVec(T_in * a, int len, bool floor_values = false)
+template<typename T_out, typename T_in> std::vector<T_out> MkVec(T_in * a, int len)
     {
     std::vector<T_out> v(len);
     for(int i=0;i<len;i++)
         {
         v[i] = static_cast<T_out>(a[i]);
-        if(floor_values)
-            v[i] = floor(v[i]);
         }
     return v;
     }
@@ -237,14 +235,14 @@ extern "C" int Initialize3D (
     if(is_stochastic)
       {
       mesh_x = GenerateStochasticDistribution (
-        SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species, false), n_species, n_meshes),
+        SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes),
         n_meshes,
         n_species,
         seed);
       }
     else
       {
-      mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species, false), n_species, n_meshes);
+      mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes);
       }
 
     global_grid_algo->Init(
@@ -347,14 +345,14 @@ extern "C" int InitializeGraph (
     if(is_stochastic)
       {
       mesh_x = GenerateStochasticDistribution (
-        SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species, false), n_species, n_meshes),
+        SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes),
         n_meshes,
         n_species,
         seed);
       }
     else
       {
-      mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species, false), n_species, n_meshes);
+      mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes);
       }
 
     global_graph_algo->Init(
