@@ -52,36 +52,42 @@ class GillespieGraph : public SimulationAlgorithmGraphBase
         {
         for(int s=0; s<n_species; s++)
             {
-            mesh_x[mesh_index*n_species+s] += sto[s*n_reactions+reaction_index];
+            if(!mesh_chstt[mesh_index*n_species+s])
+                {
+                mesh_x[mesh_index*n_species+s] += sto[s*n_reactions+reaction_index];
+                }
             }
         }
 
     void ApplyDiffusion(int mesh_index, int species_index, int direction)
         {
         int j = mesh_neighbor_index[mesh_index][direction];
-        mesh_x[mesh_index*n_species+species_index] -= 1;
-        mesh_x[j*n_species+species_index] += 1;
+
+        if(!mesh_chstt[mesh_index*n_species+species_index])
+            {
+            mesh_x[mesh_index*n_species+species_index] -= 1;
+            }
+        if(!mesh_chstt[j*n_species+species_index])
+            {
+            mesh_x[j*n_species+species_index] += 1;
+            }
         }
 
-/*
     void DrawAndApplyEvent()
         {
         double r = uiud(rng)*a0;
-        double a0_cumul_m1 = 0;
         double a0_cumul = 0;
         for(int i=0; i<n_meshes; i++)
             {
-            a0_cumul_m1 = a0_cumul;
-            a0_cumul += mesh_a0r[i];
-            if(r<a0_cumul)
+            if(r < a0_cumul + mesh_a0r[i])
                 {
-                r -= a0_cumul_m1;
                 //reaction
+                double r2 = r - a0_cumul;
                 double a_cumul = 0;
                 for(int j=0; j<n_reactions; j++)
                     {
                     a_cumul += mesh_ar[i*n_reactions+j];
-                    if(r<a_cumul)
+                    if(r2<a_cumul)
                         {
                         ApplyReaction(i, j);
                         break;
@@ -89,77 +95,33 @@ class GillespieGraph : public SimulationAlgorithmGraphBase
                     }
                 break;
                 }
-            a0_cumul_m1 = a0_cumul;
-            a0_cumul += mesh_a0d[i];
-            if(r<a0_cumul)
+            a0_cumul += mesh_a0r[i];
+
+            if(r < a0_cumul + mesh_a0d[i])
                 {
-                r -= a0_cumul_m1;
                 //diffusion
+                double r2 = r - a0_cumul;
                 double a_cumul = 0;
+                bool diff_is_done = false;
                 for(int j=0; j<n_species; j++)
+                    {
                     for(int n=0; n<mesh_neighbor_n[i]; n++)
                         {
                         a_cumul += mesh_ad[i][j*mesh_neighbor_n[i]+n];
-                        if(r<a_cumul)
-                            {
-                            ApplyDiffusion(i, j, n);
-                            break;
-                            }
-                        }
-                break;
-                }
-            }
-        }*/
-
-        void DrawAndApplyEvent()
-            {
-            double r = uiud(rng)*a0;
-            double a0_cumul = 0;
-            for(int i=0; i<n_meshes; i++)
-                {
-                if(r < a0_cumul + mesh_a0r[i])
-                    {
-                    //reaction
-                    double r2 = r - a0_cumul;
-                    double a_cumul = 0;
-                    for(int j=0; j<n_reactions; j++)
-                        {
-                        a_cumul += mesh_ar[i*n_reactions+j];
                         if(r2<a_cumul)
                             {
-                            ApplyReaction(i, j);
+                            ApplyDiffusion(i, j, n);
+                            diff_is_done = true;
                             break;
                             }
                         }
-                    break;
-                    }
-                a0_cumul += mesh_a0r[i];
-
-                if(r < a0_cumul + mesh_a0d[i])
-                    {
-                    //diffusion
-                    double r2 = r - a0_cumul;
-                    double a_cumul = 0;
-                    bool diff_is_done = false;
-                    for(int j=0; j<n_species; j++)
-                        {
-                        for(int n=0; n<mesh_neighbor_n[i]; n++)
-                            {
-                            a_cumul += mesh_ad[i][j*mesh_neighbor_n[i]+n];
-                            if(r2<a_cumul)
-                                {
-                                ApplyDiffusion(i, j, n);
-                                diff_is_done = true;
-                                break;
-                                }
-                            }
-                          if(diff_is_done) break;
-                          }
-                    break;
-                    }
-                a0_cumul += mesh_a0d[i];
+                      if(diff_is_done) break;
+                      }
+                break;
                 }
+            a0_cumul += mesh_a0d[i];
             }
+        }
 
     virtual void AlgorithmSpecificInit()
         {
