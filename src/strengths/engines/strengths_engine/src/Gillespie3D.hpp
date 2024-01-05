@@ -55,15 +55,25 @@ class Gillespie3D : public SimulationAlgorithm3DBase
         {
         for(int s=0; s<n_species; s++)
             {
-            mesh_x[mesh_index*n_species+s] += sto[s*n_reactions+reaction_index];
+            if(!mesh_chstt[mesh_index*n_species+s])
+                {
+                mesh_x[mesh_index*n_species+s] += sto[s*n_reactions+reaction_index];
+                }
             }
         }
 
     void ApplyDiffusion(int mesh_index, int species_index, int direction)
         {
         int j = mesh_neighbors[mesh_index*6+direction];
-        mesh_x[mesh_index*n_species+species_index] -= 1;
-        mesh_x[j*n_species+species_index] += 1;
+
+        if(!mesh_chstt[mesh_index*n_species+species_index])
+            {
+            mesh_x[mesh_index*n_species+species_index] -= 1;
+            }
+        if(!mesh_chstt[j*n_species+species_index])
+            {
+            mesh_x[j*n_species+species_index] += 1;
+            }
         }
 
     void DrawAndApplyEvent()
