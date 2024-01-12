@@ -19,5 +19,5 @@ The Last section just tells which external packages are needed to have strengths
   using_quantities_with_units
   engines
   indexing
-  building_strenghts_from_source
+  building_strengths_from_source
   dependencies
