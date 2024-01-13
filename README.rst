@@ -16,7 +16,7 @@ The package can be installed from the Python Package Index, with
   pip install strengths
 
 Alternatively, you can build strengths from source. More details on how to do so are given in the documentation, in the
-`"building strengths from source" section <https://strengths.readthedocs.io/en/latest/building_strengths_from_source.html>`_.
+`"Building strengths from source" section <https://strengths.readthedocs.io/en/latest/building_strengths_from_source.html>`_.
 
 Once it is successfully installed, you should be able to import it in python.
 Below is a short example, featuring the simulation of the trajectory for a simple
@@ -52,33 +52,29 @@ reaction system :
   # plotting the trajectories of A and B
   strnplt.plot_trajectory(trajectory, ["A", "B"])
 
-More examples, using more advanced features - especially diffusion -, are available in the documentation (https://strengths.readthedocs.io/en/latest/using_strengths.html).
+More examples, using more advanced features - especially diffusion -, are available in the documentation, in the `"Using strengths" section <https://strengths.readthedocs.io/en/latest/using_strengths.html>`_.
 
 Documentation
 -------------
 
-Detailed information on the package and how to use it are given in the documentation (https://strengths.readthedocs.io/en/latest/).
-Especially, to get started with the package, you may look at the "Using Strengths" section (https://strengths.readthedocs.io/en/latest/using_strengths.html),
+Detailed information on the package and how to use it are given in the `documentation <https://strengths.readthedocs.io/en/latest/>`_.
+Especially, to get started with the package, you may look at the `"Using Strengths" section <https://strengths.readthedocs.io/en/latest/using_strengths.html>`_,
 which presents the key functionalities through examples.
 For detailed and more exhaustive information on the accessible interface,
-please refer to the "API Reference" section (https://strengths.readthedocs.io/en/latest/apiref.html), where all relevant functions, classes,
+please refer to the `"API Reference" section <https://strengths.readthedocs.io/en/latest/apiref.html>`_, where all relevant functions, classes,
 methods and attributes are covered in detail.
 
 Source code and contribution
 ----------------------------
 
-Strenghts have a repository hosted on GitHub at
-
-  https://github.com/ThibaultFillion/strengths/tree/main
+Strenghts have a `repository hosted <https://github.com/ThibaultFillion/strengths/tree/main>`_ on GitHub.
 
 Licence
 -------
 
-Strengths's source code and documentation are licenced under the terms of the MIT Licence.
+Strengths's source code and documentation are licenced under the terms of the `MIT Licence <https://raw.githubusercontent.com/ThibaultFillion/strengths/main/LICENCE>`_.
 You'll find the licence text in your strengths installation root file, or in the root file of the
-project's GitHub repository :
-
-  https://raw.githubusercontent.com/ThibaultFillion/strengths/main/LICENCE
+project's GitHub repository.
 
 Authors
 -------
