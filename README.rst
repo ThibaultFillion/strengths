@@ -16,7 +16,7 @@ The package can be installed from the Python Package Index, with
   pip install strengths
 
 Alternatively, you can build strengths from source. More details on how to do so are given in the documentation, in the
-`"building strengths from source" section<https://strengths.readthedocs.io/en/latest/building_strengths_from_source.html>`.
+`"building strengths from source" section<https://strengths.readthedocs.io/en/latest/building_strengths_from_source.html>`_.
 
 Once it is successfully installed, you should be able to import it in python.
 Below is a short example, featuring the simulation of the trajectory for a simple
