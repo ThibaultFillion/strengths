@@ -25,7 +25,7 @@ def _get_engine_path() :
         if not i.is_dir() : 
             files.append(i)
     if len(files) == 0 :
-            raise RuntimeError("It seems that the engine shared library is missing. Maybe it needs to be compiled form source. For more information on how to build the package from source, please refer to the documentation.")
+        raise RuntimeError("It seems that the engine shared library is missing. Maybe it needs to be compiled form source. For more information on how to build the package from source, please refer to the documentation.")
     return str(files[0])
 
 def gillespie_engine():
