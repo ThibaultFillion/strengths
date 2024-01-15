@@ -69,6 +69,11 @@ Source code and contribution
 
 Strenghts have a `repository <https://github.com/ThibaultFillion/strengths/tree/main>`_ hosted on GitHub.
 
+Testing
+-------
+
+Running "run_all_tests.py" in the "tests" directory will execute at once all unit tests for the package.
+
 Licence
 -------
 
