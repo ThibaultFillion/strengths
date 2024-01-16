@@ -69,6 +69,11 @@ Source code and contribution
 
 Strenghts have a `repository <https://github.com/ThibaultFillion/strengths/tree/main>`_ hosted on GitHub.
 
+If you wish to contribute to the package,
+whether by giving your feedback, reporting bugs or errors,
+improving the documentation or writing code,
+please refer to the project's `community and contribution guidelines <https://raw.githubusercontent.com/ThibaultFillion/strengths/main/community_and_contribution_guidelines.rst>`_.
+
 Testing
 -------
 
