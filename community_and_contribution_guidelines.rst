@@ -4,7 +4,7 @@ Community guidelines
 Welcome and thank you for your interest in the Strengths package.
 Please, be respectful to each other, and maintain a safe, healthy and pleasant work environment for everyone.
 While the project's repository is hosted on GitHub, please make sure to respect the 
-GitHub's `code of conduct <https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct>`_.
+`GitHub's code of conduct <https://docs.github.com/en/site-policy/github-terms/github-community-code-of-conduct>`_.
 
 Contributing
 ============
