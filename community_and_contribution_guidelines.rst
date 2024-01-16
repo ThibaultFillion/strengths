@@ -52,10 +52,10 @@ As for the source code, you can also request new documentation, or propose your 
 Contributing to the source code
 -------------------------------
 
-If you've made some nice changes to Strengths and would like to make it part of this package,
+If you have made some nice changes to Strengths and would like to make it part of this package,
 you can submit it with a pull request so that we can review it.
 
-Change made to the preexisting interface may not be included right away (or at all) if it breaks backward-compatibility (Though backward compatibility may be a bit more fragile for the early versions of the package).
+Change made to the pre-existing interface may not be included right away (or at all) if it breaks backward-compatibility (Though backward compatibility may be a bit more fragile for the early versions of the package).
 
 New features should come with documentation and tests. Code aimed to be exposed as part of the interface should
 contain docstrings that will serve to generate the documentation with Sphinx. Also, make sure to respect the naming style
@@ -77,7 +77,7 @@ ie. to refer to a chemical species
 
 Also, beware of code licenses. We use a permissive MIT license,
 so your contribution must not contain incompatible code
-nor code you aren't allowed to use or share. If you use code from other compatible project,
+nor code you are not allowed to use or share. If you use code from other compatible project,
 be sure to include necessary references/acknowledgements and license texts.
 
 What's next ?
