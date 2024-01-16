@@ -75,10 +75,10 @@ ie. to refer to a chemical species
   * molecule => X
   * species => O
 
-Also, beware of code licenses. We use a permissive MIT license,
+Also, beware of code licences. We use a permissive MIT license,
 so your contribution must not contain incompatible code
 nor code you are not allowed to use or share. If you use code from other compatible project,
-be sure to include necessary references/acknowledgements and license texts.
+be sure to include necessary references/acknowledgements and licence texts.
 
 What's next ?
 -------------
