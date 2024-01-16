@@ -82,7 +82,7 @@ Running "run_all_tests.py" in the "tests" directory will execute at once all uni
 Licence
 -------
 
-Strengths's source code and documentation are licenced under the terms of the `MIT Licence <https://raw.githubusercontent.com/ThibaultFillion/strengths/main/LICENCE>`_.
+Strengths's source code and documentation are licensed under the terms of the `MIT Licence <https://raw.githubusercontent.com/ThibaultFillion/strengths/main/LICENCE>`_.
 You'll find the licence text in your strengths installation root file, or in the root file of the
 project's GitHub repository.
 
