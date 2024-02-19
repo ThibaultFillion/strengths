@@ -840,6 +840,10 @@ class RDNetwork :
                     return i
             return None
         elif type(reaction) == Reaction :
+
+            if reaction.label is None :
+                return None
+
             for i in range(self.nreactions()) :
                 if self.reactions[i].label == reaction.label :
                     return i
