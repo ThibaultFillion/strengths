@@ -67,7 +67,7 @@ methods and attributes are covered in detail.
 Source code and contribution
 ----------------------------
 
-Strenghts have a `repository <https://github.com/ThibaultFillion/strengths/tree/main>`_ hosted on GitHub.
+Strengths have a `repository <https://github.com/ThibaultFillion/strengths/tree/main>`_ hosted on GitHub.
 
 If you wish to contribute to the package,
 whether by giving your feedback, reporting bugs or errors,
