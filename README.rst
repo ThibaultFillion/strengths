@@ -72,7 +72,7 @@ Strenghts have a `repository <https://github.com/ThibaultFillion/strengths/tree/
 If you wish to contribute to the package,
 whether by giving your feedback, reporting bugs or errors,
 improving the documentation or writing code,
-please refer to the project's `community and contribution guidelines <https://raw.githubusercontent.com/ThibaultFillion/strengths/main/community_and_contribution_guidelines.rst>`_.
+please refer to the project's `community and contribution guidelines <https://github.com/ThibaultFillion/strengths/blob/main/community_and_contribution_guidelines.rst>`_.
 
 Testing
 -------
@@ -82,7 +82,7 @@ Running "run_all_tests.py" in the "tests" directory will execute at once all uni
 Licence
 -------
 
-Strengths's source code and documentation are licensed under the terms of the `MIT Licence <https://raw.githubusercontent.com/ThibaultFillion/strengths/main/LICENCE>`_.
+Strengths's source code and documentation are licensed under the terms of the `MIT Licence <https://github.com/ThibaultFillion/strengths/blob/main/LICENCE>`_.
 You'll find the licence text in your strengths installation root file, or in the root file of the
 project's GitHub repository.
 
