@@ -24,3 +24,4 @@ def run_all_tests() :
     test_kinetics.run_all_tests()
 
 run_all_tests()
+print("All tests have passed successfully.")
