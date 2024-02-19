@@ -1,7 +1,7 @@
 API Reference
 =============
 
-The API Reference aims to convey exhaustive and detailed description of the package functions, classes, methods etc.
+The API Reference aims to convey an exhaustive and detailed description of the package functions, classes, methods etc.
 
 useful info
 -----------
@@ -19,7 +19,7 @@ Core features are those essential for reaction diffusion system building and sim
 directly exposed interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This is the part of the interface directly accessible using "import strengths"
+This is the part of the interface that is directly accessible using "import strengths" :
 
 .. toctree::
   rdnetwork
@@ -35,7 +35,7 @@ indirectly exposed interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is the part of the interface that is not directly accessible from "import strengths".
-You'll need to import their respective modules in order to access their features
+You will need to import those specific modules in order to access their features :
 
 .. toctree::
   rdengine
@@ -45,7 +45,7 @@ You'll need to import their respective modules in order to access their features
 side features
 -------------
 
-Side features corver other aspeces such as plotting, and their corresponding submodules
+Side features cover other aspects such as plots, and their corresponding submodules
 must be imported in order to access them.
 
 .. toctree::
