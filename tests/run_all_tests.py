@@ -8,6 +8,7 @@ import test_simulate
 import test_librdengine
 import test_rdoutput
 import test_coarsegrain
+import test_kinetics
 
 def run_all_tests() :
     test_meshgrid.run_all_tests()
@@ -20,5 +21,7 @@ def run_all_tests() :
     test_librdengine.run_all_tests()
     test_rdoutput.run_all_tests()
     test_coarsegrain.run_all_tests()
+    test_kinetics.run_all_tests()
 
 run_all_tests()
+print("All tests have passed successfully.")
