@@ -17,6 +17,7 @@ The Last section just tells which external packages are needed to have strengths
   setting_up_initial_conditions
   working_with_output
   using_quantities_with_units
+  strengths_and_scipy
   engines
   indexing
   building_strengths_from_source
