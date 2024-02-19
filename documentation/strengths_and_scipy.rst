@@ -65,4 +65,5 @@ RDSystem object.
 References
 ^^^^^^^^^^
 [1] SciPy package website (https://scipy.org/)
+
 [2] SciPy's API Reference documentation for the solve_ivp function (https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp)
