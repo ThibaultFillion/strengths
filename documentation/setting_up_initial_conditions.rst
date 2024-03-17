@@ -54,7 +54,7 @@ Using the JSON/dict script, it will be:
 
 .. code:: python
 
-  system = load("system.json")
+  system = load_rdsystem("system.json")
 
 Using RDSystem object constructor:
 
@@ -95,7 +95,7 @@ Setting up the chemostates
 Chemostats works the same way as the system state.
 Default chemostats are generated based on the chstt attribute of the species,
 however, it is also possible to specify explicitly the chemostat distribution.
-The only difference is that chemostats are booleans, and thus, does not accept UnitValue or UnitArray objects.
+The only difference is that chemostats are booleans, and thus, does not accept UnitValue or UnitArray objects:
 
 .. code:: json
 
@@ -112,9 +112,9 @@ The only difference is that chemostats are booleans, and thus, does not accept U
 
 .. code:: python
 
-  system = load("system.json")
+  system = load_rdsystem("system.json")
 
-using RDSystem object constructor :
+Using RDSystem object constructor:
 
 .. code:: python
 
@@ -131,7 +131,7 @@ using RDSystem object constructor :
     chemostats = [1, 0]
     )
 
-doing it after loading the system :
+Doing it after loading the system:
 
 .. code:: python
 
@@ -139,7 +139,7 @@ doing it after loading the system :
   system.chemostats = [1, 0]
 
 
-doing it after loading the system, using the set_chemostat method :
+Doing it after loading the system, using the set_chemostat method:
 
 .. code:: python
 
@@ -150,7 +150,7 @@ doing it after loading the system, using the set_chemostat method :
 Changing the species density of a system
 ----------------------------------------
 
-let us keep the previous example.
+Let us keep the previous example.
 The system is loaded, but now we want to change the density of the species A and B.
 Just changing A and B's density attributes won't change the system state.
 For the change in density to be taken into account, one must also update the default system state:
@@ -163,4 +163,4 @@ For the change in density to be taken into account, one must also update the def
   system.set_default_state()
   print(system.state)
 
-it should print : [10., 20.] molecule
+It should print : [10., 20.] molecule.
