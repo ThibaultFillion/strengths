@@ -60,12 +60,12 @@ a UnitArray.
   sample = output.get_sample_index("200 s")
   state = output.get_state(species="A", sample=sample)
 
-if the species argument is not provided, or set to None, get_state will return the whole system state for the given sample.
+if the species argument is set to ``None``, get_state will return the whole system state for the given sample.
 
 .. code:: python
 
   sample = output.get_sample_index("200 s")
-  state = output.get_state(sample=sample)
+  state = output.get_state(None, sample=sample)
 
 Finally, if one want to get the trajectory of a given species, one can use the
 get_trajectory method. As for the previous functions, the first parameter is the species of interest.
