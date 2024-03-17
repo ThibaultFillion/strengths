@@ -402,9 +402,10 @@ and with initial densities for *A*, *B* of
   [A]_{t0} = [B]_{t0} = 0.01 \textrm{ molecule/µm}^3
 
 as well as diffusion coefficent of
-  .. math::
 
-    D = 1 \textrm{ µm}^2/s
+.. math::
+
+  D = 1 \textrm{ µm}^2/s
 
 for both species.
 
