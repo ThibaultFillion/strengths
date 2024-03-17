@@ -150,7 +150,7 @@ to start analyzing the data.
 
 .. code:: python
 
-  strnplt.plot_sample_trajectory(output, ["A", "B", "C"])
+  strnplt.plot_trajectory(output, ["A", "B", "C"])
 
 It is now possible to plot the result. This can be done manually using matplotlib, however, strengths supply some convenient functions
 that call matplotlib for us. Here, we can to plot the trajectory of A, B anc C, so we call the :py:func:`plot_sample_trajectory` function,
