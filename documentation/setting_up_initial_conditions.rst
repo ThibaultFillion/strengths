@@ -15,10 +15,10 @@ with the reversible reaction A -> B.
   "network" : {
     "species" : [
       {"label" : "A", "density" : 1},
-      {"label" : "B", "density" : 1}]
+      {"label" : "B", "density" : 1}],
     "reactions" : [
       {"eq" : "A -> B", "k+" : 1, "k-" : 1}]
-    },
+    }
   }
 
 Once loaded as a system (a DRSystem object),
@@ -45,7 +45,7 @@ Using the JSON/dict script, it will be:
   "network" : {
     "species" : [
       {"label" : "A", "density" : 1},
-      {"label" : "B", "density" : 1}]
+      {"label" : "B", "density" : 1}],
     "reactions" : [
       {"eq" : "A -> B", "k+" : 1, "k-" : 1}]
     },
@@ -64,11 +64,9 @@ Using RDSystem object constructor:
     network = RDNetwork(
       species = [
         Species("A", density=1),
-        Species("B", density=1)
-        ]
+        Species("B", density=1)],
       species = [
-        Reaction("A -> B", kf=1, kr=1)
-        ]
+        Reaction("A -> B", kf=1, kr=1)]
       ),
     state = UnitArray([5, 3], "µmol")
     )
@@ -103,7 +101,7 @@ The only difference is that chemostats are booleans, and thus, does not accept U
   "network" : {
     "species" : [
       {"label" : "A", "density" : 1},
-      {"label" : "B", "density" : 1}]
+      {"label" : "B", "density" : 1}],
     "reactions" : [
       {"eq" : "A -> B", "k+" : 1, "k-" : 1}]
     },
@@ -122,11 +120,9 @@ Using RDSystem object constructor:
     network = RDNetwork(
       species = [
         Species("A", density=1),
-        Species("B", density=1)
-        ]
+        Species("B", density=1)],
       species = [
-        Reaction("A -> B", kf=1, kr=1)
-        ]
+        Reaction("A -> B", kf=1, kr=1)]
       ),
     chemostats = [1, 0]
     )
