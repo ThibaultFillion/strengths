@@ -314,17 +314,17 @@ using object construction  :
 
 .. code:: python
 
-  import strengths as strn
+  from strengths import *
   import numpy as np
   import strengths.plot as strnplt
 
-  system = strn.load_rdsystem("demo.json")
+  system = load_rdsystem("demo.json")
   script = RDScript(
     system    = system,
-    t_sample  = strn.UnitArray(np.linspace(0,10,1001), "s"),
+    t_sample  = UnitArray(np.linspace(0,10,1001), "s"),
     time_step = "1 ms"
     )
-  output = strn.simulate_script(script)
+  output = simulate_script(script, default_engine())
 
 from python dict :
 
