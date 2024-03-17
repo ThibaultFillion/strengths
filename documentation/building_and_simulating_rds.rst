@@ -153,7 +153,7 @@ to start analyzing the data.
   strnplt.plot_trajectory(output, ["A", "B", "C"])
 
 It is now possible to plot the result. This can be done manually using matplotlib, however, strengths supply some convenient functions
-that call matplotlib for us. Here, we can to plot the trajectory of A, B anc C, so we call the :py:func:`plot_sample_trajectory` function,
+that call matplotlib for us. Here, we can to plot the trajectory of A, B anc C, so we call the :py:func:`plot_trajectory` function,
 which takes as argument the simulation output, as well as the list of the labels of the species for which the trajecotory should be plotted.
 
 Alternative ways to define a reaction diffusion system
@@ -466,7 +466,7 @@ the script is the following :
       engine = strn.engine_collection.tauleap_engine(),
       )
 
-  strnplt.plot_sample_trajectory(output, ["A", "B"])
+  strnplt.plot_trajectory(output, ["A", "B"])
 
   for sample in range(output.nsamples()) :
       strnplt.plot_sample_state_2D(output, "A", sample)
