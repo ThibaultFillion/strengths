@@ -16,10 +16,10 @@ Core features
 
 Core features are those essential for reaction diffusion system building and simulation.
 
-Directly exposed interface
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Directly imported
+^^^^^^^^^^^^^^^^^
 
-This is the part of the interface that is directly accessible using "import strengths":
+This is the part of the interface that is (mostly) directly accessible using "import strengths":
 
 .. toctree::
   rdnetwork
@@ -29,18 +29,18 @@ This is the part of the interface that is directly accessible using "import stre
   rdoutput
   simulation
   units
-  typechecking
+  engine_collection
 
-Indirectly exposed interface
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Not directly imported
+^^^^^^^^^^^^^^^^^^^^^
 
 This is the part of the interface that is not directly accessible from "import strengths".
 You will need to import those specific modules in order to access their features:
 
 .. toctree::
   rdengine
-  engine_collection
   constants
+  kinetics
 
 Side features
 -------------
@@ -50,4 +50,3 @@ must be imported in order to access them:
 
 .. toctree::
   plot
-  kinetics
