@@ -11,10 +11,8 @@ plotting utility
 
 def plot_trajectory (output, species, position=None) :
     """
-    plots the time trajectory of one or more species. 
-    
-    It relies on the Matplotlib (Hunter, 2007) package [#matplotlib]_, 
-    including matplotlib.pyplot.plot [#matplotlib_pyplot_plot]_.
+    Plots the time trajectory of one or more species. 
+    It relies on the Matplotlib package.
     
     :param output: simulation output
     :type output: RDOutput
@@ -48,10 +46,8 @@ def plot_trajectory (output, species, position=None) :
     
 def plot_sample_state_2D(output, species, sample, axis="auto", axis_position=0, environments=None, xmin=None, xmax=None, units_system=None) : 
     """
-    plots the distribution for the quantity of a species on a plan of the system space.
-    
-    It relies on the Matplotlib package (Hunter, 2007) [#matplotlib]_, 
-    including matplotlib.pyplot.imshow [#matplotlib_pyplot_imshow]_.
+    Plots the distribution for the quantity of a species on a plan of the system space.
+    It relies on the Matplotlib package.
     
     :param output: simulation output
     :type output: RDOutput   
@@ -139,7 +135,8 @@ def plot_sample_state_2D(output, species, sample, axis="auto", axis_position=0, 
 
 def plot_state_2D(system, species, axis="auto", axis_position=0) : 
     """
-    plots the distribution for the quantity of a species on a plan of the system space.
+    Plots the distribution for the quantity of a species on a plan of the system space.
+    It relies on the Matplotlib package.
     """
     
     if type(system.space) != RDGridSpace :
@@ -185,9 +182,10 @@ def plot_state_2D(system, species, axis="auto", axis_position=0) :
         
 def plot_environments_2D(system, axis="auto", axis_position=0, env_color_dict=None) : 
     """
-    plots the distribution of the reaction diffusion environments on a plan of the system space.
+    Plots the distribution of the reaction diffusion environments on a plan of the system space.
     env_color_dict allow to define which color should be used to represent each environment.
     If it is ignored, a gray scale will be used.
+    It relies on the Matplotlib package.
     """
 
     if type(system.space) != RDGridSpace :
@@ -244,9 +242,10 @@ def plot_environments_2D(system, axis="auto", axis_position=0, env_color_dict=No
 
 def plot_chemostats_2D(system, species, axis="auto", axis_position=0, color_no="white", color_yes="black") : 
     """
-    plots the distribution of the chemostats for a given species on a plan of the system space.
+    Plots the distribution of the chemostats for a given species on a plan of the system space.
     color_no and color_yes are colors to be used to indicate the absence or prence of chemostats.
     defaults are "white" and "black".
+    It relies on the Matplotlib package.
     """
     
     if type(system.space) != RDGridSpace :
@@ -293,14 +292,3 @@ def plot_chemostats_2D(system, species, axis="auto", axis_position=0, color_no="
         plt.show()
     else : 
         raise ValueError(str(axis) + "is not an accepted axis value. accepted value are \"x\", \"y\", \"z\" and \"auto\"" )
-
-"""
-References
-----------
-
-.. [#matplotlib] Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. Computing in Science \& Engineering, 9(3), 90-95. https://10.1109/MCSE.2007.55
-
-.. [#matplotlib_pyplot_plot] The Matplotlib developpement team. matplotlib 3.7 API Reference : matplotlib.pyplot.plot. (consulted on september 05, 2023). https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html
-
-.. [#matplotlib_pyplot_imshow]  The Matplotlib developpement team. matplotlib 3.7 API Reference : matplotlib.pyplot.imshow. (consulted on september 05, 2023). https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html
-"""
