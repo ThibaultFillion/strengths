@@ -164,7 +164,7 @@ It should print : [10., 20.] molecule.
 Changing the Species.chstt attribute
 ----------------------------------------
 
-The Species.chstt, states if a chemostat must be
+The Species.chstt attribute states if a chemostat must be
 applied for the species.
 As for the density attribute, just changing it after the system has been loaded won't
 change the actual chemostat map associated with the system.
