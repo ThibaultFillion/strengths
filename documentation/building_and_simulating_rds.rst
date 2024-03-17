@@ -366,6 +366,7 @@ using directly the engine :
 .. code:: python
 
   ...
+  
   engine = MyEngine()
   engine.setup(script)
 
