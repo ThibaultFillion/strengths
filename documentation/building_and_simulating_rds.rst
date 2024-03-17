@@ -74,7 +74,7 @@ This can all be done with the following script :
     t_sample = strn.UnitArray(np.linspace(0,10,1001), "s"),
     time_step = "1 ms"
     )
-  strnplt.plot_sample_trajectory(output, ["A", "B", "C"])
+  strnplt.plot_trajectory(output, ["A", "B", "C"])
 
 **matplotlib plot outout** :
 
