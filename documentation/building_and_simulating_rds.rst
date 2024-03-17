@@ -305,8 +305,8 @@ simulation parameters. As for other key concepts, simulation scripts can be load
 python dictionary or JSON files. Simulations from simulation script are launched with the simulate_script function
 or using directly a simulation engine
 
-Creating the script :
-^^^^^^^^^^^^^^^^^^^^^
+Creating the script
+^^^^^^^^^^^^^^^^^^^
 
 using object construction  :
 
@@ -353,8 +353,8 @@ from JSON file :
   script = load_rdscript("script.json")
   output = strn.simulate_script(script)
 
-Simulating the script :
-^^^^^^^^^^^^^^^^^^^^^^^
+Simulating the script
+^^^^^^^^^^^^^^^^^^^^^
 
 using simulate_script :
 
@@ -472,7 +472,7 @@ the script is the following :
       strnplt.plot_sample_state_2D(output, "A", sample)
 
 
-**matplotlib plot outout** :
+**matplotlib plot outouts** :
 
 .. image:: traj2.png
   :align: center
@@ -545,7 +545,7 @@ at 200 and 0 molecules.
   for sample in range(output.nsamples()) :
       strnplt.plot_sample_state_2D(output, "A", sample)
 
-**matplotlib plot output**
+**matplotlib plot outputs**
 
 .. image:: traj3.png
   :align: center
@@ -628,7 +628,7 @@ we simulate the diffusion of A, sampling the system state at t=0, 100, 200 and 3
   for sample in range(output.nsamples()) :
       strnplt.plot_sample_state_2D(output, "A", sample)
 
-**matplotlib plot output**
+**matplotlib plot outputs**
 
 .. image:: traj4.png
   :align: center
