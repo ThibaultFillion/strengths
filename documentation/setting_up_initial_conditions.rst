@@ -140,8 +140,8 @@ Doing it after loading the system, using the set_chemostat method:
 .. code:: python
 
   system = load_rdsystem("system.json")
-  system.state.set_chemostat("A", position=(0,0,0), value=5)
-  system.state.set_chemoatst("B", position=(0,0,0), value=3)
+  system.set_chemostat("A", position=(0,0,0), value=5)
+  system.set_chemoatst("B", position=(0,0,0), value=3)
 
 Changing the species density of a system
 ----------------------------------------
