@@ -163,7 +163,8 @@ Using a JSON file is not the only way to define systems (or reaction networks, c
 actually, there is generally 3 equivalent ways to define such objects, and you should use the one that is the more convienent to you.
 Let us take the case of the system in the previous example once more.
 
-1) Through a JSON File
+Through a JSON File
+^^^^^^^^^^^^^^^^^^^
 
 **system.json** :
 
@@ -196,7 +197,8 @@ Let us take the case of the system in the previous example once more.
 This is the way we used previously, the dictionnar describing the system is stored in a separated file,
 and the system is created using the :py:func:`loag_rdsystem` function.
 
-2) Through *multiple* JSON Files
+With multiple JSON files
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 **system.json** :
 
@@ -248,7 +250,8 @@ This time, the information have been scattered across diffent files.
 This can be especially useful as it allow to put the cell_env array, which can be quite large, outside of the json file,
 allowing for more readability.
 
-3) Through a python dict
+With a python dictionary
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
 
@@ -274,7 +277,8 @@ It is very similar to the JSON way, however, the dictionary is directly written 
 the system is created from the dict using :py:func:`rdsystem_from_dict`. Actually, the JSON way internally uses this function on the
 dict it laded from the JSON file.
 
-4) Trough object construction
+Using object construction
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
 
