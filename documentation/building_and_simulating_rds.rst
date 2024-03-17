@@ -709,5 +709,7 @@ Let us see what happens when we apply different boundary conditions to this syst
   for sample in range(output.nsamples()) :
       strnplt.plot_sample_state_2D(output, "A", sample)
 
+**matplotlib plot outputs**
+
 .. image:: traj5.png
   :align: center
