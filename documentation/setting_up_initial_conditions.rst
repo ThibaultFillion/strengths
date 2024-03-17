@@ -65,7 +65,7 @@ Using RDSystem object constructor:
       species = [
         Species("A", density=1),
         Species("B", density=1)],
-      species = [
+      reactions = [
         Reaction("A -> B", kf=1, kr=1)]
       ),
     state = UnitArray([5, 3], "µmol")
