@@ -53,34 +53,38 @@ Engine (RDEngineBase derived class)
 Reaction diffusion simulation engines are objects that actually carry out the simulations.
 An engine implements some reaction-diffusion algorithm/method.
 
-Output (RDOutput class)
-^^^^^^^^^^^^^^^^^^^^^^^
+Trajectory (RDTrajectory class)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A reaction diffusion simulation output is the output return by a simulation engine, once the simulation is complete.
-It contains the simulation script that have been used for the simulation as well as the trajectory of its system.
+A reaction diffusion simulation trajectory is the output returned by a simulation engine once the simulation is complete.
+It contains the successive states sampled during the simulations, as well as coontewtual informations such a copy of
+the corresponding system or the simulation script.
 
-other concepts
+Other concepts
 --------------
 
-cells
+Cells
 ^^^^^^
 
 The cell is the unit component of the system space.
-its an individual cubic volume of the system space in which species
+It is a volume of the system space in which species
 can transform and diffuse from/to neighbor cells.
-in a 3D space, a cell have a maximum of 6 neighbors.
+In a 3D space, a cell can be seen as a cube with a maximum of 6 neighbors.
+For the simulation methods currently implemented, species are considered 
+to be distributed homogeneously inside a given cell.
 
-environments
+Environments
 ^^^^^^^^^^^^
 
-an environment is a type of cell.
-some object porperties, such as species initial densities, chemostate and diffusion coefficient,
+An environment is a type of cell.
+Some object porperties, such as species initial densities, chemostate and diffusion coefficient,
 and reaction possibility, can be set to different values depending on the environment.
 This is the feature that enable the creation of inhomogeneous systems.
 
-chemostats
+Chemostats
 ^^^^^^^^^^
 
-a chemostat refers to a process maintaining a species quantity at a constant level.
-any species can be defined as chemostated, globally, in certain environments, or locally (cell wise).
-a species defined as chemostated at some place will have a quantity maintained as constant during simulations.
+A chemostat refers to a process maintaining a species quantity at a constant level.
+Any species can be defined as chemostated, whether globally, only in certain environments, or locally (cell wise).
+A chemostated species will have a quantity maintained at constant value during simulations at the location where the chemostat
+is defined.
