@@ -84,8 +84,8 @@ which allow to set the quantity of a given species at a given position:
 .. code:: python
 
   system = load_rdsystem("system.json")
-  system.state.set_state("A", position=(0,0,0), value=5)
-  system.state.set_state("B", position=(0,0,0), value=3)
+  system.set_state("A", position=(0,0,0), value=5)
+  system.set_state("B", position=(0,0,0), value=3)
 
 Setting up the chemostates
 --------------------------
