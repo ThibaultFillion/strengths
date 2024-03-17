@@ -1,7 +1,7 @@
 The fundamental concepts
 ========================
 
-object concepts
+Object concepts
 ---------------
 
 Species (Species class)
