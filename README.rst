@@ -11,7 +11,21 @@ The design of reaction-diffusion systems is facilitated by the use of dictionary
 Installing and using Strengths
 ------------------------------
 
-The package can be installed from the Python Package Index, with
+For Strengths to work properly, a few dependencies have to be installed first:
+
+* NumPy, which is required for most of the features:
+
+.. code:: bash
+
+  pip install numpy
+
+* Matplotlib (optional), which is required only for the plot feature (strengths.plot)
+
+.. code:: bash
+
+  pip install numpy
+
+The package can then be installed from the Python Package Index, with
 
 .. code:: bash
 
@@ -22,7 +36,7 @@ Alternatively, you can build Strengths from source. More details on how to do so
 
 Once it is successfully installed, you should be able to import it in Python.
 Below is a short example, featuring the simulation of the trajectory for a simple
-reaction system :
+reaction system:
 
 .. code:: python
 
@@ -31,7 +45,7 @@ reaction system :
   import strengths as strn
   import strengths.plot as strnplt
 
-  # defining a reaction system :
+  # defining a reaction system:
   # this one have two species, A
   # and B. One can be converted to the other,
   # through the reversible reaction A <=> B.
