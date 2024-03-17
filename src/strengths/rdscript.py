@@ -1,5 +1,5 @@
 from strengths.units import *
-from strengths.rdsystem import RDSystem, rdsystem_from_dict, rdsystem_to_dict
+from strengths.rdsystem import RDSystem, rdsystem_from_dict, rdsystem_to_dict, load_rdsystem, save_rdsystem
 from strengths.typechecking import *
 
 import json
@@ -214,7 +214,7 @@ def rdscript_from_dict(d, base_path=None) :
             rds = rdsystem_from_dict(rds, da["units_system"], base_path)
         elif isstr(rds) : 
             rds = filepath.get_path_with_base(rds, base_path)
-            rds = load_drsystem(rds, da["units_system"])
+            rds = load_rdsystem(rds, da["units_system"])
         else :
             raise TypeError("system must be a dictionary.")
         da["system"] = rds
