@@ -185,7 +185,7 @@ Let us take the case of the system in the previous example once more.
     "width" : 1,
     "height" : 1,
     "depth" : 1,
-    "cell_env" : [0],
+    "cell_env" : [0]
     }
   }
 
