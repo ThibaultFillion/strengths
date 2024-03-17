@@ -156,7 +156,7 @@ It is now possible to plot the result. This can be done manually using matplotli
 that call matplotlib for us. Here, we can to plot the trajectory of A, B anc C, so we call the :py:func:`plot_sample_trajectory` function,
 which takes as argument the simulation output, as well as the list of the labels of the species for which the trajecotory should be plotted.
 
-alternative ways to define a reaction diffusion system
+Alternative ways to define a reaction diffusion system
 ------------------------------------------------------
 
 Using a JSON file is not the only way to define systems (or reaction networks, cell grids, etc). with strenghts.
