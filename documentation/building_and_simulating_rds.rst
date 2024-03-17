@@ -23,7 +23,7 @@ with forward and reverse rates
 .. math::
 
   k_+ = 1 \textrm{ µM}^{-1}\textrm{s}^{-1}\\
-  k_- = 50 \textrm{s}^{-1}
+  k_- = 50 \textrm{ s}^{-1}
 
 and with initial densities for *A*, *B* and *C* of
 
@@ -385,26 +385,26 @@ Let us considering the following pattern making couple of reactions :
 
 .. math::
 
-  A + 2 B \rightleftharpoons 3 B
+  A + 2 B \rightleftharpoons 3 B\\
   B + 2 A \rightleftharpoons 3 A
 
 that both have forward and reverse rates
 
 .. math::
 
-  k_+ = 1 \textrm{ µm2}^{-1}\textrm{s}^{-1}\\
-  k_- = 0
+  k_+ = 1 \textrm{ µm}^{6}/\textrm{molecule}/s\\
+  k_- = 0 \textrm{ µm}^{6}/\textrm{molecule}/s
 
 and with initial densities for *A*, *B* of
 
 .. math::
 
-  [A]_{t0} = [B]_{t0} = 0.01 \textrm{molecule/µm3}\\
+  [A]_{t0} = [B]_{t0} = 0.01 \textrm{ molecule/µm}^3
 
 as well as diffusion coefficent of
   .. math::
 
-    D = 1 \textrm{µm2/s}\\
+    D = 1 \textrm{ µm}^2/s
 
 for both species.
 
