@@ -359,7 +359,7 @@ using simulate_script :
 
   ...
 
-  output = strn.simulate_script(script)
+  output = simulate_script(script, default_engine())
 
 using directly the engine :
 
