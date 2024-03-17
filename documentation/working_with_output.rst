@@ -86,11 +86,11 @@ Calling the function specifying the position argument
 
 will a UnitArray corresponding to the
 trajectory of A at this specific position in the system.
-Eventually, calling the function mith merged=True
+Eventually, calling the function mith ``merge=True``
 
 .. code:: python
 
-  trajectory = output.get_trajectory("A", merged=True)
+  trajectory = output.get_trajectory("A", merge=True)
 
 will return a UnitArray corresponding to the
 trajectory of the global quantity of A in the whole system.
@@ -98,8 +98,7 @@ trajectory of the global quantity of A in the whole system.
 examples
 --------
 
-The following examples will illustrate how to plot system states and trajectories using matplotlib (https://matplotlib.org)
-without relying on the strengths.plot module wrappers.
+The following examples will illustrate how to plot system states and trajectories directly using `Matplotlib <https://matplotlib.org>`_ without the strengths.plot submodule.
 
 use case 1 : Plotting a trajectory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
