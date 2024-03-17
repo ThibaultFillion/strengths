@@ -5,4 +5,8 @@ authors = [
 	{name = "Thibault Fillion"},
 	{name = "Francesco Piazza"}]
 description = "A package for the modeling and simulation of reaction-diffusion systems."
-readme = "readme.md"
+readme = "README.rst"
+dependencies = [
+    "numpy",
+    "matplotlib",
+]
