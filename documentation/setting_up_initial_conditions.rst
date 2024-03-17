@@ -143,8 +143,8 @@ Doing it after loading the system, using the set_chemostat method:
   system.set_chemostat("A", position=(0,0,0), value=5)
   system.set_chemostat("B", position=(0,0,0), value=3)
 
-Changing the species density of a system
-----------------------------------------
+Changing the Species.density attribute
+--------------------------------------
 
 Let us keep the previous example.
 The system is loaded, but now we want to change the density of the species A and B.
@@ -154,9 +154,28 @@ For the change in density to be taken into account, one must also update the def
 .. code:: python
 
   system = load_rdsystem("system.json")
-  system.get_species("A").density = 10
-  system.get_species("B").density = 20
+  system.network.get_species("A").density = 10
+  system.network.get_species("B").density = 20
   system.set_default_state()
   print(system.state)
 
 It should print : [10., 20.] molecule.
+
+Changing the Species.chstt attribute
+----------------------------------------
+
+The Species.chstt, states if a chemostat must be
+applied for the species.
+As for the density attribute, just changing it after the system has been loaded won't
+change the actual chemostat map associated with the system.
+One must also update the default chemostat maps:
+
+.. code:: python
+
+  system = load_rdsystem("system.json")
+  system.network.get_species("A").chstt = 0
+  system.network.get_species("B").chstt = 1
+  system.set_default_chemostats()
+  print(system.state)
+
+It should print : [0 1].
