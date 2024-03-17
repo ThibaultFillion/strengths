@@ -3,20 +3,20 @@ API Reference
 
 The API Reference aims to convey an exhaustive and detailed description of the package functions, classes, methods etc.
 
-useful info
+Useful info
 -----------
 
-Here are some thing you might find interesting.
+Here are some things you might find interesting.
 
 .. toctree::
   arrays_and_numbers
 
-core features
+Core features
 -------------
 
 Core features are those essential for reaction diffusion system building and simulation.
 
-directly exposed interface
+Directly exposed interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is the part of the interface that is directly accessible using "import strengths" :
@@ -31,7 +31,7 @@ This is the part of the interface that is directly accessible using "import stre
   units
   typechecking
 
-indirectly exposed interface
+Indirectly exposed interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is the part of the interface that is not directly accessible from "import strengths".
@@ -42,7 +42,7 @@ You will need to import those specific modules in order to access their features
   engine_collection
   constants
 
-side features
+Side features
 -------------
 
 Side features cover other aspects such as plots, and their corresponding submodules
