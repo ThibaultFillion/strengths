@@ -13,6 +13,8 @@ Installing and using Strengths
 
 The package can be installed from the Python Package Index, with
 
+.. code:: bash
+
   pip install strengths
 
 Alternatively, you can build Strengths from source. More details on how to do so are given in the documentation, in the
@@ -77,7 +79,7 @@ please refer to the project's `community and contribution guidelines <https://gi
 Testing
 -------
 
-Running "run_all_tests.py" in the "tests" directory will execute at once all unit tests for the package.
+Running :code:`run_all_tests.py` in the `tests` directory will execute at once all unit tests for the package.
 
 Licence
 -------
