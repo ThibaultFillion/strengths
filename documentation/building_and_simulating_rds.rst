@@ -300,8 +300,8 @@ Using object construction
 
 This way is a bit different, you create a RDSystem from its constructor.
 
-Alternative way to script a simulation
---------------------------------------
+Alternative ways to script a simulation
+---------------------------------------
 
 in the previous example, we were using the simulate function, which takes the system as argument.
 However, we could also be using a simulation script, which is a class that groups together the
