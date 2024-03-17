@@ -10,6 +10,7 @@ We show here how to use Strengths with Scipy.
 Here is a first example using Strengths's built-in engine, with the Euler method :
 
 .. code:: python
+  
   from strengths import *
   import numpy as np
   import matplotlib.pyplot as plt
@@ -38,6 +39,7 @@ The integration function is obtained by calling the make_dxdtf method of the
 RDSystem object. 
 
 .. code:: python
+  
   from strengths import *
   import numpy as np
   import matplotlib.pyplot as plt
