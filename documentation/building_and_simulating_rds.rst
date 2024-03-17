@@ -316,7 +316,6 @@ using object construction  :
 
   from strengths import *
   import numpy as np
-  import strengths.plot as strnplt
 
   system = load_rdsystem("demo.json")
   script = RDScript(
@@ -330,9 +329,8 @@ from python dict :
 
 .. code:: python
 
-  import strengths as strn
+  from strengths import *
   import numpy as np
-  import strengths.plot as strnplt
 
   script_dict = {
     "system"    : "system.json",
@@ -340,7 +338,7 @@ from python dict :
     "time_step" : "1 ms"
     }
   script = rdscript_from_dict(script_dict)
-  output = strn.simulate_script(script)
+  output = simulate_script(script, default_engine())
 
 from JSON file :
 
