@@ -469,7 +469,7 @@ the script is the following :
   strnplt.plot_sample_trajectory(output, ["A", "B"])
 
   for sample in range(output.nsamples()) :
-      strnplt.plot_state_2D(output, "A", sample)
+      strnplt.plot_sample_state_2D(output, "A", sample)
 
 
 **matplotlib plot outout** :
@@ -543,7 +543,7 @@ at 200 and 0 molecules.
       )
 
   for sample in range(output.nsamples()) :
-      strnplt.plot_state_2D(output, "A", sample)
+      strnplt.plot_sample_state_2D(output, "A", sample)
 
 **matplotlib plot output**
 
@@ -626,7 +626,7 @@ we simulate the diffusion of A, sampling the system state at t=0, 100, 200 and 3
       )
 
   for sample in range(output.nsamples()) :
-      strnplt.plot_state_2D(output, "A", sample)
+      strnplt.plot_sample_state_2D(output, "A", sample)
 
 **matplotlib plot output**
 
@@ -707,7 +707,7 @@ Let us see what happens when we apply different boundary conditions to this syst
       )
 
   for sample in range(output.nsamples()) :
-      strnplt.plot_state_2D(output, "A", sample)
+      strnplt.plot_sample_state_2D(output, "A", sample)
 
 .. image:: traj5.png
   :align: center
