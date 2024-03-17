@@ -7,20 +7,18 @@ object concepts
 Species (Species class)
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-A chemical species is a type of molecule. A system typically comport multiple instances of any species across its space.
+A chemical species is a type of molecule. A system typically contains multiple instances of any species across its space.
 Species can diffuse and be consumed or produced in reactions.
 
 Reaction (Reaction class)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A chemical transformation, or reaction, is an event localized in space during which some substrate species molecules are converted to some product species molecules.
-Reactions are thus represented through their stoechiometric equation :
+A chemical transformation, or reaction, is an event localized in space during which some substrate species molecules are converted to some product species molecules. Reactions are thus represented by their stoechiometric equation :
 
 .. image:: ABC.png
   :align: center
 
-means that when one molecule of species A collide with a molecule of species B, they can form the a complex, which is another molecule of species C (second order reaction), with a
-reaction rate constant k+, and that the molecule of C can at any moment break down into a molecule of A and a molecule of C, which is the reverse reaction, (first order), whit a rate constant k-.
+In the example above, this means that when one molecule of species A collide with one molecule of species B, they can form the a complex, which is another molecule of species C (second order reaction), with a reaction rate constant $k_+$, and that the molecule of C can at any moment break down into a molecule of A and a molecule of C, which is the reverse reaction, (first order), whit a rate constant k-.
 
 Network (RDNetwork class)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
