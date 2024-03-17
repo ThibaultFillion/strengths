@@ -5,7 +5,7 @@ What is a simulation engine
 ---------------------------
 
 A simulation engine is a class that represent a reaction-diffusion simulation algorithm.
-The RDSimulationEngineBase base class define an abstract common interface for simulation algorithms,
+The *RDEngineBase* base class define an abstract common interface for simulation algorithms,
 and any engine can be seen as a particular implementation of the RDSimulationEngineBase class.
 Using an engine to perform a simulation requires respect to some sequence of events (see the engine flow chart below).
 
