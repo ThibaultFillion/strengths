@@ -40,15 +40,14 @@ output, returned by simulate, is the RDTrajectory object.
 Accessing trajectory data
 -------------------------
 
-Let us say that we want to know the quantity of the "A" species in the cell at coordinates (x=3,y=4,z=2) at time
-t=200s. This can be done using the get_trajectory_point method, which allow to get the quantity of molecules of a given species
-at a given position for a given sample. Thus, it is necessary to determine which sample correspond to t=200s. This can be done using
+Let us say that we want to know the quantity of the "A" species in the cell at coordinates (x=3,y=4,z=0) at time
+t=200s. This can be done using the get_trajectory_point method, which allow to get the quantity of molecules of a given species at a given position for a given sample. Thus, it is necessary to determine which sample correspond to t=200s. This can be done using
 the get_sample_index, which return the sample index for which the sampling time is the closest from a given time :
 
 .. code:: python
 
   sample = output.get_sample_index("200 s")
-  point = output.get_trajectory_point(species="A", sample=sample, position=(3,4,2))
+  point = output.get_trajectory_point(species="A", sample=sample, position=(3,4,0))
 
 point will be a UnitValue with quantity of matter units ("molecule", "mol", etc.).
 
