@@ -4,25 +4,25 @@ Simulation Engines
 What is a simulation engine
 ---------------------------
 
-a simulation engine is a class that represent a simulation algorithm.
-The RDSimulationEngineBase base class define an abstract common interface for simulation algorithms,
+A simulation engine is a class that represent a reaction-diffusion simulation algorithm.
+The *RDEngineBase* base class define an abstract common interface for simulation algorithms,
 and any engine can be seen as a particular implementation of the RDSimulationEngineBase class.
-Using an engine to perform a simulation requires respect some sequence of events (see the engine flow chart).
+Using an engine to perform a simulation requires respect to some sequence of events (see the engine flow chart below).
 
 .. image:: engine_chart.png
   :align: center
 
-* first, the engine is initialized from a simulation script (a RDScript object) by calling engine.setup. This is the step where the simulation algorithm builds its internal state.
+* First, the engine is initialized from a simulation script (a RDScript object) by calling engine.setup. This is the step where the simulation algorithm builds its internal state.
   This is also at this stage that the system is sampled at t=0 is required.
-* next come the simulation loop. This is the stage during which the system evolution is actually simulated.
+* Next come the simulation loop. This is the stage during which the system evolution is actually simulated.
   iterations of the simulation algorithm are executed by calling either engine.run(dt), engine.iterate() or engine.iterate_n(n).
-  All those functions ultimately do the same thing, the difference being that
+  All those functions ultimately do the same thing, the difference being that:
 
   * iterate() run a single iteration
   * interate_n(n) run n iteration in a row
   * run(dt) run iterations for a period of (out-simulation) time dt.
 
-  the advantage of using iterate_n and run functions
+  The advantage of using iterate_n and run functions
   rather that iterate, in the case of engines relying on compiled dynamic libraries, is that they do fewer back and forth between python and the library.
   Those functions will return False or True depending on whether the simulation is complete or not. The completeness status of the simulation can also
   be consulted by calling the engine.is_complete() method, which will return true if the simulation is complete.
@@ -31,7 +31,7 @@ Using an engine to perform a simulation requires respect some sequence of events
   or to manually sample using engine.sample() (useful when the sampling_policy="no_sampling" in the engine.initialize arguments).
 * last step, once the simulation is complete, is to get the output (a RDSimulationOutput object), using engine.get_output().
 
-here is an example, where MyEngine() is some implementation of the RDSimulationEngineBase class :
+Here is an example, where MyEngine() is some implementation of the RDSimulationEngineBase class:
 
 .. code:: python
 
@@ -43,10 +43,10 @@ here is an example, where MyEngine() is some implementation of the RDSimulationE
   while engine.iterate() :
     pass
 
-  output = engine.get_output
+  output = engine.get_output()
 
 For common use, it may be more convenient to use the simulate or simulate_script functions, which wraps the engine dynamics.
-the simulate_script function takes as argument a script and an engine :
+The simulate_script function takes as argument a script and an engine:
 
 .. code:: python
 
@@ -58,37 +58,32 @@ the simulate_script function takes as argument a script and an engine :
     engine = engine
     )
 
-while the simulate function takes an engine as well as script parameters
+While the simulate function takes an engine as well as script parameters:
 
 .. code:: python
 
   system = load_rdsystem("system.json")
   engine = MyEngine()
 
-  output = simulate_script(
+  output = simulate(
     system = system,
     t_sample = [1,10,100],
     time_step = 0.001,
     engine = engine
     )
 
-Engine implementations installed with strengths
+Engine implementations installed with Strengths
 -----------------------------------------------
 
-All engines implement diffusion using the method described by David Bernstein [1].
-
-Strengths come with an efficient engines implementing 4 different methods,
-all relying on a shared library compiled from C++ code :
+All the engines implement diffusion using the method described by David Bernstein [1].
+Strengths come with 4 engines implementing different methods, relying on a shared library compiled from C++. 
+Those can be instantiated using the four following methods, from the engine_collection submodule,
+which are directly imported with ``import strengths``: 
 
 * strenghts.engine_collection.euler_engine(), implementing an Euler method with a static time step
 * strenghts.engine_collection.euler_adapt_engine(), implementing an Euler method with an adaptative time step
 * strenghts.engine_collection.gillespie_engine(), implementing the Gillespie algorithm [3]
 * strenghts.engine_collection.tauleap_engine(), implementing the tau leap approximation to the Gillespie algorithm [2]
-
-and one proof-of-concept engine :
-
-* strengths.kineticsengine.KineticsRDEngine, implementing an Euler Method approach using the strengths.kinetics module.
-  This engine is inefficient, but can be used as a reference to develop other, more efficient, engines.
 
 References
 ----------

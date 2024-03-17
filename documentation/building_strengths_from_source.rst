@@ -14,7 +14,7 @@ and it must be the only file in this directory. Any proper file name should be f
 Let us call it "engine.so" from now on. We thus have to build "strengths/engines/strengths_engine/src/engine.so".
 
 Here is an example using the g++ compiler from the GGC (https://gcc.gnu.org/).
-In the "strengths/engines/strengths_engine" directory, we call g++ as
+In the "strengths/engines/strengths_engine" directory, g++ can be called as
 
   g++ -o engine.so src/engine.cpp -shared -static-libstdc++ -static-libgcc -static -O3 -Wall -Wextra
 

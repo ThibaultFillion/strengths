@@ -1,12 +1,12 @@
-dictionary/JSON documentation
+Dictionary/JSON documentation
 ==============================
 
-this page describes how input dictionaries/JSON
-expected in functions such as load_rdsystem, rdsystem_from_dict,
-load_rdnetwork, rdnetwork_from_dict,
-load_rdgridspace, rdgridspace_from_dict, etc. should be written.
+This page describes how input dictionaries/JSON
+expected in functions such as *load_rdsystem*, *rdsystem_from_dict*,
+*load_rdnetwork*, *rdnetwork_from_dict*,
+*load_rdgridspace*, *rdgridspace_from_dict*, etc. should be written.
 
-reaction-diffusion simulation script
+Reaction-diffusion simulation script
 ------------------------------------
 
 Describes the parameters for the simulation of the trajectory of a
@@ -103,7 +103,7 @@ alias "units_system", "units system", "u".
 
 default : "default"
 
-reaction-diffusion system
+Reaction-diffusion system
 -------------------------
 
 Describes a physical reaction-diffusion system (RDSystem object).
@@ -176,7 +176,7 @@ alias "units_system", "units system", "u".
 
 default : "inherit"
 
-reaction-diffusion network
+Reaction-diffusion network
 --------------------------
 
 Describes a physical reaction-diffusion network (RDNetwork object).
@@ -383,7 +383,7 @@ alias "units_system", "units system", "u".
 
 default : "inherit"
 
-grid space
+Grid space
 ----------
 
 Describes the discrete space in which the reaction and diffusion happens (RDGridSpace object).
@@ -459,7 +459,7 @@ alias "units_system", "units system", "u".
 
 default : "inherit"
 
-units system
+Units system
 ------------
 
 Describes a choice of units for space distance, time distance and quantity of matter (UnitsSystem).

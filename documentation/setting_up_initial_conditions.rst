@@ -4,10 +4,10 @@ Setting up initial conditions
 Setting up the initial state
 ----------------------------
 
-let us consider the following system
+Let us consider the following system
 with the reversible reaction A -> B.
 
-*system.json* :
+*system.json*:
 
 .. code:: json
 
@@ -15,27 +15,29 @@ with the reversible reaction A -> B.
   "network" : {
     "species" : [
       {"label" : "A", "density" : 1},
-      {"label" : "B", "density" : 1}]
+      {"label" : "B", "density" : 1}],
     "reactions" : [
       {"eq" : "A -> B", "k+" : 1, "k-" : 1}]
-    },
+    }
   }
 
-once loaded as a system (a DRSystem object),
-it will have an initial state, in which the quantity of each species in each cell
-will be determined based on the species density and the cell volume.
+Once loaded as a system (a DRSystem object),
+it will has an initial state in which the quantity of each species in each cell
+is determined based on the species density and the cell volume.
 
 However, it is also possible to explicitly set the initial state of the system.
-This can be set directly in the JSON/dictionary or done after the system have been loaded.
+This can be done directly in the JSON file/dictionary or with the RDSystem instance.
 
-To set the state explicitly, one must set the "state" attribute of the system JSON/dictionary,
-or the state argument of the constructor.
+To set the state explicitly, one must set the *"state"* attribute of the system JSON/dictionary,
+the *state* argument of the RDSystem constructor or the
+*state* attribute of the RDSystem object.
 
-We left the space to default, so w=d=h=1.
-the system state will thus be [quantity of A in cell 0, quantity of B in cell 0].
-let us say we initially want 5 nmol of A and 3 nmol of B in the unique cell of the system.
+The *"space*" attribute have been left to default in the example above.
+As a consequence, the dimensions of the reaction diffusion space are w=d=h=1 cell. 
+The system state is thus: [quantity of A in cell 0, quantity of B in cell 0].
+Let us say we initially want 5 nmol of A and 3 nmol of B in the unique cell of the system.
 
-using the JSON/dict script, it will be :
+Using the JSON/dict script, it will be:
 
 .. code:: json
 
@@ -43,7 +45,7 @@ using the JSON/dict script, it will be :
   "network" : {
     "species" : [
       {"label" : "A", "density" : 1},
-      {"label" : "B", "density" : 1}]
+      {"label" : "B", "density" : 1}],
     "reactions" : [
       {"eq" : "A -> B", "k+" : 1, "k-" : 1}]
     },
@@ -52,9 +54,9 @@ using the JSON/dict script, it will be :
 
 .. code:: python
 
-  system = load("system.json")
+  system = load_rdsystem("system.json")
 
-using RDSystem object constructor :
+Using RDSystem object constructor:
 
 .. code:: python
 
@@ -62,29 +64,28 @@ using RDSystem object constructor :
     network = RDNetwork(
       species = [
         Species("A", density=1),
-        Species("B", density=1)
-        ]
-      species = [
-        Reaction("A -> B", kf=1, kr=1)
-        ]
+        Species("B", density=1)],
+      reactions = [
+        Reaction("A -> B", kf=1, kr=1)]
       ),
     state = UnitArray([5, 3], "µmol")
     )
 
-doing it after loading the system :
+Doing it after loading the system:
 
 .. code:: python
 
   system = load_rdsystem("system.json")
   system.state = UnitArray([5, 3], "µmol")
 
-doing it after loading the system, using the set_state method :
+Doing it after loading the system, using the *set_state* method,
+which allow to set the quantity of a given species at a given position:
 
 .. code:: python
 
   system = load_rdsystem("system.json")
-  system.state.set_state("A", position=(0,0,0), value=5)
-  system.state.set_state("B", position=(0,0,0), value=3)
+  system.set_state("A", position=(0,0,0), value=5)
+  system.set_state("B", position=(0,0,0), value=3)
 
 Setting up the chemostates
 --------------------------
@@ -92,7 +93,7 @@ Setting up the chemostates
 Chemostats works the same way as the system state.
 Default chemostats are generated based on the chstt attribute of the species,
 however, it is also possible to specify explicitly the chemostat distribution.
-The only difference is that chemostats are booleans, and thus, does not accept UnitValue or UnitArray objects.
+The only difference is that chemostats are booleans, and thus, does not accept UnitValue or UnitArray objects:
 
 .. code:: json
 
@@ -100,7 +101,7 @@ The only difference is that chemostats are booleans, and thus, does not accept U
   "network" : {
     "species" : [
       {"label" : "A", "density" : 1},
-      {"label" : "B", "density" : 1}]
+      {"label" : "B", "density" : 1}],
     "reactions" : [
       {"eq" : "A -> B", "k+" : 1, "k-" : 1}]
     },
@@ -109,9 +110,9 @@ The only difference is that chemostats are booleans, and thus, does not accept U
 
 .. code:: python
 
-  system = load("system.json")
+  system = load_rdsystem("system.json")
 
-using RDSystem object constructor :
+Using RDSystem object constructor:
 
 .. code:: python
 
@@ -119,16 +120,14 @@ using RDSystem object constructor :
     network = RDNetwork(
       species = [
         Species("A", density=1),
-        Species("B", density=1)
-        ]
+        Species("B", density=1)],
       species = [
-        Reaction("A -> B", kf=1, kr=1)
-        ]
+        Reaction("A -> B", kf=1, kr=1)]
       ),
     chemostats = [1, 0]
     )
 
-doing it after loading the system :
+Doing it after loading the system:
 
 .. code:: python
 
@@ -136,37 +135,47 @@ doing it after loading the system :
   system.chemostats = [1, 0]
 
 
-doing it after loading the system, using the set_chemostat method :
+Doing it after loading the system, using the set_chemostat method:
 
 .. code:: python
 
   system = load_rdsystem("system.json")
-  system.state.set_chemostat("A", position=(0,0,0), value=5)
-  system.state.set_chemoatst("B", position=(0,0,0), value=3)
+  system.set_chemostat("A", position=(0,0,0), value=5)
+  system.set_chemostat("B", position=(0,0,0), value=3)
 
-changing the species density of a system
-----------------------------------------
+Changing the Species.density attribute
+--------------------------------------
 
-let us keep the previous example.
-We loaded the system as it was, but now want to change the density of A and B.
-We load the system and set A and B densities and print the system state :
-
-.. code:: python
-
-  system = load_rdsystem("system.json")
-  system.get_species("A").density = 10
-  system.get_species("B").density = 20
-  print(system.state)
-
-however, it will print : [1., 1.] molecule
-For the change to be taken into account, one must regenerate the default system state :
+Let us keep the previous example.
+The system is loaded, but now we want to change the density of the species A and B.
+Just changing A and B's density attributes won't change the system state.
+For the change in density to be taken into account, one must also update the default system state:
 
 .. code:: python
 
   system = load_rdsystem("system.json")
-  system.get_species("A").density = 10
-  system.get_species("B").density = 20
+  system.network.get_species("A").density = 10
+  system.network.get_species("B").density = 20
   system.set_default_state()
   print(system.state)
 
-it will now print : [10., 20.] molecule
+It should print : [10., 20.] molecule.
+
+Changing the Species.chstt attribute
+----------------------------------------
+
+The Species.chstt attribute states if a chemostat must be
+applied for the species.
+As for the density attribute, just changing it after the system has been loaded won't
+change the actual chemostat map associated with the system.
+One must also update the default chemostat maps:
+
+.. code:: python
+
+  system = load_rdsystem("system.json")
+  system.network.get_species("A").chstt = 0
+  system.network.get_species("B").chstt = 1
+  system.set_default_chemostats()
+  print(system.chemostats)
+
+It should print : [0 1].

@@ -13,13 +13,13 @@ Installing and using Strengths
 
 For Strengths to work properly, a few dependencies have to be installed first:
 
-* NumPy, which is required for most of the features:
+* `NumPy <https://numpy.org>`_, which is required for most of the features:
 
 .. code:: bash
 
   pip install numpy
 
-* Matplotlib (optional), which is required only for the plot feature (strengths.plot)
+* `Matplotlib <https://matplotlib.org>`_ (optional), which is required only for the plot feature (strengths.plot)
 
 .. code:: bash
 

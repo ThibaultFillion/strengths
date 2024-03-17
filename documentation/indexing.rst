@@ -7,12 +7,12 @@ however it may still be of interest to understand how data are stored in the fir
 This is what this section will do, by explaining how to compute the unidimensional array index
 from coordinates.
 
-let N, w, h and d be respectively the number of species in a system, and the system width, height and depth in cell.
+Let N, w, h and d be respectively the number of species in a system, and the system width, height and depth in cell.
 
 Space cell index
 ----------------
 
-the index i of a cell in a grid space is given by
+The index i of a cell in a grid space is given by
 
 .. math::
 
@@ -32,7 +32,7 @@ The index i is, for a given species at a given position is given by
 State trajectory data
 ---------------------
 
-trajectory data are stored in the RDTrajectory.data property.
+Trajectory data are stored in the RDTrajectory.data property.
 The index i is, for a given species, in a given sample at a given position is given by
 
 .. math::

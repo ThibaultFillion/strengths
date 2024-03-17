@@ -40,15 +40,14 @@ output, returned by simulate, is the RDTrajectory object.
 Accessing trajectory data
 -------------------------
 
-Let us say that we want to know the quantity of the "A" species in the cell at coordinates (x=3,y=4,z=2) at time
-t=200s. This can be done using the get_trajectory_point method, which allow to get the quantity of molecules of a given species
-at a given position for a given sample. Thus, it is necessary to determine which sample correspond to t=200s. This can be done using
+Let us say that we want to know the quantity of the "A" species in the cell at coordinates (x=3,y=4,z=0) at time
+t=200s. This can be done using the get_trajectory_point method, which allow to get the quantity of molecules of a given species at a given position for a given sample. Thus, it is necessary to determine which sample correspond to t=200s. This can be done using
 the get_sample_index, which return the sample index for which the sampling time is the closest from a given time :
 
 .. code:: python
 
   sample = output.get_sample_index("200 s")
-  point = output.get_trajectory_point(species="A", sample=sample, position=(3,4,2))
+  point = output.get_trajectory_point(species="A", sample=sample, position=(3,4,0))
 
 point will be a UnitValue with quantity of matter units ("molecule", "mol", etc.).
 
@@ -61,12 +60,12 @@ a UnitArray.
   sample = output.get_sample_index("200 s")
   state = output.get_state(species="A", sample=sample)
 
-if the species argument is not provided, or set to None, get_state will return the whole system state for the given sample.
+if the species argument is set to ``None``, get_state will return the whole system state for the given sample.
 
 .. code:: python
 
   sample = output.get_sample_index("200 s")
-  state = output.get_state(sample=sample)
+  state = output.get_state(None, sample=sample)
 
 Finally, if one want to get the trajectory of a given species, one can use the
 get_trajectory method. As for the previous functions, the first parameter is the species of interest.
@@ -87,11 +86,11 @@ Calling the function specifying the position argument
 
 will a UnitArray corresponding to the
 trajectory of A at this specific position in the system.
-Eventually, calling the function mith merged=True
+Eventually, calling the function mith ``merge=True``
 
 .. code:: python
 
-  trajectory = output.get_trajectory("A", merged=True)
+  trajectory = output.get_trajectory("A", merge=True)
 
 will return a UnitArray corresponding to the
 trajectory of the global quantity of A in the whole system.
@@ -99,8 +98,7 @@ trajectory of the global quantity of A in the whole system.
 examples
 --------
 
-The following examples will illustrate how to plot system states and trajectories using matplotlib (https://matplotlib.org)
-without relying on the strengths.plot module wrappers.
+The following examples will illustrate how to plot system states and trajectories directly using `Matplotlib <https://matplotlib.org>`_ without the strengths.plot submodule.
 
 use case 1 : Plotting a trajectory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
