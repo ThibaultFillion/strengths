@@ -1,7 +1,7 @@
 Plot
 ====
 
-The strengths.pyplot module provide a few convenient plotting functions for visualization.
+The ``strengths.plot`` module provide a few convenient plotting functions for visualization.
 Those functions internally relies on the `Matplotlib <https://matplotlib.org>`_ package,
 which thus needs to be installed.
 
