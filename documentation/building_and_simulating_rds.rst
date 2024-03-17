@@ -367,13 +367,13 @@ using directly the engine :
 
   ...
   
-  engine = MyEngine()
+  engine = default_engine()
   engine.setup(script)
 
   while engine.iterate() :
     pass
 
-  output = engine.get_output(script)
+  output = engine.get_output()
 
 Another example with diffusion
 ------------------------------
