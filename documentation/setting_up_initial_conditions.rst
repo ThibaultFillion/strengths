@@ -176,6 +176,6 @@ One must also update the default chemostat maps:
   system.network.get_species("A").chstt = 0
   system.network.get_species("B").chstt = 1
   system.set_default_chemostats()
-  print(system.state)
+  print(system.chemostats)
 
 It should print : [0 1].
