@@ -65,7 +65,7 @@ While the simulate function takes an engine as well as script parameters:
   system = load_rdsystem("system.json")
   engine = MyEngine()
 
-  output = simulate_script(
+  output = simulate(
     system = system,
     t_sample = [1,10,100],
     time_step = 0.001,
