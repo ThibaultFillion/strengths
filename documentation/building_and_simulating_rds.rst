@@ -314,25 +314,23 @@ using object construction  :
 
 .. code:: python
 
-  import strengths as strn
+  from strengths import *
   import numpy as np
-  import strengths.plot as strnplt
 
-  system = strn.load_rdsystem("demo.json")
+  system = load_rdsystem("demo.json")
   script = RDScript(
     system    = system,
-    t_sample  = strn.UnitArray(np.linspace(0,10,1001), "s"),
+    t_sample  = UnitArray(np.linspace(0,10,1001), "s"),
     time_step = "1 ms"
     )
-  output = strn.simulate_script(script)
+  output = simulate_script(script, default_engine())
 
 from python dict :
 
 .. code:: python
 
-  import strengths as strn
+  from strengths import *
   import numpy as np
-  import strengths.plot as strnplt
 
   script_dict = {
     "system"    : "system.json",
@@ -340,18 +338,17 @@ from python dict :
     "time_step" : "1 ms"
     }
   script = rdscript_from_dict(script_dict)
-  output = strn.simulate_script(script)
+  output = simulate_script(script, default_engine())
 
 from JSON file :
 
 .. code:: python
 
-  import strengths as strn
+  from strengths import *
   import numpy as np
-  import strengths.plot as strnplt
 
   script = load_rdscript("script.json")
-  output = strn.simulate_script(script)
+  output = simulate_script(script, default_engine())
 
 Simulating the script
 ^^^^^^^^^^^^^^^^^^^^^
@@ -362,20 +359,21 @@ using simulate_script :
 
   ...
 
-  output = strn.simulate_script(script)
+  output = simulate_script(script, default_engine())
 
 using directly the engine :
 
 .. code:: python
 
   ...
-  engine = MyEngine()
+  
+  engine = default_engine()
   engine.setup(script)
 
   while engine.iterate() :
     pass
 
-  output = engine.get_output(script)
+  output = engine.get_output()
 
 Another example with diffusion
 ------------------------------
