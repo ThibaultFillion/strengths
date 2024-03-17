@@ -344,12 +344,11 @@ from JSON file :
 
 .. code:: python
 
-  import strengths as strn
+  from strengths import *
   import numpy as np
-  import strengths.plot as strnplt
 
   script = load_rdscript("script.json")
-  output = strn.simulate_script(script)
+  output = simulate_script(script, default_engine())
 
 Simulating the script
 ^^^^^^^^^^^^^^^^^^^^^
