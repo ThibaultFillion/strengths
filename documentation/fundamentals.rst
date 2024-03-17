@@ -18,7 +18,7 @@ A chemical transformation, or reaction, is an event localized in space during wh
 .. image:: ABC.png
   :align: center
 
-In the example above, this means that when one molecule of species A collide with one molecule of species B, they can form the a complex, which is another molecule of species C (second order reaction), with a reaction rate constant $k_+$, and that the molecule of C can at any moment break down into a molecule of A and a molecule of C, which is the reverse reaction, (first order), whit a rate constant k-.
+In the example above, this means that when one molecule of species A collide with one molecule of species B, they can form the a complex, which is another molecule of species C (second order reaction), with a reaction rate constant :math:`k_+`, and that the molecule of C can at any moment break down into a molecule of A and a molecule of C, which is the reverse reaction, (first order), whit a rate constant :math:`k_-`.
 
 Network (RDNetwork class)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
