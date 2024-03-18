@@ -11,21 +11,14 @@ The design of reaction-diffusion systems is facilitated by the use of dictionary
 Installing and using Strengths
 ------------------------------
 
-For Strengths to work properly, a few dependencies have to be installed first:
-
-* `NumPy <https://numpy.org>`_, which is required for most of the features:
-
-.. code:: bash
-
-  pip install numpy
-
-* `Matplotlib <https://matplotlib.org>`_ (optional), which is required only for the plot feature (strengths.plot)
+For Strengths to work properly, a few dependencies have to be installed first, including `NumPy <https://numpy.org>`_ (required) and 
+`Matplotlib <https://matplotlib.org>`_ (optional). All dependencies can be installed at once with
 
 .. code:: bash
 
-  pip install numpy
+  pip install -r "https://raw.githubusercontent.com/ThibaultFillion/strengths/main/requirements.txt"
 
-The package can then be installed from the Python Package Index, with
+The package can then be installed from the `Python Package Index <https://pypi.org>`_ with
 
 .. code:: bash
 
