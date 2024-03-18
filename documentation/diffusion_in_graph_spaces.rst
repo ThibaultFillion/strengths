@@ -31,5 +31,4 @@ the expressions of :math:`k_{i,j}` and :math:`k_{j,i}` simplifies to those given
 References
 ==========
 
-* [1] : Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm.
-	Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103
+[1] : Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm. Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103
