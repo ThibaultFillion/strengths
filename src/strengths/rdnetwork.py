@@ -589,6 +589,16 @@ class Reaction :
         
         return self.kf/self.kr
     
+    @property
+    def K(self) :
+        """
+        Equilibrium constant of the reaction in the forward direction.
+        It is an alias for the equilibrium_constant method,
+        except is is a read-only property.
+        """
+        
+        return self.equilibrium_constant()
+        
     def copy(self) :
         """
         returns a deepcopy of the instance.
