@@ -19,6 +19,7 @@ The Last section just tells which external packages are needed to have strengths
   using_quantities_with_units
   strengths_and_scipy
   engines
+  diffusion_in_graph_spaces
   indexing
   building_strengths_from_source
   dependencies
