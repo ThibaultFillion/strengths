@@ -7,3 +7,4 @@ include src/strengths/engines/strengths_engine/src/EulerGraph.hpp
 include src/strengths/engines/strengths_engine/src/GillespieGraph.hpp
 include src/strengths/engines/strengths_engine/src/SimulationAlgorithmGraphBase.hpp
 include src/strengths/engines/strengths_engine/src/TauLeapGraph.hpp
+include requirements.txt
