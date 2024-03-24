@@ -12,7 +12,7 @@ class Species :
     A chemical species.
 
     :param label: unique label identifying the species in a reaction network
-    :param type: str
+    :type label: str
     :param D: species diffusion coefficient (default 0).
     :type D: see D property
     :param density: species initial quantity (default 0).
