@@ -423,7 +423,6 @@ class RDSystem :
         """
         
         state_index = self.get_state_index(species, position)
-                
         return self._chemostats[state_index]
         
     def get_state(self, species, position) :
@@ -439,10 +438,6 @@ class RDSystem :
         """
         
         state_index = self.get_state_index(species, position)
-
-        if type(value) != UnitValue :
-            value = UnitValue(value, Units(self.units_system, quantity_units_dimensions()))
-
         return self._state.get_at(state_index)
 
     def state_size(self) : 
