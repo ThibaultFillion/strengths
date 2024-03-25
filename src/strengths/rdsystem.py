@@ -407,6 +407,43 @@ class RDSystem :
             value = UnitValue(value, Units(self.units_system, quantity_units_dimensions()))
 
         self._state.set_at(state_index, value)
+    
+    def get_chemostat(self, species, position) : 
+        """
+        Returns the chemostat map value for a given species at a given position.
+        
+        :param species: species of which the chemostate map value must be returned
+        :type species: Species, int or str
+        :param position: position at which the chemostat map must be considered
+        :type position: number (interpreted as a linear index (int)) or a class with x, y and z properties/members.
+        :param value: value to be set
+        :type value: int or bool
+        :returns: chemostat map value
+        :rtype: int
+        """
+        
+        state_index = self.get_state_index(species, position)
+                
+        return self._chemostats[state_index]
+        
+    def get_state(self, species, position) :
+        """
+        Returns the state value for a given species at a given position.
+        
+        :param species: species of which the state value must be returned
+        :type species: Species, int or str
+        :param position: position at which the state must be considered
+        :type position: number (interpreted as a linear index (int)) or a class with x, y and z properties/members.
+        :returns: state value
+        :rtype: UnitValue
+        """
+        
+        state_index = self.get_state_index(species, position)
+
+        if type(value) != UnitValue :
+            value = UnitValue(value, Units(self.units_system, quantity_units_dimensions()))
+
+        return self._state.get_at(state_index)
 
     def state_size(self) : 
         """
