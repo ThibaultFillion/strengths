@@ -440,6 +440,77 @@ class RDSystem :
         state_index = self.get_state_index(species, position)
         return self._state.get_at(state_index)
 
+    def apply_reaction(self, reaction, *, position=0, n=1, state=None, chemostats=None, update=False):
+        """
+        Apply the given reaction to the system state, at the given position, n times.
+        Chemostats are taken into account. if n is negative, the reverse reaction is applied.
+        The resulting state is returned.
+
+        :param reaction: The reaction to be applied.
+        :param position: Position at which the reaction should be applied in the system.
+            (default 0).
+        :param n: Number of time the reaction should be applied.
+            If n<0, the reverse reaction is applied.
+            (default 1).
+        :type n: int or float
+        :param state: State to which the reaction should be applied. 
+            if None, the system state is used instead.
+            (default None).
+        :type state: UnitArray, with quantity of matter as units.
+        :param: chemostats
+            Chemostat map to be used. If None, the one of the system is used instead.
+            (default None).
+        :type chemostat: Array of bool or int.    
+        :param update: tells whether the resulting state should be set as the system state : True=yes, 
+            False=No. (default False).
+        :type update: bool
+        :returns: The modified state
+        :rtype: UnitArray, with quantity of matter as units.    
+        """
+        
+        #check state
+        if state is None : 
+            state = self.state.copy()
+        else :
+            if type(state) == UnitArray:
+                pass
+            elif isarray(state):
+                state = UnitArray(state, self.state.units)
+            else :
+                raise TypeError("state must be an array or a UnitArray.")
+            if state.units.dim != quantity_units_dimensions():
+                raise ValueError("state's units dimensions must be quantity unit dimensions.")
+            if len(state) != len(self.state) : 
+                raise ValueError("state's size does not match the system state size.")
+
+        #check chemostats
+        if chemostats is None : 
+            chemostats = self.chemostats.copy()
+        else :
+            if not isarray(chemostats):
+                raise TypeError("chemostats must be an array")
+            if len(chemostats) != len(self.state) : 
+                raise ValueError("chemostats's size does not match the system state size.")
+
+        r  = self.network.reactions[self.network.get_reaction_index(reaction)]
+        
+        dx = UnitArray(
+            np.array(r.dsto(self.network.species_labels()), 
+                     dtype=float)*n, 
+            "molecule"
+            ).convert(state.units)
+        
+        #applying change
+        for i in range(len(dx)) :
+            index = self.get_state_index(i, position)
+            if chemostats[index] == 0 :
+                state.value[index] += dx.value[i]
+        
+        if update :
+            self.state = state
+                
+        return state
+        
     def state_size(self) : 
         """
         Returns the size of the system state (int).
