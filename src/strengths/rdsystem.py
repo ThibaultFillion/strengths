@@ -391,7 +391,7 @@ class RDSystem :
 
     def set_state(self, species, position, value) :
         """
-        Sets the chemostat map value for a given species at a given position.
+        Sets the state value for a given species at a given position.
         
         :param species: species for which the value must be set
         :type species: Species, int or str
