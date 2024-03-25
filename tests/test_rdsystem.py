@@ -1,6 +1,7 @@
 import sys
 sys.path.append("../src/")
 from strengths import *
+from strengths.constants import avogadro_number
 
 class SomeCoordClass :
     def __init__(self,x,y,z) :
@@ -278,7 +279,84 @@ def test_set_state() :
                                      0.0, 0.0,
                                      0.0, 0.0
                                      ]
+
+def test_rdnetwork_apply_reaction(spacetype):
     
+    spacedict = {
+        "w" : 3
+        }
+
+    if spacetype == "graph" :
+        spacedict = {
+            "type" : "graph",
+            "nodes" : [{},{},{}],
+            "edges" : []
+            }
+
+    system = strn.rdsystem_from_dict({
+        "network" : {
+            "species" : [
+                {"label" : "D", "density" : 0},
+                {"label" : "A", "density" : 5},
+                {"label" : "B", "density" : 5},
+                {"label" : "C", "density" : 0}
+                ],
+            "reactions" : [
+                {"eq" : "A + B -> C", "label" : "1"},
+                {"eq" : "C -> D",     "label" : "2"}
+                ]
+            },
+        "space" : spacedict
+        })
+    
+    # state = [0,0,0,  5,5,5,  5,5,5,  0,0,0]
+    
+    # basic case with default arguments
+    state = system.apply_reaction("1")
+    assert list(state.value) == [0,0,0,  4,5,5,  4,5,5,  1,0,0]
+    assert list(system.state.value) == [0,0,0,  5,5,5,  5,5,5,  0,0,0]
+    
+    # negative number
+    state = system.apply_reaction("1", n=-2)
+    assert list(state.value) == [0,0,0,  7,5,5,  7,5,5,  -2,0,0]
+    
+    # float number
+    state = system.apply_reaction("1", n=1.5)
+    assert list(state.value) == [0,0,0,  3.5,5,5,  3.5,5,5,  1.5,0,0]
+    
+    # chaning reaction and position
+    state = system.apply_reaction("2", position=2)
+    assert list(state.value) == [0,0,1,  5,5,5,  5,5,5,  0,0,-1]
+    
+    # reaction by index
+    state = system.apply_reaction(1, position=2)
+    assert list(state.value) == [0,0,1,  5,5,5,  5,5,5,  0,0,-1]
+    
+    # chaning number
+    state = system.apply_reaction("2", position=2, n=3)
+    assert list(state.value) == [0,0,3,  5,5,5,  5,5,5,  0,0,-3]
+    
+    # update
+    system.apply_reaction("2", position=2, update=True)
+    assert list(system.state.value) == [0,0,1,  5,5,5,  5,5,5,  0,0,-1]
+    
+    # custom state
+    state = system.apply_reaction("2", position=2, 
+        state=strn.UnitArray([0,0,6,  0,0,0,  0,0,0,  0,0,2], "molecule"))
+    assert list(state.value) == [0,0,7,  0,0,0,  0,0,0,  0,0,1]
+    
+    # custom state and chemostats
+    state = system.apply_reaction("2", position=2, 
+        state=strn.UnitArray([0,0,6,  0,0,0,  0,0,0,  0,0,2], "molecule"),
+        chemostats=[0,0,0,  0,0,0,  0,0,0,  0,0,1])
+    assert list(state.value) == [0,0,7,  0,0,0,  0,0,0,  0,0,2]
+
+    #different units
+    n=1e23
+    state = system.apply_reaction("2", position=2, n=n,
+        state=strn.UnitArray([0,0,6,  0,0,0,  0,0,0,  0,0,2], "mol"))
+    assert list(state.value) == [0,0,6+n/avogadro_number(),  0,0,0,  0,0,0,  0,0,2-n/avogadro_number()]
+  
 # run all tests ############################################
 
 def run_all_tests() : 
@@ -289,3 +367,5 @@ def run_all_tests() :
     test_generate_species_chstt_map_default()
     test_default_state() 
     test_set_state() 
+    test_rdnetwork_apply_reaction("grid")
+    test_rdnetwork_apply_reaction("graph")  
