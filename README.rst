@@ -107,7 +107,7 @@ Initial authors
 * Francesco Piazza,
   * University of Florence,
     Department of Physics & Astronomy, Via Giovanni Sansone 1, 50019 Sesto Fiorentino, Italy
-  * Instituto Nazionale di Fisica Nucleare (INFN) sézione di Firenze,
+  * Instituto Nazionale di Fisica Nucleare (INFN) sezione di Firenze,
     Via Giovanni Sansone 1, 50019 Sesto Fiorentino, Italy
 
 All authors
