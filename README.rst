@@ -11,7 +11,7 @@ The design of reaction-diffusion systems is facilitated by the use of dictionary
 Installing and using Strengths
 ------------------------------
 
-For Strengths to work properly, a few dependencies have to be installed first, including `NumPy <https://numpy.org>`_ (required) and 
+For Strengths to work properly, a few dependencies have to be installed first, including `NumPy <https://numpy.org>`_ (required) and
 `Matplotlib <https://matplotlib.org>`_ (optional). All dependencies can be installed at once with
 
 .. code:: bash
@@ -95,8 +95,23 @@ Strengths's source code and documentation are licensed under the terms of the `M
 You'll find the licence text in your strengths installation root file, or in the root file of the
 project's GitHub repository.
 
-Authors
--------
+Initial authors
+---------------
 
 * Thibault Fillion
-* Francesco Piazza
+  * University of Orléans, Avenue du Parc Floral, BP 6749, 45067 Orléans, France
+  * Center for Molecular Biophysics (CBM), Rue Charles Sadron CS 80054, 45071 Orléans, France
+  * University of Florence, Department of Experimental and Clinical Medicine,
+    Viale Giovanni Batista Morgagni 50, 50314 Firenze, Italy
+
+* Francesco Piazza,
+  * University of Florence,
+    Department of Physics & Astronomy, Via Giovanni Sansone 1, 50019 Sesto Fiorentino, Italy
+  * Instituto Nazionale di Fisica Nucleare (INFN) sézione di Firenze,
+    Via Giovanni Sansone 1, 50019 Sesto Fiorentino, Italy
+
+All authors
+-----------
+
+See GitHub contributors for now. A dedicated Author file
+could be set up in the future.
