@@ -9,7 +9,7 @@ import math
 plotting utility
 """
 
-def plot_trajectory (output, species, position=None) :
+def plot_trajectory (output, species, position=None, *, ax=None) :
     """
     Plots the time trajectory of one or more species. 
     It relies on the Matplotlib package.
@@ -22,29 +22,37 @@ def plot_trajectory (output, species, position=None) :
     :param position: position of the cell from which we want the trajectory. 
         if None, the global trajectory for the whole system is plotted instead.
     :type position: None, number, tuple or Coord like
+    :param ax: (optional keyword argument) Matplotlib axis to be used (default = None).
     :type species: str or array of str.
     """
+
+    show = False
+    if ax is None :
+        ax = plt.gca()
+        show = True
     
     merge = isnone(position)
     if merge : 
         position=0
     
     if type(species) == str :
-        plt.title(species + " trajectory")
-        plt.ylabel("species quantity (" + str(output.data.units) + ")")
-        plt.xlabel("time (" + str(output.t.units) + ")")
-        plt.plot(output.t.value, output.get_trajectory(species, merge=merge, position=position).value)
-        plt.show()
+        ax.set_title(species + " trajectory")
+        ax.set_ylabel("species quantity (" + str(output.data.units) + ")")
+        ax.set_xlabel("time (" + str(output.t.units) + ")")
+        ax.plot(output.t.value, output.get_trajectory(species, merge=merge, position=position).value)
     else :
-        plt.title("species trajectories")
-        plt.ylabel("species quantity (" + str(output.data.units) + ")")
-        plt.xlabel("time (" + str(output.t.units) + ")")
+        ax.set_title("species trajectories")
+        ax.set_ylabel("species quantity (" + str(output.data.units) + ")")
+        ax.set_xlabel("time (" + str(output.t.units) + ")")
         for s in species: 
-            plt.plot(output.t.value, output.get_trajectory(s, merge=merge, position=position).value, label=s)
-        plt.legend(loc="best")
+            ax.plot(output.t.value, output.get_trajectory(s, merge=merge, position=position).value, label=s)
+        ax.legend(loc="best")
+    if show :
         plt.show()
     
-def plot_sample_state_2D(output, species, sample, axis="auto", axis_position=0, environments=None, xmin=None, xmax=None, units_system=None) : 
+def plot_sample_state_2D(output, species, sample, axis="auto", axis_position=0, 
+                         environments=None, xmin=None, xmax=None, units_system=None,
+                         *, ax=None) : 
     """
     Plots the distribution for the quantity of a species on a plan of the system space.
     It relies on the Matplotlib package.
@@ -66,8 +74,14 @@ def plot_sample_state_2D(output, species, sample, axis="auto", axis_position=0, 
     :type axis: str
     :param axis_position: position of the slice along the slice axis
     :type axis_position: int
+    :param ax: (optional keyword argument) Matplotlib axis to be used (default = None).
     """
-    
+
+    show = False
+    if ax is None :
+        ax = plt.gca()
+        show = True
+        
     if type(output.system.space) != RDGridSpace :
         raise ValueError("plot_sample_state_2D requires the system to have a grid space (RDGridSpace).")
     
@@ -99,22 +113,22 @@ def plot_sample_state_2D(output, species, sample, axis="auto", axis_position=0, 
     if units_system is not None :
         sample_time = sample_time.convert(units_system)
         
-    plt.title(species + "\n" + axis + " = "+str(axis_position)+" cell"+"\nt = "+str(sample_time))
+    ax.set_title(species + "\n" + axis + " = "+str(axis_position)+" cell"+"\nt = "+str(sample_time))
     
     if   axis == "x" : 
-        plt.xlabel("y (cell)")
-        plt.ylabel("z (cell)")
+        ax.set_xlabel("y (cell)")
+        ax.set_ylabel("z (cell)")
         state = state[:,:,axis_position]
         env   = env  [:,:,axis_position]
 
     elif axis == "y" : 
-        plt.xlabel("x (cell)")
-        plt.ylabel("z (cell)")
+        ax.set_xlabel("x (cell)")
+        ax.set_ylabel("z (cell)")
         state = state[:,axis_position,:]
         env   = env  [:,axis_position,:]
     elif axis == "z" : 
-        plt.xlabel("x (cell)")
-        plt.ylabel("y (cell)")
+        ax.set_xlabel("x (cell)")
+        ax.set_ylabel("y (cell)")
         state = state[axis_position,:,:]
         env   = env  [axis_position,:,:]
     else : 
@@ -129,16 +143,23 @@ def plot_sample_state_2D(output, species, sample, axis="auto", axis_position=0, 
                 if env[i, j] not in env_indices : 
                     state[i, j] = math.nan
     
-    plt.imshow(state, vmin=xmin, vmax=xmax)
-    plt.colorbar(label="quantity ("+str(state_ua.units)+")")
-    plt.show()
+    im = ax.imshow(state, vmin=xmin, vmax=xmax)
+    plt.colorbar(im, label="quantity ("+str(state_ua.units)+")")
+    
+    if show :
+        plt.show()
 
-def plot_state_2D(system, species, axis="auto", axis_position=0) : 
+def plot_state_2D(system, species, axis="auto", axis_position=0, *, ax=None) : 
     """
     Plots the distribution for the quantity of a species on a plan of the system space.
     It relies on the Matplotlib package.
     """
-    
+
+    show = False
+    if ax is None :
+        ax = plt.gca()
+        show = True
+        
     if type(system.space) != RDGridSpace :
         raise ValueError("plot_sample_state_2D requires the system to have a grid space (RDGridSpace).")
 
@@ -156,31 +177,30 @@ def plot_state_2D(system, species, axis="auto", axis_position=0) :
         else :                                                                                                   axis = "z"
     
     if   axis == "x" : 
-        plt.title(species+"\nx = "+str(axis_position)+" cell")
-        plt.xlabel("y (cell)")
-        plt.ylabel("z (cell)")
-        plt.imshow(state[:,:,axis_position])
-        plt.colorbar(label="quantity "+str(system.state.units))
-        plt.show()
+        ax.set_title(species+"\nx = "+str(axis_position)+" cell")
+        ax.set_xlabel("y (cell)")
+        ax.set_ylabel("z (cell)")
+        im = ax.imshow(state[:,:,axis_position])
+        plt.colorbar(im, label="quantity "+str(system.state.units))
     elif axis == "y" : 
-        plt.title(species+"\ny = "+str(axis_position)+" cell")
-        plt.xlabel("x (cell)")
-        plt.ylabel("z (cell)")
-        plt.imshow(state[:,axis_position,:])
-        plt.colorbar(label="quantity "+str(system.state.units))
-        plt.show()
+        ax.set_title(species+"\ny = "+str(axis_position)+" cell")
+        ax.set_xlabel("x (cell)")
+        ax.set_ylabel("z (cell)")
+        im = ax.imshow(state[:,axis_position,:])
+        plt.colorbar(im, label="quantity "+str(system.state.units))
     elif axis == "z" : 
-        plt.title(species+"\nz = "+str(axis_position)+" cell")
-        plt.xlabel("x (cell)")
-        plt.ylabel("y (cell)")
-        plt.imshow(state[axis_position,:,:])
-        plt.colorbar(label="quantity ("+str(system.state.units)+")")
-        plt.show()
+        ax.set_title(species+"\nz = "+str(axis_position)+" cell")
+        ax.set_xlabel("x (cell)")
+        ax.set_ylabel("y (cell)")
+        im = ax.imshow(state[axis_position,:,:])
+        plt.colorbar(im, label="quantity ("+str(system.state.units)+")")
     else : 
         raise ValueError(str(axis) + "is not an axxepted axis value. accepted value are \"x\", \"y\", \"z\" and \"auto\"" )
+    
+    if show : 
+        plt.show()        
         
-        
-def plot_environments_2D(system, axis="auto", axis_position=0, env_color_dict=None) : 
+def plot_environments_2D(system, axis="auto", axis_position=0, env_color_dict=None, *, ax=None) : 
     """
     Plots the distribution of the reaction diffusion environments on a plan of the system space.
     env_color_dict allow to define which color should be used to represent each environment.
@@ -188,6 +208,11 @@ def plot_environments_2D(system, axis="auto", axis_position=0, env_color_dict=No
     It relies on the Matplotlib package.
     """
 
+    show = False
+    if ax is None :
+        ax = plt.gca()
+        show = True
+        
     if type(system.space) != RDGridSpace :
         raise ValueError("plot_sample_state_2D requires the system to have a grid space (RDGridSpace).")
         
@@ -216,38 +241,42 @@ def plot_environments_2D(system, axis="auto", axis_position=0, env_color_dict=No
         else :                                                                       axis = "z"
     
     if   axis == "x" : 
-        plt.title("environment map\nx = "+str(axis_position)+" cell")
-        plt.xlabel("y (cell)")
-        plt.ylabel("z (cell)")
-        plt.imshow(envmap[:,:,axis_position], cmap=colormap, vmax=n_env)
-        plt.colorbar(ticks=colormap_ticks).set_ticklabels(colormap_ticks_labels)
-        plt.show()
+        ax.set_title("environment map\nx = "+str(axis_position)+" cell")
+        ax.set_xlabel("y (cell)")
+        ax.set_ylabel("z (cell)")
+        im = ax.imshow(envmap[:,:,axis_position], cmap=colormap, vmax=n_env)
+        plt.colorbar(im, ticks=colormap_ticks).set_ticklabels(colormap_ticks_labels)
     elif axis == "y" : 
-        plt.title("environment map\ny = "+str(axis_position)+" cell")
-        plt.xlabel("x (cell)")
-        plt.ylabel("z (cell)")
-        plt.imshow(envmap[:,axis_position,:], cmap=colormap, vmax=n_env)
-        plt.colorbar(ticks=colormap_ticks).set_ticklabels(colormap_ticks_labels)
-        plt.show()
+        ax.set_title("environment map\ny = "+str(axis_position)+" cell")
+        ax.set_xlabel("x (cell)")
+        ax.set_ylabel("z (cell)")
+        im = ax.imshow(envmap[:,axis_position,:], cmap=colormap, vmax=n_env)
+        plt.colorbar(im, ticks=colormap_ticks).set_ticklabels(colormap_ticks_labels)
     elif axis == "z" : 
-        plt.title("environment map\nz = "+str(axis_position)+" cell")
-        plt.xlabel("x (cell)")
-        plt.ylabel("y (cell)")
-        plt.imshow(envmap[axis_position,:,:], cmap=colormap, vmax=n_env)
-        plt.colorbar(ticks=colormap_ticks).set_ticklabels(colormap_ticks_labels)
-        plt.show()
+        ax.set_title("environment map\nz = "+str(axis_position)+" cell")
+        ax.set_xlabel("x (cell)")
+        ax.set_ylabel("y (cell)")
+        im = ax.imshow(envmap[axis_position,:,:], cmap=colormap, vmax=n_env)
+        plt.colorbar(im, ticks=colormap_ticks).set_ticklabels(colormap_ticks_labels)
     else : 
         raise ValueError(str(axis) + "is not an accepted axis value. accepted value are \"x\", \"y\", \"z\" and \"auto\"" )
 
+    if show : 
+        plt.show()
 
-def plot_chemostats_2D(system, species, axis="auto", axis_position=0, color_no="white", color_yes="black") : 
+def plot_chemostats_2D(system, species, axis="auto", axis_position=0, color_no="white", color_yes="black", *, ax=None) : 
     """
     Plots the distribution of the chemostats for a given species on a plan of the system space.
     color_no and color_yes are colors to be used to indicate the absence or prence of chemostats.
     defaults are "white" and "black".
     It relies on the Matplotlib package.
     """
-    
+
+    show = False
+    if ax is None :
+        ax = plt.gca()
+        show = True
+        
     if type(system.space) != RDGridSpace :
         raise ValueError("plot_sample_state_2D requires the system to have a grid space (RDGridSpace).")
         
@@ -270,25 +299,25 @@ def plot_chemostats_2D(system, species, axis="auto", axis_position=0, color_no="
         else :                                                                       axis = "z"
     
     if   axis == "x" : 
-        plt.title("chemostat map\nx = "+str(axis_position)+" cell")
-        plt.xlabel("y (cell)")
-        plt.ylabel("z (cell)")
-        plt.imshow(chstts[n,:,:,axis_position], cmap=colormap, vmax=2)
-        plt.colorbar(ticks=colormap_ticks, label="chemostated").set_ticklabels(colormap_ticks_labels)
-        plt.show()
+        ax.set_title("chemostat map\nx = "+str(axis_position)+" cell")
+        ax.set_xlabel("y (cell)")
+        ax.set_ylabel("z (cell)")
+        im = ax.imshow(chstts[n,:,:,axis_position], cmap=colormap, vmax=2)
+        plt.colorbar(im, ticks=colormap_ticks, label="chemostated").set_ticklabels(colormap_ticks_labels)
     elif axis == "y" : 
-        plt.title("chemostat map\ny = "+str(axis_position)+" cell")
-        plt.xlabel("x (cell)")
-        plt.ylabel("z (cell)")
-        plt.imshow(chstts[n,:,axis_position,:], cmap=colormap, vmax=2)
-        plt.colorbar(ticks=colormap_ticks, label="chemostated").set_ticklabels(colormap_ticks_labels)
-        plt.show()
+        ax.set_title("chemostat map\ny = "+str(axis_position)+" cell")
+        ax.set_xlabel("x (cell)")
+        ax.set_ylabel("z (cell)")
+        im = ax.imshow(chstts[n,:,axis_position,:], cmap=colormap, vmax=2)
+        plt.colorbar(im, ticks=colormap_ticks, label="chemostated").set_ticklabels(colormap_ticks_labels)
     elif axis == "z" : 
-        plt.title("chemostat map\nz = "+str(axis_position)+" cell")
-        plt.xlabel("x (cell)")
-        plt.ylabel("y (cell)")
-        plt.imshow(chstts[n,axis_position,:,:], cmap=colormap, vmax=2)
-        plt.colorbar(ticks=colormap_ticks, label="chemostated").set_ticklabels(colormap_ticks_labels)
-        plt.show()
+        ax.set_title("chemostat map\nz = "+str(axis_position)+" cell")
+        ax.set_xlabel("x (cell)")
+        ax.set_ylabel("y (cell)")
+        im = ax.imshow(chstts[n,axis_position,:,:], cmap=colormap, vmax=2)
+        plt.colorbar(im, ticks=colormap_ticks, label="chemostated").set_ticklabels(colormap_ticks_labels)
     else : 
         raise ValueError(str(axis) + "is not an accepted axis value. accepted value are \"x\", \"y\", \"z\" and \"auto\"" )
+
+    if show : 
+        plt.show()
