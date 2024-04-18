@@ -283,7 +283,7 @@ Perspectives for future developments include:
 
 - CPU-GPU massively parallel implementations of the existing simulation methods,
 - Implementing methods with dynamically adaptive time steps,
-- Implementing methods combining stochastic and deterministic approaches for faster simulations, ans
+- Implementing methods combining stochastic and deterministic approaches for faster simulations, and
 - Developing a GUI that would facilitate the design of the reaction-diffusion system layouts.
 
 # References
