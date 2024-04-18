@@ -89,12 +89,12 @@ simulation at once. The resulting system trajectory, which is the sequence of
 system states successively sampled during the simulation and the corresponding
 sampling times, is stored in a *RDTrajectory* object.
 
-So far, STReNGHTS supports simulation engines implementing the Original
+So far, STReNGHTS implements simulation engines for the original
 Gillespie algorithm [@gillespie_exact_1977], the $\tau$-leap approximation to
 the Gillespie algorithm [@gillespie_approximate_2001], and the Euler Method,
-operating both on grid and graph spaces,
+operating on both grid and graph spaces,
 with diffusion handled according to the method described in
-Ref. [@bernstein_simulating_2005].
+Ref. [@bernstein_simulating_2005] (with a slight adaptation for graph spaces).
 
 # STReNGTHS and similar tools
 
@@ -142,7 +142,7 @@ Still, it allows one to build in a very intuitive and
 user-friendly way simulations able to describe a vast range of complex systems.
 
 So far, as opposed to Readdy, STReNGTHS only implements non particle-based methods,
-similar to those proposed by the other softwares. However, rather than proposing only one
+similar to those proposed by the other software. However, rather than proposing only one
 all-purpose fitting method, STReNGTHS's approach is to provide a collection of various
 simulation methods, leaving the choice at the user's discretion. Moreover, simulation
 features can be easily extended using the simulation engine interface.
@@ -283,7 +283,7 @@ Perspectives for future developments include:
 
 - CPU-GPU massively parallel implementations of the existing simulation methods,
 - Implementing methods with dynamically adaptive time steps,
-- Implementing hybrid stochastic-deterministic methods for faster simulations, and
+- Implementing methods combining stochastic and deterministic approaches for faster simulations, ans
 - Developing a GUI that would facilitate the design of the reaction-diffusion system layouts.
 
 # References
