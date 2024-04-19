@@ -202,11 +202,9 @@ $C+X\rightarrow C+Y$: $k_3=1 \ $\ $\mu$M$^{-1}$s$^{-1}$.
 $C+Y\rightarrow C+X$: $k_{-3} = 10^{-4}$ $\mu$M$^{-1}$s$^{-1}$.
 $Y\rightarrow X, \ k_4 = 10^{-2}$ s$^{-1}$.
 The diffusion coefficients for the different species were:
-$D_L = 100$ $\mu$m$^2$s$^{-1}$,
-$D_R = 0.1$ $\mu$m$^2$s$^{-1}$,
-$D_C = 0.1$ $\mu$m$^2$s$^{-1}$,
-$D_X = 10$ $\mu$m$^2$s$^{-1}$,
-$D_Y = 10$ $\mu$m$^2$s$^{-1}$.
+$D_L = 100$ $\mu$m$^2$s$^{-1}$ (order of magnitude for the diffusion coefficient of a protein around 30 kDa in water [@Milo2015]),
+$D_R = D_C = 0.1$ $\mu$m$^2$s$^{-1}$ (order of magnitude for the diffusion coefficient of a transmembrane protein in a compartmented plasma membrane[@Fujiwara2016]),
+$D_X = D_Y = 10$ $\mu$m$^2$s$^{-1}$ (order of magnitude for the diffusion coefficient of a protein around 30 kDa in the cytosol [@Milo2015]).
 \label{example1}](example1.png)
 
 For the second example, we consider a pattern-forming reaction-diffusion
