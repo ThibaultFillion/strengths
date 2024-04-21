@@ -14,7 +14,7 @@ It contains the following files :
 To run this example, first step is to run script.py and script_cg.py in the directory.
 Those will output JSON and NumPy files inside the folder. Second and last step is to run results.py, which will plot the results using Matplotlib.
 
-Note: the original results (JSON and NumPy files) inside the directory were generated with an early version of the package and of the script files,
+Note: the original results (featured in the paper) were generated with an early version of the package and of those script files,
 and some files were renamed. The instruction
 
 .. code:: python
