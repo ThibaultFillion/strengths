@@ -89,12 +89,12 @@ simulation at once. The resulting system trajectory, which is the sequence of
 system states successively sampled during the simulation and the corresponding
 sampling times, is stored in a *RDTrajectory* object.
 
-So far, STReNGHTS supports simulation engines implementing the Original
+So far, STReNGHTS implements simulation engines for the original
 Gillespie algorithm [@gillespie_exact_1977], the $\tau$-leap approximation to
 the Gillespie algorithm [@gillespie_approximate_2001], and the Euler Method,
-operating both on grid and graph spaces,
+operating on both grid and graph spaces,
 with diffusion handled according to the method described in
-Ref. [@bernstein_simulating_2005].
+Ref. [@bernstein_simulating_2005] (with a slight adaptation for graph spaces).
 
 # STReNGTHS and similar tools
 
@@ -142,7 +142,7 @@ Still, it allows one to build in a very intuitive and
 user-friendly way simulations able to describe a vast range of complex systems.
 
 So far, as opposed to Readdy, STReNGTHS only implements non particle-based methods,
-similar to those proposed by the other softwares. However, rather than proposing only one
+similar to those proposed by the other software. However, rather than proposing only one
 all-purpose fitting method, STReNGTHS's approach is to provide a collection of various
 simulation methods, leaving the choice at the user's discretion. Moreover, simulation
 features can be easily extended using the simulation engine interface.
@@ -202,11 +202,9 @@ $C+X\rightarrow C+Y$: $k_3=1 \ $\ $\mu$M$^{-1}$s$^{-1}$.
 $C+Y\rightarrow C+X$: $k_{-3} = 10^{-4}$ $\mu$M$^{-1}$s$^{-1}$.
 $Y\rightarrow X, \ k_4 = 10^{-2}$ s$^{-1}$.
 The diffusion coefficients for the different species were:
-$D_L = 100$ $\mu$m$^2$s$^{-1}$,
-$D_R = 0.1$ $\mu$m$^2$s$^{-1}$,
-$D_C = 0.1$ $\mu$m$^2$s$^{-1}$,
-$D_X = 10$ $\mu$m$^2$s$^{-1}$,
-$D_Y = 10$ $\mu$m$^2$s$^{-1}$.
+$D_L = 100$ $\mu$m$^2$s$^{-1}$ (order of magnitude for the diffusion coefficient of a protein around 30 kDa in water [@Milo2015]),
+$D_R = D_C = 0.1$ $\mu$m$^2$s$^{-1}$ (order of magnitude for the diffusion coefficient of a transmembrane protein in a compartmented plasma membrane[@Fujiwara2016]),
+$D_X = D_Y = 10$ $\mu$m$^2$s$^{-1}$ (order of magnitude for the diffusion coefficient of a protein around 30 kDa in the cytosol [@Milo2015]).
 \label{example1}](example1.png)
 
 For the second example, we consider a pattern-forming reaction-diffusion
@@ -283,7 +281,7 @@ Perspectives for future developments include:
 
 - CPU-GPU massively parallel implementations of the existing simulation methods,
 - Implementing methods with dynamically adaptive time steps,
-- Implementing hybrid stochastic-deterministic methods for faster simulations, and
+- Implementing methods combining stochastic and deterministic approaches for faster simulations, and
 - Developing a GUI that would facilitate the design of the reaction-diffusion system layouts.
 
 # References
