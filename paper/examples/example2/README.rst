@@ -5,16 +5,19 @@ The folder contains the simulation script for the second example of the paper.
 It contains the following files:
 
 for the animal shaped example:
+
 *  README.rst : This file.
 *  animal2_env.npy : Environment map for the animal shaped system.
 *  animal2_results.npy : Plotting script for the animal shaped system.
 *  animal2_script.npy : Simulation script for the animal shaped system.
 
 for the simple 1D and 2D layouts:
+
 *  patterns.py : Simulation script for the simple 1D and 2D systems.
 *  patterns_results.py : Plotting script for the simple 1D and 2D systems.
 
 for the sphere example:
+
 *  env.txt : Environment map for the spheric system.
 *  cgmap.txt : Coarse-graining map merging unused cells inside and outside the sphere.
 *  sim.py : Simulation script for the spheric system.
