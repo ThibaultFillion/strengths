@@ -2,7 +2,8 @@ Example 1
 =========
 
 The folder contains the simulation script for the first example of the paper.
-It contains the following files :
+It contains the following files:
+
 *  README.rst : This file.
 *  cg_map.txt : Coarse graining map utilized for this example.
 *  environments.txt : Layout of the environment associated with each cell of the system
