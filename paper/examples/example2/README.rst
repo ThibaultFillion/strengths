@@ -1,7 +1,7 @@
 Example 2
 =========
 
-The folder contains the simulation script for the first example of the paper.
+The folder contains the simulation script for the second example of the paper.
 It contains the following files:
 
 for the animal shaped example:
