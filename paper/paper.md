@@ -209,7 +209,8 @@ $D_X = D_Y = 10$ $\mu$m$^2$s$^{-1}$ (order of magnitude for the diffusion coeffi
 
 For the second example, we consider a pattern-forming reaction-diffusion
 network that features two competitive auto-catalytic species $A$ and $B$
-mutually converting into each other (Fig. \ref{example2} (a)).
+mutually converting into each other (Fig. \ref{example2} (a)), similar to 
+those used in the documentation of the package [@Strengths_doc].
 We first simulate the evolution of the system in 1 dimension using the
 $\tau$-leap algorithm [@gillespie_approximate_2001]. The corresponding
 spatio-temporal evolution of $A$ concentration over time is reported in
@@ -236,6 +237,8 @@ of the process, different patterns may arise from the same homogeneous initial s
 at increasing level of environmental complexity.
 All simulations are performed with the $\tau$ leap algorithm [@gillespie_approximate_2001].
 (a) Description of the chemical reactions and associated rates.
+Other examples using similar reaction-diffusion networks can be found
+in the documentation of the package [@Strengths_doc].
 (c) Evolution of a 1D system in time and space.
 (d) Pseudo-stationary state of a 2D system.
 (e) reaction-diffusion environments for the two inhomogeneous systems.
