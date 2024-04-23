@@ -27,8 +27,15 @@ for the sphere example:
 To run this example, the simulation scripts must be ran fist,
 the plotting scripts may then be ran to display the results.
 
-Note: the original results (featured in the paper) were generated with an early version of the package and of those script files.
+Note: The original results (featured in the paper) were generated with an early version of the package and of those script files.
 The scripts was optimized and reorganized a bit compared to those which generated the original results, including splitting some code in different
 files and renaming some files, as well as putting the environment map in text file, rather than generating it from another file.
 
 Reaction and diffusion kinetic parameters are guessed.
+
+Similar reaction-diffusion networks were used in the documentation [1]. 
+
+References
+----------
+
+* [1] Fillion, T., & Piazza, F. (2024). Building a reaction diffusion system and performing simulations. *Documentation for Strengths*. https://strengths.readthedocs.io/en/latest/index.html Accessed online the 23th of april, 2024.
