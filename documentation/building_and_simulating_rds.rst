@@ -385,14 +385,14 @@ Another example with diffusion
 In the previous example, we made a system with only one cell, so we didn't have to deal with diffusion.
 Let us define a system with diffusion now.
 
-Let us considering the following pattern making couple of reactions :
+Let us consider a pattern-making network, sharing common structural traits with previously studied reaction-diffusion networks [#McGough2004]_ [#Ruijgrok1997]_, containing the couple of reactions
 
 .. math::
 
   A + 2 B \rightleftharpoons 3 B\\
   B + 2 A \rightleftharpoons 3 A
 
-that both have forward and reverse rates
+that both have forward and reverse rate constants
 
 .. math::
 
@@ -716,3 +716,10 @@ Let us see what happens when we apply different boundary conditions to this syst
 
 .. image:: traj5.png
   :align: center
+
+References
+----------
+
+.. [#McGough2004] McGough, Jeff S. & Riley, K. (2004). Pattern formation in the Gray–Scott model. *Nonlinear Analysis: Real World Applications*, *5*(1). 105-121. https://doi.org/10.1016/S1468-1218(03)00020-8
+
+.. [#Ruijgrok1997] Ruijgrok, Th & Ruijgrok, M. (1997). A reaction-diffusion equation for a cyclic system with three components. *Journal of Statistical Physics*, *97*. 1145-1164. https://doi.org/10.1007/BF02181277
