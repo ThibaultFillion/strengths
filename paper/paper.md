@@ -186,7 +186,7 @@ model  of signal transduction by a single cell.
 (a) Schematic representation of the system.
 (b) Layout of the two different system spaces used,
 the $26 \times 26$ mesh grid (left) and its coarse-grained graph version (right).
-(c) Set of coupled stoechiometric equations that compose the reaction network.
+(c) Set of coupled stoichiometric equations that compose the reaction network.
 (d) Diffusion coefficients of individual species in the different environments.
 (e) Initial densities of each species in the different environments.
 (f) Time course of the transduced signal: Global trajectory of $Y$ obtained
