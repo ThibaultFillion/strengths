@@ -186,7 +186,7 @@ model  of signal transduction by a single cell.
 (a) Schematic representation of the system.
 (b) Layout of the two different system spaces used,
 the $26 \times 26$ mesh grid (left) and its coarse-grained graph version (right).
-(c) Set of coupled stoechiometric equations that compose the reaction network.
+(c) Set of coupled stoichiometric equations that compose the reaction network.
 (d) Diffusion coefficients of individual species in the different environments.
 (e) Initial densities of each species in the different environments.
 (f) Time course of the transduced signal: Global trajectory of $Y$ obtained
@@ -208,9 +208,10 @@ $D_X = D_Y = 10$ $\mu$m$^2$s$^{-1}$ (order of magnitude for the diffusion coeffi
 \label{example1}](example1.png)
 
 For the second example, we consider a pattern-forming reaction-diffusion
-network that features two competitive auto-catalytic species $A$ and $B$
-mutually converting into each other (Fig. \ref{example2} (a)), similar to 
-those used in the documentation of the package [@Strengths_doc].
+network based on the one used in the documentation of the 
+package [@Strengths_doc], similar to the Gray-Scott model and related reaction-diffusion schemes
+[@McGough2004] [@Ruijgrok1997], that features two competitive auto-catalytic species $A$ and $B$
+mutually converting into each other (Fig. \ref{example2} (a)).
 We first simulate the evolution of the system in 1 dimension using the
 $\tau$-leap algorithm [@gillespie_approximate_2001]. The corresponding
 spatio-temporal evolution of $A$ concentration over time is reported in
@@ -237,7 +238,9 @@ of the process, different patterns may arise from the same homogeneous initial s
 at increasing level of environmental complexity.
 All simulations are performed with the $\tau$ leap algorithm [@gillespie_approximate_2001].
 (a) Description of the chemical reactions and associated rates.
-Other examples using similar reaction-diffusion networks can be found
+This reaction-diffusion network is similar to the Gray-Scott model [@McGough2004]
+and the one studied by Ruijgrok and Ruijgrok [@Ruijgrok1997].
+Other examples using a similar reaction-diffusion network can be found
 in the documentation of the package [@Strengths_doc].
 (c) Evolution of a 1D system in time and space.
 (d) Pseudo-stationary state of a 2D system.
