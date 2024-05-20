@@ -1,0 +1,19 @@
+{
+"network": {
+    "environments": ["ext", "mmb", "cyt", "nuc"],
+    "species": [
+        {"label": "L", "dens": {"mmb,ext": "0.1 µM" }, "D": {"mmb,ext": 100}},
+        {"label": "R", "dens": {"mmb": 100        },   "D": {"mmb": 0.1    }},
+        {"label": "C", "dens": 0,                      "D": {"mmb": 0.1    }},
+        {"label": "X", "dens": {"mmb,cyt": "10 nM"},   "D": {"mmb,cyt": 10 }},
+        {"label": "Y", "dens": 0,                      "D": {"mmb,cyt": 10 }}
+    	],
+    "reactions": [
+        {"eq": "L + R -> C",     "k+": "0.5 µM-1/s", "k-": "1e-3 s-1"   },
+        {"eq": "C -> R",         "k+": "5e-3 s-1", "k-": 0            },
+        {"eq": "C + X -> C + Y", "k+": "1 µM-1/s", "k-": "1e-4 µM-1/s"},
+        {"eq": "Y -> X",         "k+": "1e-2 s-1", "k-": 0            }
+    	]
+    },
+"space": {"w": 26, "h": 26, "cell_env": "environments.txt"}
+}
