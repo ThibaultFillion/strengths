@@ -1,5 +1,5 @@
-Building a reaction-diffusion system and performing simulations
-===============================================================
+Building and simulating a reaction-diffusion system
+===================================================
 
 This section illustrates with examples how to build and simulate reaction-diffusion systems
 using the different features proposed by Strengths.
