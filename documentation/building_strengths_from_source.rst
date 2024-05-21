@@ -1,11 +1,11 @@
 Building Strengths from source
 ==============================
 
-Strengths is not a pure python package, as its main simulation engine is implemented in
+Strengths is not a pure Python package, as its main simulation engine is implemented in
 C++. Engine C++ sources must be compiled as proper shared library/DLL, which will be called internally by 
-the python implementation through the ctypes standard Python module. When Strenghts is installed from source, the compiled
+the Python implementation through the ctypes standard Python module. When Strenghts is installed from source, the compiled
 shared library/DLL will be missing. To have strengths working properly, one would first have to compile the 
-C++ engine files as a shared library (Linux/Macos) or DLL (Windows).
+C++ engine files as a shared library (Linux/macOS) or DLL (Windows).
 
 Currently, only the main engine needs to be compiled.
 Its C++ source files are located in the "strengths/engines/strengths_engine/src" directory.
@@ -18,6 +18,6 @@ In the "strengths/engines/strengths_engine" directory, g++ can be called as
 
   g++ -o engine.so src/engine.cpp -shared -static-libstdc++ -static-libgcc -static -O3 -Wall -Wextra
 
-You may need replace the "g++"" by the path where it is installed, depending on you configuration.
+You may have to replace "g++" by the path where it is installed, depending on your configuration.
 If everything works fine, it should produce the file "engine.so" in the "strengths/engines/strengths_engine" directory.
 From this point, you should be able to use Strengths normally, as it will be able to use its main simulation engine. 
