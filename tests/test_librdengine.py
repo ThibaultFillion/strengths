@@ -5,8 +5,6 @@ sys.path.append("../src/")
 from strengths import *
 from strengths.librdengine import *
 
-# tests ###############################################
-
 def test_build_reaction_rate_constant_array() :
     
     reactions = [Reaction("A + B -> C", 1, 2), 
@@ -250,13 +248,3 @@ def test_make_ctypes_array() :
     ca = make_ctypes_array(a, ctypes.c_double)
     for i in range(3) :
         assert a[i] == ca[i]
-        
-# run all ###############################################
-
-def run_all_tests() :
-    test_build_reaction_rate_constant_array()
-    test_build_reaction_environment_boolean_matrix()
-    test_build_substrate_stoechiometric_matrix()
-    test_build_stoechiometric_difference_matrix()
-    test_build_diff_coef_environment_matrix()
-    test_make_ctypes_array()

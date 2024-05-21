@@ -2,8 +2,6 @@ import sys
 sys.path.append("../src/")
 from strengths import *
 
-# tests ###############################################
-
 def test_parse_units() : 
     q = parse_units("")
     assert str(q) == ""
@@ -266,52 +264,3 @@ def test_u_mu_substitution() :
     assert UnitValue("1 µm3") == UnitValue("1 um3")
     assert UnitValue("1 µm-2/s") == UnitValue("1 um-2/s")
     assert UnitValue("1 molecule/µm1") == UnitValue("1 molecule/um")
-    
-# run all ###############################################
-
-def run_all_tests() :
-    test_parse_units()
-    test_parse_unitvalue()
-    test_unitvalue_conversion()
-    test_op_addition_uv_number()
-    test_op_substraction_uv_number()
-    test_op_multiplication_uv_number()
-    test_op_addition_number_uv()
-    test_op_substraction_number_uv()
-    test_op_multiplication_number_uv()
-    test_op_division_number_uv()
-    test_op_addition_uv_uv()
-    test_op_division_uv_uv()
-    test_op_division_uv_number()
-    test_op_multiplication_uv_uv()
-    test_op_power_uv_number()
-    test_op_modulo_uv_number()
-    test_op_modulo_number_uv()
-    test_op_modulo_uv_uv()
-    test_op_modulo_uv_ua() 
-    test_op_neg_ua()
-    test_ua_invert()
-    test_op_multiplication_uv_ua()
-    test_op_division_uv_ua()
-    test_op_addition_uv_ua()
-    test_op_substraction_uv_ua()
-    test_op_multiplication_ua_uv()
-    test_op_division_ua_uv()
-    test_op_addition_ua_uv()
-    test_op_substraction_ua_uv()
-    test_op_modulo_ua_number()
-    test_op_modulo_ua_uv()
-    test_op_modulo_ua_ua()
-    test_op_addition_ua_number()
-    test_op_addition_number_ua()
-    test_op_substraction_ua_number()
-    test_op_substraction_number_ua()
-    test_op_multiplication_number_ua()
-    test_op_multiplication_ua_number()
-    test_op_division_number_ua()
-    test_op_division_ua_number()
-    test_op_abs_uv()
-    test_op_abs_ua()
-    test_op_equals_uv()
-    test_op_neq_uv()
-    test_u_mu_substitution()

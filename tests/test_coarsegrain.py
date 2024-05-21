@@ -5,7 +5,6 @@ sys.path.append("../src/")
 from strengths import *
 from strengths.librdengine import *
 from strengths.coarsegrain import *
-# tests ###############################################
 
 def test_grid_to_graph() :
     grid = RDGridSpace(w=2, h=3, d=4)
@@ -288,13 +287,3 @@ def test_ucg_traj_rm() :
             2,4,0,
             5,4,0
             ]
-        
-# run all ###############################################
-
-def run_all_tests() :
-    test_grid_to_graph()
-    test_grid_coarsegrain()
-    test_grid_coarsegrain_rm()
-    test_system_coarsegrain()
-    test_system_coarsegrain_rm()
-    test_ucg_traj_rm()

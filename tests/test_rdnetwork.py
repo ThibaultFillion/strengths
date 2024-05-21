@@ -20,8 +20,6 @@ def make_test_rdn() :
         }
     return rdnetwork_from_dict(d)
 
-# tests ######################################################
-
 def test_rdn_species_labels() :
     rn = make_test_rdn()
     assert rn.get_species("A").label == "A"
@@ -202,22 +200,3 @@ def test_get_env_index() :
     assert rdn.get_environment_index("a") == 0
     assert rdn.get_environment_index("g") == 3
     assert rdn.get_environment_index("b") == 1
-
-# run all #############################################################
-
-def run_all_tests() : 
-    test_rdn_species_labels() 
-    test_rdn_reactions_labels() 
-    test_rdn_get_reaction_index_from_number() 
-    test_rdn_get_reaction_index_from_str() 
-    test_rdn_get_reaction_index_from_reaction() 
-    test_rdn_get_spêcies_index_from_number() 
-    test_rdn_get_reaction_index_from_str() 
-    test_rdn_get_reaction_index_from_str() 
-    test_reaction_kf_default_units_dimensions() 
-    test_reaction_split()
-    test_reaction_dict()
-    test_reaction_dict_default()
-    test_species_dict()
-    test_species_dict_default()
-    test_get_env_index()

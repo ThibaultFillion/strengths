@@ -3,8 +3,6 @@ import numpy
 sys.path.append("../src/")
 from strengths import *
 
-# tests ###############################################
-
 def generate_rds() :
     rds = {
         "network" : {
@@ -55,9 +53,3 @@ def test_output_traj_t0_matching_system_state() :
     out = simulate(rds, t_sample=UnitArray(np.linspace(0, 100, 100), "s"), time_step=0.1, units_system=UnitsSystem(quantity="µmol", time="ms", space="m"))
     assert numpy.allclose(list(out.data.value[0:out.system.state_size()]), 
                           list(out.system.state.convert("µmol").value))
-    
-# run all ###############################################
-
-def run_all_tests() :
-    test_save_output_load_output()
-    test_output_traj_t0_matching_system_state()

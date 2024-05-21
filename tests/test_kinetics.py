@@ -5,12 +5,6 @@ from strengths.constants import avogadro_number
 import strengths.kinetics as strnkin
 import numpy as np
 
-# test kintetics module
-
-##################################
-# test reaction rate
-# should be done both for rdnetworks and graphs
-
 def _test_compute_reaction_rates_dimensions_for_different_reaction_orders_with_default_units_default_units(spacetype) :
     #checks that rates are in molecule/s, no mater the reaction order
 
@@ -473,5 +467,3 @@ def test_compute_diffusion_rates_with_different_units__grid():
 
 def test_compute_dspeciesdt__grid():
     _test_compute_dspeciesdt("grid")
-
-#####################################
