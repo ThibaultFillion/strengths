@@ -1,4 +1,4 @@
-Reaction Diffusion Spaces
+Reaction-diffusion spaces
 =========================
 
 .. autoclass:: strengths.RDGridSpace
