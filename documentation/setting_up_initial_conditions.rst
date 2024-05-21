@@ -22,7 +22,7 @@ with the reversible reaction A -> B.
   }
 
 Once loaded as a system (a DRSystem object),
-it will has an initial state in which the quantity of each species in each cell
+it has an initial state in which the quantity of each species in each cell
 is determined based on the species density and the cell volume.
 
 However, it is also possible to explicitly set the initial state of the system.
@@ -32,8 +32,8 @@ To set the state explicitly, one must set the *"state"* attribute of the system 
 the *state* argument of the RDSystem constructor or the
 *state* attribute of the RDSystem object.
 
-The *"space*" attribute have been left to default in the example above.
-As a consequence, the dimensions of the reaction diffusion space are w=d=h=1 cell. 
+The *"space*" attribute has been left to default in the example above.
+As a consequence, the dimensions of the reaction-diffusion space are w=d=h=1 cell. 
 The system state is thus: [quantity of A in cell 0, quantity of B in cell 0].
 Let us say we initially want 5 nmol of A and 3 nmol of B in the unique cell of the system.
 
@@ -79,7 +79,7 @@ Doing it after loading the system:
   system.state = UnitArray([5, 3], "µmol")
 
 Doing it after loading the system, using the *set_state* method,
-which allow to set the quantity of a given species at a given position:
+which allows to set the quantity of a given species at a given position:
 
 .. code:: python
 
@@ -90,10 +90,10 @@ which allow to set the quantity of a given species at a given position:
 Setting up the chemostates
 --------------------------
 
-Chemostats works the same way as the system state.
+Chemostats work the same way as the system state.
 Default chemostats are generated based on the chstt attribute of the species,
 however, it is also possible to specify explicitly the chemostat distribution.
-The only difference is that chemostats are booleans, and thus, does not accept UnitValue or UnitArray objects:
+The only difference is that chemostats are booleans, and thus, do not accept UnitValue or UnitArray objects:
 
 .. code:: json
 
