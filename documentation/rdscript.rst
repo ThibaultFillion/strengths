@@ -1,4 +1,4 @@
-Reaction Diffusion Simulation Script
+Reaction-diffusion simulation script
 ====================================
 
 .. autoclass:: strengths.RDScript
