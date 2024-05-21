@@ -103,14 +103,11 @@ Initial authors
 * Thibault Fillion
   * University of Orléans, Avenue du Parc Floral, BP 6749, 45067 Orléans, France
   * Center for Molecular Biophysics (CBM), Rue Charles Sadron CS 80054, 45071 Orléans, France
-  * University of Florence, Department of Experimental and Clinical Medicine,
-    Viale Giovanni Batista Morgagni 50, 50314 Firenze, Italy
+  * University of Florence, Department of Experimental and Clinical Medicine, Viale Giovanni Batista Morgagni 50, 50314 Firenze, Italy
 
 * Francesco Piazza,
-  * University of Florence,
-    Department of Physics & Astronomy, Via Giovanni Sansone 1, 50019 Sesto Fiorentino, Italy
-  * Instituto Nazionale di Fisica Nucleare (INFN) sezione di Firenze,
-    Via Giovanni Sansone 1, 50019 Sesto Fiorentino, Italy
+  * University of Florence, Department of Physics & Astronomy, Via Giovanni Sansone 1, 50019 Sesto Fiorentino, Italy
+  * Instituto Nazionale di Fisica Nucleare (INFN) sezione di Firenze, Via Giovanni Sansone 1, 50019 Sesto Fiorentino, Italy
 
 All authors
 -----------
