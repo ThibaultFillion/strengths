@@ -4,7 +4,7 @@ Documentation for Strengths
 Here is the documentation for the Strengths package.
 
 .. toctree::
-	:maxdepth: 1
+	:maxdepth: 5
 	
 	presentation
 	using_strengths
