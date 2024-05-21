@@ -1,4 +1,4 @@
-Reaction Diffusion Systems
+Reaction-diffusion systems
 ==========================
 
 .. autoclass:: strengths.RDSystem
