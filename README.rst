@@ -86,7 +86,9 @@ please refer to the project's `community and contribution guidelines <https://gi
 Testing
 -------
 
-Running :code:`run_all_tests.py` in the `tests` directory will execute at once all unit tests for the package.
+Tests rely on the `PyTest <https://docs.pytest.org>`_ package.
+To run the unit tests, run either :code:`run_all_tests.py` or :code:`pytest` in the 
+`tests` directory.
 
 Licence
 -------
