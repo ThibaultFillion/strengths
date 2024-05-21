@@ -1,7 +1,7 @@
-Building a reaction diffusion system and performing simulations
+Building a reaction-diffusion system and performing simulations
 ===============================================================
 
-This section illustrate with examples how to build and simulate reaction-diffusion systems
+This section illustrates with examples how to build and simulate reaction-diffusion systems
 using the different features proposed by Strengths.
 For more information about defining specific initial conditions in a system, or processing the simulation output,
 please refer to the dedicated sections.
@@ -9,7 +9,7 @@ please refer to the dedicated sections.
 A simple example without diffusion
 ----------------------------------
 
-Let us consider a simple simulation scenario :
+Let us consider a simple simulation scenario:
 
 We have a simple reaction network, with two species, *A* and *B*,
 and one reaction that goes as
@@ -33,12 +33,12 @@ and with initial densities for *A*, *B* and *C* of
   [B]_{t0} = 2 \textrm{ µM}\\
   [C]_{t0} = 0 \textrm{ µM}
 
-we want to simulate the time trajectory of this system using the Euler method with a time step of 1 ms,
-sampling the sate every 10 ms until 10s (in siumlation time).
+We want to simulate the time trajectory of this system using the Euler method with a time step of 1 ms,
+sampling the state every 10 ms until 10 s (in simulation time).
 
 Eventually, we want to plot the trajectories of *A*, *B* and *C* in one single figure.
 
-This can all be done with the following script :
+This can all be done with the following script:
 
 **system.json** :
 
@@ -81,7 +81,7 @@ This can all be done with the following script :
 .. image:: traj1.png
   :align: center
 
-let us explain in detail how this example works :
+let us explain in detail how this example works:
 
 .. code:: python
 
@@ -89,11 +89,11 @@ let us explain in detail how this example works :
   import numpy as np
   import strengths.plot as strnplt
 
-first, we imported 3 modules here : strengths (as strn), numpy (as np) and the strengths.plot subodule.
+First, we imported 3 modules here: strengths (as strn), numpy (`NumPy <https://numpy.org/>`_) (as np) and the strengths.plot subodule.
 strengths is the Strengths module, which contains everything required to perform simulations.
-numpy import is faculatative, it's used in the example for the linspace function, useful to define the sampling times.
-the strenghts.plot submodule is also faculatative. It bring conveinient function for trajectory plotting, working as a wrapper around
-matplotlib calls.
+the numpy import is optional, it's used in the example for the `linspace <https://numpy.org/doc/stable/reference/generated/numpy.linspace.html#numpy-linspace>`_ function, useful to define the sampling times.
+the strenghts.plot submodule is also optional. It brings convenient functions for trajectory plotting, working as a wrapper around
+the `Matplotlib package <https://matplotlib.org/>`_.
 
 .. code:: json
 
@@ -114,21 +114,21 @@ matplotlib calls.
   }
 
 Next, we define a reaction-diffusion system with a dictionary, in a JSON file (*system.json*).
-the dictionary defines two essencial components of the system :
+the dictionary defines two essential components of the system :
 
 * First, the reaction-diffusion "network", which tells
   which species compose the system, what their properties are and how they interact with each other. More specifically,
-  the list of the different species, whith their label/name and expected initial concentration, and a list of the different reactions,
-  with their stoechiometric equation and forward and backward rates.
+  the list of the different species, with their label/name and expected initial concentration, and a list of the different reactions,
+  with their stoichiometric equation and forward and backward rates.
 * Second, the system "space", which describes the reaction-diffusion grid in which the different species should evolve.
-  It can specify the width, height and depth of the reaction diffusion grid, as well as the volume of an intial grid.
-  Since the grid dimension are not specified here, default one are used, that is, width=height=depth=1 cell.
+  It can specify the width, height and depth of the reaction-diffusion grid, as well as the volume of an initial grid.
+  Since the grid dimensions are not specified here, default ones are used, that is, width=height=depth=1 cell.
 
 .. code:: python
 
   system = strn.load_rdsystem("demo.json")
 
-the system is loaded with the :py:func:`load_rdsystem` object, wich reads the json file at the specified location, and returns a
+the system is loaded with the :py:func:`load_rdsystem` object, which reads the JSON file at the specified location, and returns a
 :py:class:`RDSystem` instance built from it.
 
 .. code:: python
@@ -140,27 +140,27 @@ the system is loaded with the :py:func:`load_rdsystem` object, wich reads the js
     )
 
 Next, the trajectory simulation is performed, using the :py:func:`simulate` function. It takes a few arguments :
-of course, the reaction diffusion system,
+of course, the reaction-diffusion system,
 but also the simulation times at which we wish to sample the system state for the trajectory, t_sample,
-as well as the simuation time step, which is used in the default Euler method.
+as well as the simulation time step, which is used in the default Euler method.
 
 :py:func:`simulate` returns a :py:class:`SimulationOutput` object, which contains the trajectory data,
-as well a copy of the sampling time and reaction diffusion system. Thus, this object on its own contains everything one need
+as well as a copy of the sampling time and reaction-diffusion system. Thus, this object on its own contains everything one need
 to start analyzing the data.
 
 .. code:: python
 
   strnplt.plot_trajectory(output, ["A", "B", "C"])
 
-It is now possible to plot the result. This can be done manually using matplotlib, however, strengths supply some convenient functions
-that call matplotlib for us. Here, we can to plot the trajectory of A, B anc C, so we call the :py:func:`plot_trajectory` function,
-which takes as argument the simulation output, as well as the list of the labels of the species for which the trajecotory should be plotted.
+It is now possible to plot the result. This can be done manually using Matplotlib, however, strengths supply some convenient functions
+that call Matplotlib for us. Here, we can plot the trajectory of *A*, *B* and *C*, so we call the :py:func:`plot_trajectory` function,
+which takes as argument the simulation output, as well as the list of the labels of the species whose trajectory should be plotted.
 
-Alternative ways to define a reaction diffusion system
+Alternative ways to define a reaction-diffusion system
 ------------------------------------------------------
 
-Using a JSON file is not the only way to define systems (or reaction networks, cell grids, etc). with strenghts.
-actually, there is generally 3 equivalent ways to define such objects, and you should use the one that is the more convienent to you.
+Using a JSON file is not the only way to define systems (or reaction networks, cell grids, etc). with Strenghts.
+There are generally 3 equivalent ways to define such objects, and you should use the one that is the most convenient to you.
 Let us take the case of the system in the previous example once more.
 
 Through a JSON File
@@ -194,7 +194,7 @@ Through a JSON File
 
   system = strn.load_rdsystem("demo.json")
 
-This is the way we used previously, the dictionnar describing the system is stored in a separated file,
+This is the way we used previously, the dictionary describing the system is stored in a different file,
 and the system is created using the :py:func:`loag_rdsystem` function.
 
 With multiple JSON files
@@ -246,11 +246,11 @@ With multiple JSON files
 
   system = strn.load_rdsystem("demo.json")
 
-This time, the information have been scattered across diffent files.
-This can be especially useful as it allow to put the cell_env array, which can be quite large, outside of the json file,
+This time, the information has been scattered across multiple files.
+This can be especially useful as it allows to define the cell_env array, which can be quite large, outside of the JSON file,
 allowing for more readability.
 
-With a python dictionary
+With a Python dictionary
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
@@ -273,9 +273,9 @@ With a python dictionary
 
   system = strn.rdsystem_from_dict(system_dict)
 
-It is very similar to the JSON way, however, the dictionary is directly written in python, an thus no oter file is required.
-the system is created from the dict using :py:func:`rdsystem_from_dict`. Actually, the JSON way internally uses this function on the
-dict it laded from the JSON file.
+It is very similar to the JSON way, however, the dictionary is directly written in Python, and thus no other file is required.
+the system is created from the dictionary using :py:func:`rdsystem_from_dict`. The JSON way internally uses this function on the
+dictionary it loaded from the JSON file.
 
 Using object construction
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -303,16 +303,16 @@ This way is a bit different, you create a RDSystem from its constructor.
 Alternative ways to script a simulation
 ---------------------------------------
 
-in the previous example, we were using the simulate function, which takes the system as argument.
-However, we could also be using a simulation script, which is a class that groups together the
+in the previous example, we were using the simulate function, which takes the system as an argument.
+However, we could also be using a simulation script, which is a class that groups the
 simulation parameters. As for other key concepts, simulation scripts can be loaded to/from
-python dictionary or JSON files. Simulations from simulation script are launched with the simulate_script function
+Python dictionary or JSON files. Simulations from simulation scripts are launched with the simulate_script function
 or using directly a simulation engine
 
 Creating the script
 ^^^^^^^^^^^^^^^^^^^
 
-using object construction  :
+Using object construction :
 
 **main.py** :
 
@@ -329,7 +329,7 @@ using object construction  :
     )
   output = simulate_script(script, default_engine())
 
-from python dict :
+From a Python dictionary:
 
 .. code:: python
 
@@ -344,7 +344,7 @@ from python dict :
   script = rdscript_from_dict(script_dict)
   output = simulate_script(script, default_engine())
 
-from JSON file :
+From JSON file:
 
 .. code:: python
 
@@ -357,7 +357,7 @@ from JSON file :
 Simulating the script
 ^^^^^^^^^^^^^^^^^^^^^
 
-using simulate_script :
+Using simulate_script :
 
 .. code:: python
 
@@ -365,7 +365,7 @@ using simulate_script :
 
   output = simulate_script(script, default_engine())
 
-using directly the engine :
+Using directly the engine :
 
 .. code:: python
 
@@ -379,13 +379,13 @@ using directly the engine :
 
   output = engine.get_output()
 
-Another example with diffusion
-------------------------------
+Another example featuring diffusion
+-----------------------------------
 
 In the previous example, we made a system with only one cell, so we didn't have to deal with diffusion.
 Let us define a system with diffusion now.
 
-Let us consider a pattern-making network, sharing common structural traits with previously studied reaction-diffusion networks [#McGough2004]_ [#Ruijgrok1997]_, containing the couple of reactions
+Let us consider a pattern-making network, sharing common structural traits with previously studied reaction-diffusion networks [#McGough2004]_ [#Ruijgrok1997]_, containing the two reactions
 
 .. math::
 
@@ -405,7 +405,7 @@ and with initial densities for *A*, *B* of
 
   [A]_{t0} = [B]_{t0} = 0.01 \textrm{ molecule/µm}^3
 
-as well as diffusion coefficent of
+as well as a diffusion coefficient of
 
 .. math::
 
@@ -413,10 +413,10 @@ as well as diffusion coefficent of
 
 for both species.
 
-we want the species to be distributed inside a cell grid
+We want the species to be distributed inside a cell grid
 of w=50 * h=50 * d=1 cell, with a cell volume of 1000 µm3.
 
-we want to simulate the time trajectory of this system using the Tau Leap method with a time step of 1 s,
+We want to simulate the time trajectory of this system using the Tau Leap method with a time step of 1 s,
 sampling the system state at t=0, 100, 200 and 400s.
 
 Eventually, we want to plot the global trajectories of *A* and *B*,
@@ -480,13 +480,13 @@ the script is the following :
 .. image:: traj2.png
   :align: center
 
-most of the code above is similar to the previous example,
-where we already presented most of it. So instead of repreating,
+Most of the code above is similar to the previous example,
+where we already presented most of it. So instead of repeating,
 let us focus on what is new.
 
-First, you may have noticed that in the dictionnary most of the values have been
+First, you may have noticed that in the dictionary most of the values have been
 written without units. Indeed, numeric values are interpreted with the default units system
-("units", in the dictionnary), and the expected units dimensions for the value. ie.
+("units", in the dictionary), and the expected unit dimensions for the value. ie.
 "density" = 1 will be the same as "density" = "1 µm-3".
 
 .. code:: python
@@ -498,8 +498,8 @@ the :py:func:`plot_state_2D`.
 A Third Example with chemostats
 -------------------------------
 
-Often, it is interesting to study reaction diffusion system driven out of equilibrium.
-One interesting feature to emulate such non equilibrium conditions is concept of chemostat.
+Often, it is interesting to study reaction-diffusion systems driven out of equilibrium.
+One interesting feature to emulate such non-equilibrium conditions is the concept of chemostat.
 
 A chemostat can be seen as a boolean flag that tells if the quantity of a given species at a
 given position should be maintained at a fixed value regardless of the events (diffusion/reaction).
@@ -548,7 +548,7 @@ at 200 and 0 molecules.
   for sample in range(output.nsamples()) :
       strnplt.plot_sample_state_2D(output, "A", sample)
 
-**matplotlib plot outputs**
+**Matplotlib plot outputs**
 
 .. image:: traj3.png
   :align: center
@@ -556,17 +556,17 @@ at 200 and 0 molecules.
 A fourth example with environments
 ----------------------------------
 
-one important feature of strengths's reaction diffusion systems is the presence of reaction-diffusion environments.
+one important feature of Strengths's reaction-diffusion systems is the presence of reaction-diffusion environments.
 an environment is a part of the system with its own set of possible reactions and diffusion coefficients.
 
 Let us consider a two 2D system, with only one diffusing species A with a diffusion coefficient of 1 µm2/s.
 The system is a 2D grid of 20x20 cells of 1µm3.
-The upper half of the system consist info a first environment, the "a" environment,
-while the lower half is the "b" environment. A can diffuse freely into both "a" and "b".
+The upper half of the system makes the "a" environment,
+while the lower half is the "b" environment. The species *A* can diffuse freely into both "a" and "b".
 the upper and lower halves are separated by a third "wall" environment,
-that only let "a" and "b" connect at the center of the system. As its name suggests, A cannot diffuse in this "wall"
+that only lets "a" and "b" connect at the center of the system. As its name suggests, A cannot diffuse in this "wall"
 environment.
-initially, A have a density of 100 molecule/µm3 in the "a" environment but is absent from "b" and "wall" environments.
+Initially, *A* has a density of 100 molecule/µm3 in the "a" environment but is absent from "b" and "wall" environments.
 we simulate the diffusion of A, sampling the system state at t=0, 100, 200 and 300 s, and plot the sampled states.
 
 **system.json**
@@ -631,7 +631,7 @@ we simulate the diffusion of A, sampling the system state at t=0, 100, 200 and 3
   for sample in range(output.nsamples()) :
       strnplt.plot_sample_state_2D(output, "A", sample)
 
-**matplotlib plot outputs**
+**Matplotlib plot outputs**
 
 .. image:: traj4.png
   :align: center
@@ -641,14 +641,14 @@ Defining boundary conditions
 
 By default, reflecting boundary conditions are applied for diffusion.
 However, it is possible to specify which condition to apply. For now, only two types of
-boundary conditions are available : "reflecting" and "periodical".
+boundary conditions are available: "reflecting" and "periodical".
 it is possible to specify the boundary conditions for each axis ("x", "y" and "z").
 
 
-As an axemple, let us consider a 2D system crossed by a barrier in the middle along the x and y axes.
-As a consequence, the system is split in 5 areas : the upper left, upper right, lower left and lower right sections and the barrier.
+As an example, let us consider a 2D system crossed by a barrier in the middle along the x and y axes.
+As a consequence, the system is split into 5 areas: the upper left, upper right, lower left and lower right sections and the barrier.
 A species "A", initially only present in the upper left section, is diffusing everywhere except in the barrier.
-Let us see what happens when we apply different boundary conditions to this system :
+Let us see what happens when we apply different boundary conditions to this system:
 
 **system.json**
 
@@ -712,7 +712,7 @@ Let us see what happens when we apply different boundary conditions to this syst
   for sample in range(output.nsamples()) :
       strnplt.plot_sample_state_2D(output, "A", sample)
 
-**matplotlib plot outputs**
+**Matplotlib plot outputs**
 
 .. image:: traj5.png
   :align: center
