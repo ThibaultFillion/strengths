@@ -3,8 +3,8 @@ Diffusion in graph spaces
 
 This section details how diffusion is handled by the different engines
 ``euler_engine()``, ``gillespie_engine()`` and ``tauleap_engine()`` with systems using RDGraphSpace.
-Graph type reaction-diffusion spaces (``RDGraphSpace``) are characterized by cells which can have different volumes and more than 6 neighbors.
-They usually results from the coarse-graining of a grid type space (``RDGridSpace``).
+Graph spaces (``RDGraphSpace``) are characterized by cells with different volumes and more than 6 neighbors.
+They usually result from the coarse-graining of a grid space (``RDGridSpace``).
 
 First, the diffusion coefficient, for a given species, between two neighbor cells *i* and *j*, :math:`D_{ij}`, is defined 
 strictly as defined by Bernstein (Bernstein, 2005)[1], by approximating the cell shape as a cube
@@ -26,7 +26,7 @@ but with a slight modification so that the exchange surface shared by neighbor c
 with :math:`k_{i,j}` the rate constant for diffusion from cell *i* to cell *j*, and :math:`k_{j,i}` from  *j* to *i*,
 where :math:`s_{ij}` is the contact surface betwenn *i* and *j*, :math:`d_{ij}` the distance beween the center of *i* and *j*,
 and :math:`V_i` and :math:`V_j` the volumes of cells *i* and *j*. In the case where all nodes are cubes with the same volume,
-the expressions of :math:`k_{i,j}` and :math:`k_{j,i}` simplifies to those given by Bernstein (Bernstein, 2005)[1].
+the expressions of :math:`k_{i,j}` and :math:`k_{j,i}` can be simplified as those given by Bernstein (Bernstein, 2005)[1].
 
 References
 ==========

@@ -22,7 +22,7 @@ STReNGTHS is an open-source Python package that provides a simple and intuitive
 interface for designing models of discrete 3D heterogeneous reaction-diffusion systems and simulating their trajectories. Different algorithms are available, both stochastic (exact or approximate  solutions of the associated
 master equation) and deterministic (numerical solutions of the corresponding rate equations).
 The acronym stands for "Simulation and modeling Tool for REaction-diffusion Networks in Graphs and Tridimensional Heterogeneous Systems" (STReNGTHS). The simulation algorithms are interfaced through a general abstract interface, which makes it easy to extend STReNGTHS with new algorithms and other features.  It is implemented in Python (standard library,
-Numpy [@harris_numpy_2020] and Matplotlib [@hunter_matplotlib_2007])
+Numpy [@harris_numpy_2020] and Matplotlib [@hunter_matplotlib_2007], as well as pytest [@refpytest] for unit testing)
 and C++ (standard C++11 or later), and can be easily installed from the Python Package Index (PyPI, <https://pypi.org>) with (i.e.)
 
 \begin{verbatim}

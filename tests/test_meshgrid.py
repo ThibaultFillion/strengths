@@ -22,8 +22,6 @@ class CoordLike:
                 v.y == self.y and 
                 v.z == self.z)
 
-# tests ##########################################################
-
 def test_mg_dimensions_type() : 
     mg = make_test_rdspace()
     assert type(mg.w) == int and type(mg.h) == int and type(mg.d) == int
@@ -98,21 +96,3 @@ def test_periodicity():
 
     mg = rdspace_from_dict({"w":3,"h":3,"d":3,"boundary_conditions" : {"y" : "periodical"}})
     assert(mg.are_neighbors((1,0,0), (1,2,0))==True)    
-    
-# run all #############################################################
-
-def run_all_tests() : 
-    test_mg_dimensions_type() 
-    test_mg_dimensions_value() 
-    test_mg_size() 
-    test_mg_len()
-    test_mg_cell_env_type()
-    test_mg_cell_env_array_dtype()
-    test_mg_cell_vol()
-    test_mg_get_cell_coordinates_as_tuple()
-    test_mg_get_cell_coordinates_as_coordlike()
-    test_mg_get_cell_index_from_int()
-    test_mg_get_cell_index_from_float()
-    test_mg_get_cell_index_from_tuple()
-    test_mg_get_cell_index_from_coord_like()
-    test_periodicity()

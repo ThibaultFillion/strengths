@@ -2,8 +2,6 @@ import sys
 sys.path.append("../src/")
 from strengths import *
 
-# tests ###############################################
-
 def test_load_rds_multifile_unspecified_units_systems() :
     sys = load_rdsystem("test_json_files/1/system.json")
     assert list(sys.space.cell_env) == [0,1,2,3,4,5,6,7,8,0,1,2,3,4,5,6,7,8]
@@ -66,10 +64,3 @@ def test_load_rds_multifile_fully_heterogenous_units_systems() :
     assert sys.network.reactions[0].kr == UnitValue("2 s-1")
     assert sys.network.reactions[1].kr == UnitValue("4 min-1")
     assert sys.network.reactions[2].kr == UnitValue("6 min-1")
-                
-# run all ###############################################
-
-def run_all_tests() :
-    test_load_rds_multifile_unspecified_units_systems()
-    test_load_rds_multifile_units_system_inherited_from_rds_only()
-    test_load_rds_multifile_fully_heterogenous_units_systems()

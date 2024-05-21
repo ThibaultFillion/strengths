@@ -2,8 +2,6 @@ import sys
 sys.path.append("../src/")
 from strengths import *
 
-# tests ##########################################################
-
 def test_graph() : 
     nodes = []
     nodes.append(RDGraphSpaceNode(volume = "1 m3",  environment = 1))
@@ -41,8 +39,3 @@ def test_graph() :
         assert graph1.edges[i].j == graph2.edges[i].j
         assert graph1.edges[i].surface == graph2.edges[i].surface
         assert graph1.edges[i].distance == graph2.edges[i].distance
-    
-# run all #############################################################
-
-# def run_all_tests() : 
-test_graph()

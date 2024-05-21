@@ -1,4 +1,4 @@
-working with units
+Working with units
 ==================
 
 *UnitsValue*, *UnitArray* and *Units*
@@ -6,9 +6,9 @@ working with units
 
 1) Presentation
 
-Strengths represents physical quantities with the *UnitValue* and *UnitArray* classes, associating respecitvely a numerical
+Strengths represents physical quantities with the *UnitValue* and *UnitArray* classes, associating respectively a numerical
 value or an array of numerical values to some physical units. Units themselves are represented by the *Units* class.
-Here is an example of how a *UnitValue* obsects can be declared:
+Here is an example of how a *UnitValue* object can be declared:
 
 .. code:: python
 
@@ -18,7 +18,7 @@ Here is an example of how a *UnitValue* obsects can be declared:
   a = parse_unitvalue(5, "µM")
   a = UnitValue(5, Units("µM"))
 
-All the declaration above are equivalent, setting the variable a as 5 micromolar.
+All the declarations above are equivalent, setting the variable a as 5 micromolar.
 Now, examples for the *UnitArray* class:
 
 .. code:: python
@@ -26,10 +26,10 @@ Now, examples for the *UnitArray* class:
   a = UnitArray([1,2,3], "µM")
   a = UnitArray([1,2,3], Units("µM"))
 
-Both of the above declarations creates an array of values in micromolar (1 µM, 2 µM and 3 µM).
+Both of the above declarations create an array of values in micromolar (1 µM, 2 µM and 3 µM).
 
 *UnitValue* and *Units* objects can be created from a string, as shown above. the UnitValue string representation
-is made of a number litteral followed by a Units string representation, separated by one or more whitespaces
+is made of a number literal followed by a Units string representation, separated by one or more whitespaces
 
 .. code:: python
 
@@ -52,7 +52,7 @@ Those should be a list of symbols separated by "." (multiplication) or "/" (divi
   parse_units("mol/µm. s") # wrong, white space in the unit expression.
   parse_units("mol//µm.s") # wrong, successive "/" have no meaning.
 
-A symbol can be immediately followed by a positive non signed or negative exponent.
+A symbol can be immediately followed by a positive non-signed or negative exponent.
 If absent, the exponent is assumed to be 1. The exponent must be an integer.
 
 .. code:: python
@@ -99,7 +99,7 @@ Supported unit symbols are:
 |     |    |molecule|      |       |
 +-----+----+--------+------+-------+
 
-As a consequence, units are case sensitive, since m corresopnds to meters
+As a consequence, units are case-sensitive, since m corresponds to meters
 while M corresponds to molars (mol/L).
 
 Also, since the µ letter may be inconvenient to type
@@ -121,7 +121,7 @@ raised to some exponent, the units dimensions component/
   \textrm{units} = \prod_i {u_i}^{e_i}
 
 where u is the vector of fundamental units, or units system,
-and v is the vector of the corresponding exponents, ot units dimensions.
+and v is the vector of the corresponding exponents, or units dimensions.
 
 *UnitValue* and *UnitArray* objects thus support unit conversion
 
@@ -138,7 +138,7 @@ which is carried out by computing and appyling a conversion factor *f*, defined 
 
 where *u* and *v* are units system, the conversion being from *u* to *v*.
 
-For *UnitArrray* objects, conversion is done element wise:
+For *UnitArrray* objects, conversion is done element-wise:
 
 .. code:: python
 
@@ -152,11 +152,11 @@ Operations on *UnitValue* and *UnitArrays*
 operations involving a *UnitValue* and a *UnitArray* are performed
 for every element of the *UnitArray*, returning a *UnitArray* with the same size.
 
-operations involving two *UnitArray* are performed are performed between elemnt with the same index
+operations involving two *UnitArray* are performed are performed between elemente with the same index
 and expects both terms to have the same length.
 
-addition and substraction
-^^^^^^^^^^^^^^^^^^^^^^^^^
+addition and subtraction
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Both terms must have the same units dimensions.
 Number terms are supposed to have the same units as the *UnitValue*/*UnitArray* term:
@@ -174,7 +174,7 @@ Number terms are supposed to have the same units as the *UnitValue*/*UnitArray* 
 division and multiplication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Terms can have the any units dimensions.
+Terms can have any units dimensions.
 Number terms are supposed to be unitless:
 
 * UnitValue + UnitValue
@@ -190,7 +190,7 @@ Number terms are supposed to be unitless:
 modulo
 ^^^^^^
 
-Terms can have the any units dimensions.
+Terms can have any units dimensions.
 Number terms are supposed to have the same units as the UnitValue/UnitArray term:
 
 * UnitValue % UnitValue

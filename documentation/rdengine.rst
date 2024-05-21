@@ -1,4 +1,4 @@
-Simulation Engines
+Simulation engines
 ==================
 
 .. autoclass:: strengths.rdengine.RDEngineBase

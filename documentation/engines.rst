@@ -4,29 +4,26 @@ Simulation Engines
 What is a simulation engine
 ---------------------------
 
-A simulation engine is a class that represent a reaction-diffusion simulation algorithm.
-The *RDEngineBase* base class define an abstract common interface for simulation algorithms,
+A simulation engine is a class that represents a reaction-diffusion simulation algorithm.
+The *RDEngineBase* base class defines an abstract common interface for simulation algorithms,
 and any engine can be seen as a particular implementation of the RDSimulationEngineBase class.
 Using an engine to perform a simulation requires respect to some sequence of events (see the engine flow chart below).
 
 .. image:: engine_chart.png
   :align: center
 
-* First, the engine is initialized from a simulation script (a RDScript object) by calling engine.setup. This is the step where the simulation algorithm builds its internal state.
-  This is also at this stage that the system is sampled at t=0 is required.
-* Next come the simulation loop. This is the stage during which the system evolution is actually simulated.
-  iterations of the simulation algorithm are executed by calling either engine.run(dt), engine.iterate() or engine.iterate_n(n).
-  All those functions ultimately do the same thing, the difference being that:
+* First, the engine is initialized from a simulation script (RDScript) by calling engine.setup. This is the step where the simulation algorithm builds its internal state. This is also at this stage that the system is sampled at *t*=0.
+* Next comes the simulation loop. This is the stage during which the system evolution is actually simulated. iterations of the simulation algorithm are executed by calling either engine.run(dt), engine.iterate() or engine.iterate_n(n). All those functions ultimately do the same thing, the difference being that:
 
   * iterate() run a single iteration
   * interate_n(n) run n iteration in a row
   * run(dt) run iterations for a period of (out-simulation) time dt.
 
   The advantage of using iterate_n and run functions
-  rather that iterate, in the case of engines relying on compiled dynamic libraries, is that they do fewer back and forth between python and the library.
+  rather than iterate, in the case of engines relying on compiled dynamic libraries, is that there are fewer back-and-forths between Python and the library.
   Those functions will return False or True depending on whether the simulation is complete or not. The completeness status of the simulation can also
   be consulted by calling the engine.is_complete() method, which will return true if the simulation is complete.
-  Once the simulation is complete, the itration wont have any effect anymore, so the only thing to do is to end the loop phase.
+  Once the simulation is complete, the iterations will not have any effect anymore, so the only thing to do is to end the loop phase.
   During the loop phase, there is also the possibility to consult the progress percentage of the simulation using engine.get_progress,
   or to manually sample using engine.sample() (useful when the sampling_policy="no_sampling" in the engine.initialize arguments).
 * last step, once the simulation is complete, is to get the output (a RDSimulationOutput object), using engine.get_output().
@@ -45,7 +42,7 @@ Here is an example, where MyEngine() is some implementation of the RDSimulationE
 
   output = engine.get_output()
 
-For common use, it may be more convenient to use the simulate or simulate_script functions, which wraps the engine dynamics.
+For common use, it may be more convenient to use the simulate or simulate_script functions, which wrap the engine dynamics.
 The simulate_script function takes as argument a script and an engine:
 
 .. code:: python

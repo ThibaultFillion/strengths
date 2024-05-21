@@ -1,4 +1,4 @@
-Reaction Diffusion System Trajectory
+Reaction-diffusion system trajectory
 ====================================
 
 .. autoclass:: strengths.RDTrajectory

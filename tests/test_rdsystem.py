@@ -280,7 +280,7 @@ def test_set_state() :
                                      0.0, 0.0
                                      ]
 
-def test_rdnetwork_apply_reaction(spacetype):
+def _test_rdnetwork_apply_reaction(spacetype):
 
     spacedict = {
         "w" : 3
@@ -357,15 +357,8 @@ def test_rdnetwork_apply_reaction(spacetype):
         state=UnitArray([0,0,6,  0,0,0,  0,0,0,  0,0,2], "mol"))
     assert list(state.value) == [0,0,6+n/avogadro_number(),  0,0,0,  0,0,0,  0,0,2-n/avogadro_number()]
 
-# run all tests ############################################
+def test_rdnetwork_apply_reaction__graph():
+    _test_rdnetwork_apply_reaction("graph")
 
-def run_all_tests() :
-    test_rds_space_size()
-    test_generate_space_cell_env()
-    test_rds_space_cell_env_set_from_dict()
-    test_generate_species_state_default()
-    test_generate_species_chstt_map_default()
-    test_default_state()
-    test_set_state()
-    test_rdnetwork_apply_reaction("grid")
-    test_rdnetwork_apply_reaction("graph")
+def test_rdnetwork_apply_reaction__grid():
+    _test_rdnetwork_apply_reaction("grid")

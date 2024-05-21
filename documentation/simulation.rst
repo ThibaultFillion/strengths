@@ -1,4 +1,4 @@
-Reaction Diffusion Simulations
+Reaction-diffusion simulations
 ==============================
 
 .. autofunction:: strengths.simulate

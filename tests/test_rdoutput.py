@@ -5,9 +5,6 @@ sys.path.append("../src/")
 from strengths import *
 from strengths.librdengine import *
 
-# tests ###############################################
-
-
 def test_get_sample_index() :
     script = RDScript(
         RDSystem(
@@ -135,8 +132,3 @@ def test_get_sample_index() :
     assert out.get_sample_index("4000 ms", policy="infeq")                    == 2
     assert out.get_sample_index("10010 ms", policy="infeq")                   == 3
     assert out.get_sample_index("10000000000000000 ms", policy="infeq")       == 3
-
-# run all ###############################################
-
-def run_all_tests() :
-    test_get_sample_index()
