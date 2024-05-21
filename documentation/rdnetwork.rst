@@ -1,4 +1,4 @@
-Reaction Diffusion Networks
+Reaction-diffusion networks
 ===========================
 
 .. autoclass:: strengths.Species
