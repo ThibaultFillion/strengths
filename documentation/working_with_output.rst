@@ -1,8 +1,8 @@
 Working the simulation output
 =============================
 
-what is in the simulation output ?
-----------------------------------
+What is in the simulation output?
+---------------------------------
 
 the RDTrajectory object returned by simulate, simulate_script or engines's get_output method contains the trajectory data,
 as well as every contextual information needed to interpret those data, such as the simulation scrip (RDScript)
@@ -41,17 +41,17 @@ Accessing trajectory data
 -------------------------
 
 Let us say that we want to know the quantity of the "A" species in the cell at coordinates (x=3,y=4,z=0) at time
-t=200s. This can be done using the get_trajectory_point method, which allow to get the quantity of molecules of a given species at a given position for a given sample. Thus, it is necessary to determine which sample correspond to t=200s. This can be done using
-the get_sample_index, which return the sample index for which the sampling time is the closest from a given time :
+t=200s. This can be done using the get_trajectory_point method, which allows to get the quantity of molecules of a given species at a given position for a given sample. Thus, it is necessary to determine which sample corresponds to t=200s. This can be done using
+the get_sample_index, which returns the sample index for which the sampling time is the closest to a given time:
 
 .. code:: python
 
   sample = output.get_sample_index("200 s")
   point = output.get_trajectory_point(species="A", sample=sample, position=(3,4,0))
 
-point will be a UnitValue with quantity of matter units ("molecule", "mol", etc.).
+Point will be a UnitValue objects with quantity of matter units ("molecule", "mol", etc.).
 
-Now, if one want to get the state for a given species, this can be done using the get_state,
+Now, if one wants to get the state for a given species, this can be done using the get_state,
 which works as get_trajectory_point, except it doesn't have the position argument, and returns
 a UnitArray.
 
@@ -67,11 +67,11 @@ if the species argument is set to ``None``, get_state will return the whole syst
   sample = output.get_sample_index("200 s")
   state = output.get_state(None, sample=sample)
 
-Finally, if one want to get the trajectory of a given species, one can use the
+Finally, if one wants to get the trajectory of a given species, one can use the
 get_trajectory method. As for the previous functions, the first parameter is the species of interest.
 Also, as for the previous functions, the behavior depend on the other arguments.
 
-calling the function without other argument
+Calling the function without other arguments.
 
 .. code:: python
 
@@ -86,7 +86,7 @@ Calling the function specifying the position argument
 
 will a UnitArray corresponding to the
 trajectory of A at this specific position in the system.
-Eventually, calling the function mith ``merge=True``
+Eventually, calling the function with ``merge=True``
 
 .. code:: python
 
@@ -95,16 +95,16 @@ Eventually, calling the function mith ``merge=True``
 will return a UnitArray corresponding to the
 trajectory of the global quantity of A in the whole system.
 
-examples
+Examples
 --------
 
 The following examples will illustrate how to plot system states and trajectories directly using `Matplotlib <https://matplotlib.org>`_ without the strengths.plot submodule.
 
-use case 1 : Plotting a trajectory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+use case 1: Plotting a trajectory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now, let us apply what we've seen in the previous section by plotting the trajectory of a
-species directly with matplotlib without relying the strengths.plot submodule.
+Now, let us apply what we have seen in the previous section by plotting the trajectory of a
+species directly with Matplotlib without relying the strengths.plot submodule.
 We use the same system ("system.json") that we've defined before.
 
 .. code:: python
@@ -138,11 +138,11 @@ We use the same system ("system.json") that we've defined before.
 .. image:: output_example_1.png
   :align: center
 
-use case 2 : Plotting a sampled system state
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+use case 2: Plotting a sampled system state
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Here is another example :  the simulation is the same, except we want display the state of A
-at t= 0.5 s, once more with matplotlib and without strengths.plot.
+Here is another example: the simulation is the same, except we want display the state of *A*
+at *t* = 0.5 s, once more with Matplotlib and without strengths.plot.
 
 .. code:: python
   
