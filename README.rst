@@ -86,7 +86,7 @@ please refer to the project's `community and contribution guidelines <https://gi
 Testing
 -------
 
-Tests rely on the `PyTest <https://docs.pytest.org>`_ package.
+Tests rely on the `pytest <https://docs.pytest.org>`_ package.
 To run the unit tests, run either :code:`run_all_tests.py` or :code:`pytest` in the 
 `tests` directory.
 
