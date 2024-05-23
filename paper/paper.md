@@ -236,7 +236,7 @@ of the process, different patterns may arise from the same homogeneous initial s
 
 ![Example of simulations of different pattern-forming reaction-diffusion systems
 at increasing level of environmental complexity.
-All simulations are performed with the $\tau$ leap algorithm [@gillespie_approximate_2001].
+All simulations are performed with the $\tau$-leap algorithm [@gillespie_approximate_2001].
 (a) Description of the chemical reactions and associated rates.
 This reaction-diffusion network is similar to the Gray-Scott model [@McGough2004]
 and the one studied by Ruijgrok and Ruijgrok [@Ruijgrok1997].
