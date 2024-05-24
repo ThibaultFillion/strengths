@@ -2,7 +2,7 @@
 title : STReNGTHS, a Python package to model and simulate reaction-diffusion systems
 authors :
   - name : Thibault Fillion
-    affiliation : "1, 2"
+    affiliation : "1, 2, 5"
   - name : Francesco Piazza
     affiliation : "3, 4"
 affiliations :
@@ -14,6 +14,8 @@ affiliations :
     index : 3
   - name : INFN sezione di Firenze, Via G. Sansone 1, 50019 Sesto Fiorentino, Italy
     index : 4
+  - name : Dipartimento di Medicina Sperimentale e Clinica, Viale Giovanni Batista Morgagni 50, 50314 Firenze, Italy
+    index : 5
 bibliography : references.bib
 ---
 # Summary
