@@ -50,17 +50,15 @@ STReNGTHS provides an interface to simulate reaction-diffusion systems
 and manipulate their trajectories, as well as full control
 and access to the simulation algorithms themselves.
 
-Reaction-diffusion systems consist primarily
-of a reaction-diffusion network, which is represented by
-the *RDSystem* class. This defines a set of coupled chemical transformations
-that is supplemented with a spatial distribution of
-chemical species, whose features describe
-where and how fast each molecule shall diffuse.
+A reaction-diffusion system is represented by
+the *RDSystem* class. This defines a reaction-diffusion network, which is a set 
+of coupled chemical transformations represented by the *RDNetwork* class, 
+augmented with a physical space where chemical species may diffuse.
 The system space is discrete and consists of a 3D mesh of individual
 volume elements, which we refer to as *cells*.
 It can be either a regular grid of cubic cells with
 uniform volumes, or an arbitrary network of cells with different volumes,
-which can be obtained by coarse-graining a mesh grid.
+which can be obtained by coarse-graining a cell grid.
 
 In order to account for systems with different compartments,
 STReNGTHS implements the system of reaction-diffusion environments,
@@ -91,7 +89,7 @@ simulation at once. The resulting system trajectory, which is the sequence of
 system states successively sampled during the simulation and the corresponding
 sampling times, is stored in a *RDTrajectory* object.
 
-For now, STReNGHTS implements simulation engines for the original
+For now, STReNGTHS implements simulation engines for the original
 Gillespie algorithm [@gillespie_exact_1977], the $\tau$-leap approximation to
 the Gillespie algorithm [@gillespie_approximate_2001], and the Euler Method,
 operating on both grid and graph spaces,
@@ -110,7 +108,7 @@ Existing simulation packages include:
   uses the Gillespie algorithm. It handles simulations in geometries composed of
   tetrahedral voxels with faces that can represent biological
   membranes [@10.3389/neuro.11.015.2009].
-- Readdy [@hoffmann2019readdy].
+- ReaDDy [@hoffmann2019readdy].
   This is a reaction-diffusion tool with a Python interface that uses
   a particle-based approach. An especially interesting feature is that
   it can deal with complex molecule geometries and reaction patterns,
@@ -173,7 +171,7 @@ to add additional reactions to implement such reaction channels
 The model features 3 reaction-diffusion environments, "ext", "cyt" and "mmb",
 accounting, respectively, for the extracellular space, the cytoplasm
 and the interface between these two compartments containing the plasma membrane.
-We use two different system spaces. The first one is a $26 \times 26$ mesh grid consisting of
+We use two different system spaces. The first one is a $26 \times 26$ cell grid consisting of
 1 $\mu$m$^3$ cubic cells, while the second one is a coarse-grained version of the
 first that contains only 85 nodes/cells (for 676 cells in the grid) (Fig. \ref{example1} b).
 The trajectory of the system state is simulated, both for the fully detailed grid and for
@@ -186,7 +184,7 @@ are plotted in Fig. \ref{example1} (f, g).
 model of signal transduction by a single cell.
 (a) Schematic representation of the system.
 (b) Layout of the two different system spaces used,
-the $26 \times 26$ mesh grid (left) and its coarse-grained graph version (right).
+the $26 \times 26$ cell grid (left) and its coarse-grained graph version (right).
 (c) Set of coupled stoichiometric equations that compose the reaction network.
 (d) Diffusion coefficients of individual species in the different environments.
 (e) Initial densities of each species in the different environments.
@@ -219,7 +217,7 @@ spatiotemporal evolution of $A$ concentration over time is reported in
 Fig. \ref{example2} (c) as a 2D heat map.
 It can be observed how the system, starting from a homogeneous state,
 progressively builds up spatial reaction-diffusion patterns.
-We also simulate a square $100 \times 100$ mesh system and plot the
+We also simulate a square $100 \times 100$ cell system and plot the
 final distribution of $A$, so that the shape of the pattern can be
 appreciated directly (Fig. \ref{example2} (d)).
 
@@ -272,23 +270,23 @@ MIT license and can be found on the dedicated GitHub repository:
 
 [https://github.com/ThibaultFillion/strengths](https://github.com/ThibaultFillion/strengths)
 
-The documentation includes tutorials and an API Reference. The tutorials
+The documentation includes tutorials and an API reference. The tutorials
 demonstrate how to define reaction-diffusion systems by taking advantage of STReNGTHS's different
 features (environments, chemostats, boundary conditions, etc.) as well as how to carry
-out simulations and post-process the trajectories. The API Reference documents the exposed
+out simulations and post-process the trajectories. The API reference documents the exposed
 functions and classes.
 
 # Conclusions and perspectives
 
-STReNGHTS is a new integrated and flexible platform for modeling and simulation of inhomogeneous
+STReNGTHS is a new integrated and flexible platform for modeling and simulation of inhomogeneous
 reaction-diffusion systems, which aims to provide an extensible collection of
 stochastic and deterministic simulation engines. It has been designed to be easily
 integrated with new tools and we do hope it will continue to grow.
 Perspectives for future developments include:
 
-- CPU-GPU massively parallel implementations of the existing simulation methods,
-- Implementing methods with dynamically adaptive time steps,
-- Implementing methods combining stochastic and deterministic approaches for faster simulations, and
-- Developing a GUI that would facilitate the design of the reaction-diffusion system layouts.
+- developing CPU-GPU massively parallel implementations of the existing simulation methods,
+- implementing methods with dynamically adaptive time steps,
+- implementing methods combining stochastic and deterministic approaches for faster simulations, and
+- developing a GUI that would facilitate the design of the reaction-diffusion system layouts.
 
 # References
