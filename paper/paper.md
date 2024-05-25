@@ -69,7 +69,7 @@ with specific reactive and diffusive properties. Many
 properties, such as the initial density of species, diffusion coefficients, or reaction
 occurrence, can be defined environment-wise.
 
-Importantly, species can be *chemostated*, i.e. kept at
+Importantly, species can be *chemostatted*, i.e. kept at
 a fixed, prescribed concentration during the simulation,
 globally or only in specific
 environments or cells. Chemostatted species allow one to model
