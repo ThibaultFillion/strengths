@@ -21,7 +21,7 @@ bibliography : references.bib
 # Summary
 
 STReNGTHS is an open-source Python package that provides a simple and intuitive
-interface for designing models of discrete 3D heterogeneous reaction-diffusion systems and simulating their trajectories. Different algorithms are available, both stochastic (exact or approximate  solutions of the associated
+interface for designing models of discrete 3D heterogeneous reaction-diffusion systems and simulating their trajectories. Different algorithms are available, both stochastic (exact or approximate solutions of the associated
 master equation) and deterministic (numerical solutions of the corresponding rate equations).
 The acronym stands for "Simulation and modeling Tool for REaction-diffusion Networks in Graphs and Tridimensional Heterogeneous Systems" (STReNGTHS). The simulation algorithms are interfaced through a general abstract interface, which makes it easy to extend STReNGTHS with new algorithms and other features.  It is implemented in Python (standard library,
 Numpy [@harris_numpy_2020] and Matplotlib [@hunter_matplotlib_2007], as well as pytest [@refpytest] for unit testing)
@@ -40,7 +40,7 @@ organelles, stress granules, etc) and driven far from equilibrium by highly regu
 such as nucleotides (ATP/GTP), amino acids and different
 ions. In order to understand the properties of such reaction-diffusion
 networks, and especially their role in macroscopic *emergent*
-phenomena, convenient, reliable and efficient modeling and simulation tools supporting heterogeneous systems are necessary. Moreover, the choice of the simulation algorithm to be used may depend on the system : deterministic approaches such as ODE integration (rate equations) are effective, but inappropriate for systems that are sensitive to fluctuations,
+phenomena, convenient, reliable and efficient modeling and simulation tools supporting heterogeneous systems are necessary. Moreover, the choice of the simulation algorithm to be used may depend on the system: deterministic approaches such as ODE integration (rate equations) are effective, but inappropriate for systems that are sensitive to fluctuations,
 such as systems that operate with species present at low copy numbers
 (e.g. certain enzymes, many mRNA species) and/or
 in tiny reaction volumes (i.e. within mitochondria),
@@ -56,7 +56,7 @@ the *RDSystem* class. This defines a set of coupled chemical transformations
 that is supplemented with a spatial distribution of
 chemical species, whose features describe
 where and how fast each molecule shall diffuse.
-The system space is discrete, and consists of a 3D mesh of individual
+The system space is discrete and consists of a 3D mesh of individual
 volume elements, which we refer to as *cells*.
 It can be either a regular grid of cubic cells with
 uniform volumes, or an arbitrary network of cells with different volumes,
@@ -64,12 +64,12 @@ which can be obtained by coarse-graining a mesh grid.
 
 In order to account for systems with different compartments,
 STReNGTHS implements the system of reaction-diffusion environments,
-which allow the user to define different types of cells (referred to as environments)
+which allows the user to define different types of cells (referred to as environments)
 with specific reactive and diffusive properties. Many
-properties, such as the initial density of species, diffusion coefficients, or reactions
+properties, such as the initial density of species, diffusion coefficients, or reaction
 occurrence, can be defined environment-wise.
 
-Importantly, species can be *chemostatted*, i.e. kept at
+Importantly, species can be *chemostated*, i.e. kept at
 a fixed, prescribed concentration during the simulation,
 globally or only in specific
 environments or cells. Chemostatted species allow one to model
@@ -81,9 +81,9 @@ cytoplasmic levels of ATP or ADP.
 association reaction over 3 cells using the JSON/dictionary format.
 The rates used were: $k_+ = 1$ M$^{-1}$s$^{-1}$, $k_-= 1$ s$^{-1}$. \label{jsonsyntax} ](jsonsyntax.png)
 
-In STReNGTHS reaction-diffusion systems can be defined either
+In STReNGTHS, reaction-diffusion systems can be defined either
 using Python dictionaries or through JSON input files,
-following a specific intuitive syntax, as shown figure \ref{jsonsyntax}.
+following a specific intuitive syntax, as shown in figure \ref{jsonsyntax}.
 Simulations are handled by objects called *simulation engines*,
 which offer a general abstract interface for simulation algorithms.
 The *simulate* function wraps the engine call to run the whole
@@ -91,7 +91,7 @@ simulation at once. The resulting system trajectory, which is the sequence of
 system states successively sampled during the simulation and the corresponding
 sampling times, is stored in a *RDTrajectory* object.
 
-So far, STReNGHTS implements simulation engines for the original
+For now, STReNGHTS implements simulation engines for the original
 Gillespie algorithm [@gillespie_exact_1977], the $\tau$-leap approximation to
 the Gillespie algorithm [@gillespie_approximate_2001], and the Euler Method,
 operating on both grid and graph spaces,
@@ -107,11 +107,11 @@ Existing simulation packages include:
 
 - STEPS [@10.3389/neuro.11.015.2009].
   This is a reaction-diffusion program interfaced with Python, which
-  uses Gillespie algorithm. It handles simulations in geometries composed of
+  uses the Gillespie algorithm. It handles simulations in geometries composed of
   tetrahedral voxels with faces that can represent biological
   membranes [@10.3389/neuro.11.015.2009].
 - Readdy [@hoffmann2019readdy].
-  This  is a reaction-diffusion tool with a Python interface that uses
+  This is a reaction-diffusion tool with a Python interface that uses
   a particle-based approach. An especially interesting feature is that
   it can deal with complex molecule geometries and reaction patterns,
   such as polymer dynamics [@hoffmann2019readdy].
@@ -143,15 +143,14 @@ BioNetGen [@10.1093/bioinformatics/btw469].
 Still, it allows one to build in a very intuitive and
 user-friendly way simulations able to describe a vast range of complex systems.
 
-So far, as opposed to Readdy, STReNGTHS only implements non particle-based methods,
+So far, as opposed to Readdy, STReNGTHS only implements non-particle-based methods,
 similar to those proposed by the other software. However, rather than proposing only one
 all-purpose fitting method, STReNGTHS's approach is to provide a collection of various
 simulation methods, leaving the choice at the user's discretion. Moreover, simulation
 features can be easily extended using the simulation engine interface.
 In fact, STReNGTHS has been designed to be extended easily.
 
-One of STReNGTHS's key features is the use of *reaction-diffusion environments*, which make
-it easy to design extremely rich system landscapes, i.e. featuring plenty of different
+One of STReNGTHS' key features is the use of *reaction-diffusion environments*, which make it easy to design extremely rich system landscapes, i.e. featuring plenty of different
 compartments of arbitrary shape that encode physical and chemical segregation.
 
 The use of a JSON/dictionary syntax for the definition of reaction-diffusion systems
@@ -162,11 +161,11 @@ brings readability and simplicity to the workflow.
 For the first example, let us consider a simple model of signal transduction,
 where some extracellular chemical signal is sensed by a cell, which triggers
 the production of a second messenger, as well as the scavenging of the signal species.
-The network is designed as follows : The extracellular ligand $L$ can bind to a
+The network is designed as follows: The extracellular ligand $L$ can bind to a
 plasma membrane receptor $R$ to form a complex $C$. This species catalyzes the
 conversion of the inactive second messenger $X$ to its active form,  $Y$.
 The complex $C$ is directly converted back into $R$, which accounts for
-the internalization of the complex, the degradation of the ligand and full
+the internalization of the complex, the degradation of the ligand and the full
 recycling of the receptor. No degradation of the receptors (either through the proteasomes
 or lysosomes) is assumed for simplicity,  although it would be straightforward
 to add additional reactions to implement such reaction channels
@@ -184,7 +183,7 @@ The global trajectory of $Y$ as well as its distribution at $t=0, 100, 1500$ s
 are plotted in Fig. \ref{example1} (f, g).
 
 ![Example of simulation with STReNGTHS implementing a simple
-model  of signal transduction by a single cell.
+model of signal transduction by a single cell.
 (a) Schematic representation of the system.
 (b) Layout of the two different system spaces used,
 the $26 \times 26$ mesh grid (left) and its coarse-grained graph version (right).
@@ -216,7 +215,7 @@ package [@Strengths_doc], similar to the Gray-Scott model and related reaction-d
 mutually converting into each other (Fig. \ref{example2} (a)).
 We first simulate the evolution of the system in 1 dimension using the
 $\tau$-leap algorithm [@gillespie_approximate_2001]. The corresponding
-spatio-temporal evolution of $A$ concentration over time is reported in
+spatiotemporal evolution of $A$ concentration over time is reported in
 Fig. \ref{example2} (c) as a 2D heat map.
 It can be observed how the system, starting from a homogeneous state,
 progressively builds up spatial reaction-diffusion patterns.
@@ -229,7 +228,7 @@ of $A$ and $B$ vary depending on the region (Fig. \ref{example2} (b), (e), (g)).
 The first one (Fig. \ref{example2} (e)) represents pattern formation at the surface of a sphere,
 while the second one (Fig. \ref{example2} (g)) illustrates a similar phenomenon of pattern
 formation in a domain that takes the shape of an animal. Panels (f) and (h) in
-Fig. \ref{example2}  demonstrate the evolution of both systems
+Fig. \ref{example2} demonstrate the evolution of both systems
 (levels of the $A$ species) in time, highlighting the progressive evolution
 of the spatial patterns that form as a result of the subtle combination of
 the underlying auto-catalytic process with the inhomogeneous reaction landscape.
@@ -237,7 +236,7 @@ Figure \ref{example2} (i) additionally illustrates how, due to the stochastic na
 of the process, different patterns may arise from the same homogeneous initial state.
 
 ![Example of simulations of different pattern-forming reaction-diffusion systems
-at increasing level of environmental complexity.
+at increasing levels of environmental complexity.
 All simulations are performed with the $\tau$-leap algorithm [@gillespie_approximate_2001].
 (a) Description of the chemical reactions and associated rates.
 This reaction-diffusion network is similar to the Gray-Scott model [@McGough2004]
@@ -246,13 +245,13 @@ Other examples using a similar reaction-diffusion network can be found
 in the documentation of the package [@Strengths_doc].
 (c) Evolution of a 1D system in time and space.
 (d) Pseudo-stationary state of a 2D system.
-(e) reaction-diffusion environments for the two inhomogeneous systems.
+(e) Reaction-diffusion environments for the two inhomogeneous systems.
 (b) Layout of a 3D system where the patterns are forming at the surface of a sphere.
 (f) States of the 3D system described at different time points along a stochastic
 trajectory (concentration of the $A$ species).
 (g) Layout of a 2D system mimicking the shape of an animal.
 (h) States of the system (distribution of the $A$ species) at different time points from one simulation.
-(i) Patterns formed at t = 3500.0 h resulting from 3 different stochastic simulations.
+(i) Patterns formed at $t = 3500.0$ h resulting from 3 different stochastic simulations.
 The rates used were:
 $\emptyset\rightarrow A$:
 $k_1 = 10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $a$ and $c$ and $1.05\times10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $b$.
@@ -262,14 +261,14 @@ $k_2 = 10^{-4}$ molecules$\times\mu$m$^{-3}\times$h$^{-1}$ in $a$ and $b$ and $1
 $B \rightarrow\emptyset$: $k_{-2} = 0.001$ h$^{-1}$.
 $A+2B \rightarrow 3B$: $k_3 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
 $B+2A \rightarrow 3A$: $k_4 = 1$ molecules$^{-2}\times\mu$m$^6\times$h$^{-1}$.
-The diffusion coefficient for the different species were:
-$D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rates constants are all 0 in compartment ext.
+The diffusion coefficients for the different species were:
+$D_A = D_B = 80$ $\mu$m$^2$h$^{-1}$. Reaction and diffusion rate constants are all 0 in compartment "ext".
 \label{example2}](example2.png)
 
 # Source code and documentation
 
 STReNGTHS's source code and documentation are distributed under the terms of the
-MIT licence and can be found on the dedicated GitHub repository:
+MIT license and can be found on the dedicated GitHub repository:
 
 [https://github.com/ThibaultFillion/strengths](https://github.com/ThibaultFillion/strengths)
 
