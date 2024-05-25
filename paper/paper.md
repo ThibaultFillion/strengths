@@ -1,5 +1,5 @@
 ---
-title : STReNGTHS, a Python package to model and simulate reaction-diffusion complex systems
+title : STReNGTHS, a Python package to model and simulate complex reaction-diffusion systems
 authors :
   - name : Thibault Fillion
     affiliation : "1, 2, 5"
