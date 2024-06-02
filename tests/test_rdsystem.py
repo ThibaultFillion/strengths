@@ -30,7 +30,7 @@ def make_test_rds_1() :
             ],
         "reactions" :
             [
-            {"label" : "r", "stoechiometry" : "A -> ", "k+" : "1 s-1", "k-" : 1}
+            {"label" : "r", "stoichiometry" : "A -> ", "k+" : "1 s-1", "k-" : 1}
             ],
         "environments" :
             [
@@ -69,7 +69,7 @@ def make_test_rds_2() :
             ],
         "reactions" :
             [
-            {"label" : "r", "stoechiometry" : "A -> ", "k+" : "1 s-1", "k-" : 1}
+            {"label" : "r", "stoichiometry" : "A -> ", "k+" : "1 s-1", "k-" : 1}
             ],
         "environments" :
             [

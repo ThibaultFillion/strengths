@@ -13,9 +13,9 @@ def make_test_rdn() :
             ],
         "reactions" :
             [
-            {"stoechiometry": "A -> B ", "label" : "A"},
-            {"stoechiometry": "A -> B ", "label" : "B"},
-            {"stoechiometry": "A -> B ", "label" : "C"}
+            {"stoichiometry": "A -> B ", "label" : "A"},
+            {"stoichiometry": "A -> B ", "label" : "B"},
+            {"stoichiometry": "A -> B ", "label" : "C"}
             ]
         }
     return rdnetwork_from_dict(d)
@@ -112,22 +112,20 @@ def test_reaction_split() :
 
 def test_reaction_dict() :
     
-    rd = {"eq" : "A+B->C", "k+" : 1, "k-" : 1, "env" : ["a", "b"], "label":"label"}  
+    rd = {"eq" : "A+B->C", "k+" : 1, "k-" : 1, "label":"label"}  
     
     r = reaction_from_dict(rd)
     
     assert r.kf == UnitValue("1 µm3/molecule/s")
     assert r.kr == UnitValue("1 s-1")
     assert r.to_string().strip() == "A + B -> C"
-    assert r.environments == ("a", "b")
     assert r.label == "label"
     
     rd = reaction_to_dict(r)
 
-    assert rd["stoechiometry"].strip() == "A + B -> C"
+    assert rd["stoichiometry"].strip() == "A + B -> C"
     assert UnitValue(rd["k+"]) == UnitValue("1 µm3.molecule-1.s-1")
     assert UnitValue(rd["k-"]) == UnitValue("1 s-1")
-    assert rd["environments"] == ("a", "b")
     assert rd["units"] == {"space" : "µm", "time" : "s", "quantity" : "molecule"}
     assert rd["label"] == "label"
 
@@ -135,13 +133,54 @@ def test_reaction_dict_default() :
     
     rd = reaction_to_dict(Reaction("A+B->C", kf=10))
 
-    assert rd["stoechiometry"].strip() == "A + B -> C"
+    assert rd["stoichiometry"].strip() == "A + B -> C"
     assert UnitValue(rd["k+"]) == UnitValue("10 µm3.molecule-1.s-1")
     assert UnitValue(rd["k-"]) == UnitValue("0 s-1")
-    assert rd["environments"] == None
     assert rd["units"] == {"space" : "µm", "time" : "s", "quantity" : "molecule"}
     assert rd["label"] == None
 
+def test_reaction_equilibrium_constant() :
+    
+    # Simple case where one equilibrium constant is defined:
+    reaction = Reaction("A+B->C", kf=1, kr=1)
+    assert reaction.K == UnitValue("1 µm3/molecule")
+
+    # Case where no equilibrium constant is as k- is 0:
+    reaction = Reaction("A+B->C", kf=1, kr=0)
+    assert reaction.K is None
+
+    reaction = Reaction("A+B->C", kf=1)
+    assert reaction.K is None
+
+
+    # More complex case where both k+ and k- are both defined as dictionaries:
+    reaction = Reaction(
+        "A+B->C", 
+        kf={"a":1, "b":2}, 
+        kr={"b":4, "c":5}
+        )
+    expected_K = {
+        "a" : None,
+        "b" : UnitValue("0.5 µm3/molecule"),
+        "c" : UnitValue("0 µm3/molecule"),
+        "default" : None
+        }
+    assert reaction.K == expected_K
+
+    # Another similar complex, where a default value is specified for k-:
+    reaction = Reaction(
+        "A+B->C", 
+        kf={"a":1, "b":2}, 
+        kr={"b":4, "c":5, "default" : 10}
+        )
+    expected_K = {
+        "a" : UnitValue("0.1 µm3/molecule"),
+        "b" : UnitValue("0.5 µm3/molecule"),
+        "c" : UnitValue("0 µm3/molecule"),
+        "default" : UnitValue("0 µm3/molecule")
+        }
+    assert reaction.K == expected_K
+    
 def test_species_dict() :
     
     sd = {"label" : "A", 

@@ -5,25 +5,44 @@ sys.path.append("../src/")
 from strengths import *
 from strengths.librdengine import *
 
-def test_build_reaction_rate_constant_array() :
+def test_build_reaction_rate_constant_matrix() :
     
+    #Simple cases with only one environment:
+        
+    environments = [""]
     reactions = [Reaction("A + B -> C", 1, 2), 
                  Reaction("A + B -> C", 3, 4), 
                  Reaction("A + B -> C", 5, 6)]
-    k = build_reaction_rate_constant_array(reactions, units_system=UnitsSystem())
+    k = build_reaction_rate_constant_matrix(reactions, environments, units_system=UnitsSystem())
     assert list(k) == [1,3,5]
 
     reactions = [Reaction("A -> C", "1 ms-1", 2), 
                  Reaction("A + B -> C", 3, 4), 
                  Reaction("A + B -> C", "5 m3/mol/min", 6)]
-    k = build_reaction_rate_constant_array(reactions, units_system=UnitsSystem())
+    k = build_reaction_rate_constant_matrix(reactions, environments, units_system=UnitsSystem())
     assert list(k) == [1000, 3, UnitValue("5 m3/mol/min").convert("µm3/molecule/s").value]
 
     reactions = [Reaction("A + B -> C", 1, 2), 
                  Reaction("A + B -> C", 3, 4), 
                  Reaction("A + B -> C", 5, 6)]
-    k = build_reaction_rate_constant_array(reactions, units_system=UnitsSystem(space="km", time="h", quantity="µmol"))
+    k = build_reaction_rate_constant_matrix(reactions, environments, units_system=UnitsSystem(space="km", time="h", quantity="µmol"))
     assert list(k) == list(UnitArray([1,3,5], "µm3/molecule/s").convert("km3/µmol/h").value)
+    
+    #Case with multiple environments:
+
+    environments = ["a", "b", "c", "d"]
+    
+    reactions = [Reaction("A + B -> C", {"a":1, "b":2, "c":3, "d":4 }), 
+                 Reaction("A + B -> C", {"a":5, "b":6, "c":7, "d":8 }), 
+                 Reaction("A + B -> C", {"a":9, "b":10,"c":11,"d":12})]
+    k = build_reaction_rate_constant_matrix(reactions, environments, units_system=UnitsSystem())
+    expected_k = [
+        1, 5, 9,
+        2, 6, 10,
+        3, 7, 11,
+        4, 8, 12
+        ]
+    assert list(k) == expected_k
     
 def test_build_reaction_environment_boolean_matrix() :
     environments = ["a", "b", "c"]
