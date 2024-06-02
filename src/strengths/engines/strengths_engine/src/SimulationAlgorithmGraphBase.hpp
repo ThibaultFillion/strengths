@@ -89,7 +89,7 @@ class SimulationAlgorithmGraphBase
             double q = 0;
             for(int s=0; s<n_species; s++)
                 q+=sub[s*n_reactions+r];
-            mesh_kr[i*n_reactions+r] = k[mesh_env[i]*n_env+r]*pow(mesh_vol[i],1-q);
+            mesh_kr[i*n_reactions+r] = k[mesh_env[i]*n_reactions+r]*pow(mesh_vol[i],1-q);
             }
           }
         }
