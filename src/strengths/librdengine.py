@@ -8,18 +8,23 @@ from strengths.typechecking import *
 import numpy as np
 import ctypes
 
-def build_reaction_rate_constant_array(reactions, units_system) :
+def build_reaction_rate_constant_matrix(reactions, environments, units_system) :
     """
-    return the array of the forward reaction rate constants numerical values.
+    return the n_environment x n_reactions matrix of the forward reaction rate constant numerical values for each environment.
 
     :param reactions: array of irreversible forward reactions.
     :type reactions: array of Reaction
+    :param environments: array of the environemnt labels of the system.
+    :type environments: array of str
     :param units_system: units_system in which the rates should be expressed.
     :type units_system: UnitsSystem
     :rtype: array of int
     """
-
-    return [r.kf.convert(units_system).value for r in reactions]
+    km = []
+    for env in environments:
+        for r in reactions:
+            km.append(valproc.get_value_in_env(r.kf, env, UnitValue(0, Units(units_system, r.kf_units_dimensions()))).convert(units_system).value)
+    return km
 
 def build_reaction_environment_boolean_matrix(reactions, environments) :
     """
@@ -138,8 +143,8 @@ class LibRDEngine(RDEngineBase) :
         self._requires_molecules = requires_molecules
         self._simulation_unfinished = 1
         
-        lib.GetProgress.restype = ctypes.c_double
-        lib.GetT.restype = ctypes.c_double
+        lib.engineexport_get_progress.restype = ctypes.c_double
+        lib.engineexport_get_time.restype = ctypes.c_double
         super(LibRDEngine, self).__init__(option, description)
 
     def setup(self, script) :
@@ -174,7 +179,7 @@ class LibRDEngine(RDEngineBase) :
         
     def _setup_graph(self, script, units_system, species, reactions, environments) :
 
-        res = self._lib.InitializeGraph(
+        res = self._lib.engineexport_initialize_graph(
             #n_nodes
                 ctypes.c_int(len(script.system.space.nodes)),
 
@@ -216,25 +221,22 @@ class LibRDEngine(RDEngineBase) :
                 make_ctypes_array(script.system.state.convert(units_system).value, ctypes.c_double),
                 
             #cell_chstt
-                make_ctypes_array(script.system.chemostats,                         ctypes.c_int),
+                make_ctypes_array(script.system.chemostats, ctypes.c_int),
                 
             #cell_env
-                make_ctypes_array(script.system.space.get_cell_env_array(),                    ctypes.c_int),
+                make_ctypes_array(script.system.space.get_cell_env_array(), ctypes.c_int),
                 
             #cell_vol
                 make_ctypes_array(script.system.space.get_cell_vol_array().convert(units_system).value, ctypes.c_double),
                 
             #k
-                make_ctypes_array(build_reaction_rate_constant_array(reactions, units_system),             ctypes.c_double),
+                make_ctypes_array(build_reaction_rate_constant_matrix(reactions, environments, units_system), ctypes.c_double),
                 
             #sub
-                make_ctypes_array(build_substrate_stoechiometric_matrix(species, reactions),               ctypes.c_int),
+                make_ctypes_array(build_substrate_stoechiometric_matrix(species, reactions), ctypes.c_int),
                 
             #sto
-                make_ctypes_array(build_stoechiometric_difference_matrix(species, reactions),              ctypes.c_int),
-                
-            #r_env
-                make_ctypes_array(build_reaction_environment_boolean_matrix(reactions, environments),      ctypes.c_int),
+                make_ctypes_array(build_stoechiometric_difference_matrix(species, reactions), ctypes.c_int),
                 
             #D
                 make_ctypes_array(build_diff_coef_environment_matrix(species, environments, units_system), ctypes.c_double),
@@ -271,7 +273,7 @@ class LibRDEngine(RDEngineBase) :
             
     def _setup_grid(self, script, units_system, species, reactions, environments) :
         
-        res = self._lib.Initialize3D(
+        res = self._lib.engineexport_initialize_3D(
             #w
                 ctypes.c_int(script.system.space.w),
                 
@@ -294,25 +296,22 @@ class LibRDEngine(RDEngineBase) :
                 make_ctypes_array(script.system.state.convert(units_system).value, ctypes.c_double),
                 
             #cell_chstt
-                make_ctypes_array(script.system.chemostats,                         ctypes.c_int),
+                make_ctypes_array(script.system.chemostats, ctypes.c_int),
                 
             #cell_env
-                make_ctypes_array(script.system.space.cell_env,                    ctypes.c_int),
+                make_ctypes_array(script.system.space.cell_env, ctypes.c_int),
                 
             #cell_vol
                 ctypes.c_double(script.system.space.cell_vol.convert(units_system).value),
                 
             #k
-                make_ctypes_array(build_reaction_rate_constant_array(reactions, units_system),             ctypes.c_double),
+                make_ctypes_array(build_reaction_rate_constant_matrix(reactions, environments, units_system), ctypes.c_double),
                 
             #sub
-                make_ctypes_array(build_substrate_stoechiometric_matrix(species, reactions),               ctypes.c_int),
+                make_ctypes_array(build_substrate_stoechiometric_matrix(species, reactions), ctypes.c_int),
                 
             #sto
-                make_ctypes_array(build_stoechiometric_difference_matrix(species, reactions),              ctypes.c_int),
-                
-            #r_env
-                make_ctypes_array(build_reaction_environment_boolean_matrix(reactions, environments),      ctypes.c_int),
+                make_ctypes_array(build_stoechiometric_difference_matrix(species, reactions), ctypes.c_int),
                 
             #D
                 make_ctypes_array(build_diff_coef_environment_matrix(species, environments, units_system), ctypes.c_double),
@@ -358,41 +357,41 @@ class LibRDEngine(RDEngineBase) :
             
     def run(self, breathe_dt) :
         
-        self._simulation_unfinished = self._lib.Run(breathe_dt)
+        self._simulation_unfinished = self._lib.engineexport_run(breathe_dt)
         return bool(self._simulation_unfinished)
 
     def iterate(self) :
         
-        self._simulation_unfinished = self._lib.Iterate()
+        self._simulation_unfinished = self._lib.engineexport_iterate()
         return bool(self._simulation_unfinished)
 
 
     def iterate_n(self, n_iterations) :
         
-        self._simulation_unfinished = self._lib.IterateN(n_iterations)
+        self._simulation_unfinished = self._lib.engineexport_iterate_n(n_iterations)
         return bool(self._simulation_unfinished)
 
 
     def get_progress(self) :
         
-        progress = self._lib.GetProgress()
+        progress = self._lib.engineexport_get_progress()
         return float(progress)
 
     def sample(self) :
         
-        self._lib.Sample()
+        self._lib.engineexport_sample()
         
     def is_complete(self) : 
         
         return not bool(self._simulation_unfinished)
     
     def _count_samples(self) :
-        return self._lib.GetNSamples()
+        return self._lib.engineexport_get_nsamples()
 
     def _get_t_sample(self) :
         n_sample = self._count_samples()
         t_sample_ = (n_sample*ctypes.c_double)()
-        self._lib.GetTSample(t_sample_)
+        self._lib.engineexport_get_tsample(t_sample_)
         t_sample = np.zeros(n_sample)
         for i in range(n_sample):
             t_sample[i] = t_sample_[i]
@@ -409,7 +408,7 @@ class LibRDEngine(RDEngineBase) :
         data_len = n_sample*self._script.system.state_size()
         
         data_ = (data_len*ctypes.c_double)()
-        self._lib.GetOutput(data_)
+        self._lib.engineexport_get_output(data_)
         data = np.zeros(data_len)
         for i in range(data_len):
             data[i] = data_[i]
@@ -433,4 +432,4 @@ class LibRDEngine(RDEngineBase) :
         
     def finalize(self) :
         
-        self._lib.Finalize()
+        self._lib.engineexport_finalize()

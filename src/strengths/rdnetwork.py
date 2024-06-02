@@ -183,7 +183,7 @@ class Reaction :
     """
     A reversible chemical transformation that converts some species into others with respect to a forward and a reverse kinetic rate constants.
 
-    :param stoechiometry: stoechiometry of the reaction.
+    :param stoichiometry: stoichiometry of the reaction.
         can be a string the "substrate -> product" (ie. "A + 2 B -> C")
         or an array of two dictonaries, the first representing the subtrates, and the second the products.
         each dictionary must then contain species labels as keys and numbres as values. (ie. [{"A":1, "B":2}, {"C":1}]).
@@ -199,22 +199,22 @@ class Reaction :
 
     """
 
-    def __init__ (self, stoechiometry, kf=0, kr=0, label = None, environments = None, units_system = UnitsSystem()) :
+    def __init__ (self, stoichiometry, kf=0, kr=0, label = None, environments = None, units_system = UnitsSystem()) :
         """
         constructor
         """
 
         self.units_system = units_system.copy()
 
-        if type(stoechiometry) == str :
-            self._fromstring(stoechiometry)
+        if type(stoichiometry) == str :
+            self._fromstring(stoichiometry)
         else :
             self._substrates = {}
             self._products = {}
-            for k in list(stoechiometry[0]) :
-                self._substrates[k] = int(stoechiometry[0][k])
-            for k in list(stoechiometry[1]) :
-                self._products[k] = int(stoechiometry[1][k])
+            for k in list(stoichiometry[0]) :
+                self._substrates[k] = int(stoichiometry[0][k])
+            for k in list(stoichiometry[1]) :
+                self._products[k] = int(stoichiometry[1][k])
 
         self._set_label(label)
         self.environments = environments
@@ -223,8 +223,8 @@ class Reaction :
     @property
     def kf(self) :
         """
-        Forward reaction rate constant (:py:class:`UnitsSystem`).
-        can be set by a number, a :py:class:`str` or a :py:class:`UnitValue`.
+        Forward reaction rate constant (:py:class:`UnitValue` or dictionary of :py:class:`UnitValue`).
+        can be set by a number, a :py:class:`str` or a :py:class:`UnitValue` or a dict of the aforementionned types.
         ie.
 
         .. code:: python
@@ -232,6 +232,10 @@ class Reaction :
             reaction.kf = 1
             reaction.kf = UnitValue(1, "µM-1.s-1")
             reaction.kf = "1 µM-1.s-1"
+            reaction.kf = {
+                "env1" : "1 µM-1.s-1",
+                "default" : 0
+                }
         """
 
         return self._kf
@@ -243,14 +247,15 @@ class Reaction :
             self.units_system,
             self.kf_units_dimensions(),
             accepts_singlevalue = True,
-            accepts_dict = False,
+            accepts_dict = True,
             accepts_array = False)
     @property
     def kr(self) :
         """
-        Reverse reaction rate constant (:py:class:`UnitsSystem`).
-        can be set by a number, a :py:class:`str` or a :py:class:`UnitValue`.
-        see k+ example above.
+        Reverse reaction rate constant (:py:class:`UnitValue` or dictionary of :py:class:`UnitValue`).
+        can be set by a number, a :py:class:`str` or a :py:class:`UnitValue` or a dict of the aforementionned types.
+        ie.
+        See the kf example above.
         """
 
         return self._kr
@@ -262,34 +267,8 @@ class Reaction :
             self.units_system,
             self.kr_units_dimensions(),
             accepts_singlevalue = True,
-            accepts_dict = False,
+            accepts_dict = True,
             accepts_array = False)
-
-    @property
-    def environments(self) :
-        """
-        tuple of environments labels in which the reaction can happen. if None, the reaction can happen in any environment.
-        """
-
-        return self._environments
-
-    @environments.setter
-    def environments(self, environments) :
-        
-        if isnone(environments) :
-            self._environments = None
-        elif isarray(environments) : 
-            
-            for e in environments :
-                if not isstr(e) :
-                    raise TypeError("environments must be an array of str.")
-            
-            if type(environments) == tuple :
-                self._environments = environments
-            else :
-                self._environments = tuple(environments.copy())
-        else :
-            raise TypeError("reaction environments must be an array or None.")
 
     @property
     def label(self):
@@ -335,7 +314,7 @@ class Reaction :
     def substrates(self) :
         """
         Returns a copy of the substrate dictionary.
-        Keys are species labels and values are the corresponding stoechiometry coefficient.
+        Keys are species labels and values are the corresponding stoichiometry coefficient.
         """
 
         return self._substrates.copy()
@@ -344,7 +323,7 @@ class Reaction :
     def products(self) :
         """
         Returns a copy of the products dictionary.
-        Keys are species labels and values are the corresponding stoechiometry coefficient.
+        Keys are species labels and values are the corresponding stoichiometry coefficient.
         """
 
         return self._products.copy()
@@ -383,11 +362,11 @@ class Reaction :
 
     def ssto(self, species_labels) :
         """
-        Returns the substrates stoechiometry array corresponding to **species_labels**.
+        Returns the substrates stoichiometry array corresponding to **species_labels**.
 
         :param species_labels: list of species labels. For a given RDNetwork rdn, it must be ordered as in rdn.species_labels.
         :type species_labels: array of str
-        :returns: substrate stoechiometry coefficient for each species.
+        :returns: substrate stoichiometry coefficient for each species.
         :rtype: array of int
         """
 
@@ -395,11 +374,11 @@ class Reaction :
 
     def psto(self, species_labels) :
         """
-        Returns the products stoechiometry array corresponding to **species_labels**.
+        Returns the products stoichiometry array corresponding to **species_labels**.
 
         :param species_labels: list of species labels. For a given RDNetwork rdn, it must be ordered as in rdn.species_labels.
         :type species_labels: array of str
-        :returns: product stoechiometry coefficient for each species.
+        :returns: product stoichiometry coefficient for each species.
         :rtype: array of int
         """
 
@@ -407,34 +386,34 @@ class Reaction :
 
     def dsto(self, species_labels) :
         """
-        Returns the transformation change (products-substrates) stoechiometry array corresponding to **species_labels**.
+        Returns the transformation change (products-substrates) stoichiometry array corresponding to **species_labels**.
 
         :param species_labels: list of species labels. For a given RDNetwork rdn, it must be ordered as in rdn.species_labels.
         :type species_labels: array of str
-        :returns: product-substrate stoechiometry coefficient for each species.
+        :returns: product-substrate stoichiometry coefficient for each species.
         :rtype: array of int
         """
 
         return [int(self._products.get(s, 0))-int(self._substrates.get(s, 0)) for s in species_labels]
 
-    def get_substrate_stoechiometry(self, species_label) :
+    def get_substrate_stoichiometry(self, species_label) :
         """
-        returns the substrate stoechimetry of a given species.
+        returns the substrate stoichimetry of a given species.
         :param species_label: label of the species
         :type species_label: str
-        :returns: substrate side stoechiometric coefficient for the given species
+        :returns: substrate side stoichiometric coefficient for the given species
         :rtype: int
         """
 
         s = self._substrates.get(species_label, 0)
         return s
 
-    def get_product_stoechiometry(self, species_label) :
+    def get_product_stoichiometry(self, species_label) :
         """
-        returns the product stoechimetry of a given species.
+        returns the product stoichimetry of a given species.
         :param species_label: label of the species
         :type species_label: str
-        :returns: product side stoechiometric coefficient for the given species
+        :returns: product side stoichiometric coefficient for the given species
         :rtype: int
         """
 
@@ -443,7 +422,7 @@ class Reaction :
 
     def _fromstring(self, string) :
         """
-        Sets the stoechimetry of the reaction from a string representing its stoechimetric equation.
+        Sets the stoichimetry of the reaction from a string representing its stoichimetric equation.
         """
 
         def parse_side(side) :
@@ -459,7 +438,7 @@ class Reaction :
                         coef = int(token[0].strip())
                         label = token[1].strip()
                     else :
-                        raise Exception("invalid stoechiometry equation. missing '+'?")
+                        raise Exception("invalid stoichiometry equation. missing '+'?")
 
                     if d.get(label, None) == None :
                         d[label] = coef
@@ -469,14 +448,14 @@ class Reaction :
 
         sides = string.split('->')
         if len(sides) != 2 :
-            raise Exception("stoechimetry equation string must have exactly one '->'.")
+            raise Exception("stoichimetry equation string must have exactly one '->'.")
 
         self._substrates = parse_side(sides[0])
         self._products   = parse_side(sides[1])
 
     def to_string(self):
         """
-        Returns a string representing the reaction's stoechimetric equation (:py:class:`str`).
+        Returns a string representing the reaction's stoichimetric equation (:py:class:`str`).
         """
 
         def encode_side(d) :
@@ -563,7 +542,7 @@ class Reaction :
         """
 
         fwd = Reaction(
-            stoechiometry = [self._substrates, self._products],
+            stoichiometry = [self._substrates, self._products],
             kf = self.kf,
             kr = 0,
             label=None,
@@ -571,7 +550,7 @@ class Reaction :
             units_system = self.units_system
             )
         rev = Reaction(
-            stoechiometry = [self._products, self._substrates],
+            stoichiometry = [self._products, self._substrates],
             kf = self.kr,
             kr = 0,
             label=None,
@@ -583,11 +562,43 @@ class Reaction :
     def equilibrium_constant(self) : 
         """
         Returns the reaction equilibrium constant K = kf/kr.
+        If kr=0, the K is set to None.
+        When kf and/or kr are dictionaries, K is a dict with
+        keys of both kf and kr as well as an explicit "default" key. 
         
-        :rtype: UnitValue
+        :rtype: UnitValue or dict of UnitValue
         """
         
-        return self.kf/self.kr
+        if isinstance(self.kf, UnitValue) and isinstance(self.kr, UnitValue):
+            if self.kr.value == 0:
+                return None
+            else:
+                return self.kf/self.kr
+        else :
+            keys = []
+
+            if isinstance(self.kf, dict):
+                keys = list(self.kf)
+                if isinstance(self.kr, dict):
+                    for i in list(self.kr):
+                        if i not in keys: 
+                            keys.append(i)
+            else:
+                keys = list(self.kr)
+            
+            if "default" not in keys:
+                keys.append("default")
+            
+            r = dict()
+            for i in keys :
+                vf = valproc.get_value_in_env(self.kf, i, UnitValue(0, Units(self.units_system, self.kf_units_dimensions())))
+                vr = valproc.get_value_in_env(self.kr, i, UnitValue(0, Units(self.units_system, self.kr_units_dimensions())))
+                if vr.value == 0:
+                    r[i] = None
+                else:
+                    r[i] = vf/vr
+            
+            return r
     
     @property
     def K(self) :
@@ -904,7 +915,7 @@ class RDNetwork :
                     raise ValueError("duplicated reaction label \""+r.label+"\".")
                 rd[r.label] = 1
                     
-        #check reaction stoechiometry labels
+        #check reaction stoichiometry labels
         sl = self.species_labels()
         for i in range(len(self.reactions)):
             r = self.reactions[i]
@@ -1000,24 +1011,22 @@ def reaction_from_dict(d, parent_units_system = UnitsSystem()):
     """
 
     d = valproc.process_input_dict_keys(d, [
-                ["stoechiometry", "sto", "equation", "eq"],
+                ["stoichiometry", "eq", "sto", "equation"],
                 ["label", "l"],
                 ["k+", "kf"],
                 ["k-", "kr"],
-                ["environments", "env"],
                 ["units", "units_system", "units system", "u"]
             ]
         )
     
     da = {}
     
-    if "stoechiometry"  in d : da["stoechiometry"]   = d["stoechiometry"]
-    else : raise ValueError("missing reaction stoechiometry.")
+    if "stoichiometry"  in d : da["stoichiometry"]   = d["stoichiometry"]
+    else : raise ValueError("missing reaction stoichiometry.")
     
     if "label"          in d : da["label"]   = d["label"]
     if "k+"             in d : da["kf"]       = d["k+"]
     if "k-"             in d : da["kr"]       = d["k-"]
-    if "environments"   in d : da["environments"] = d["environments"]
 
     da["units_system"] = valproc.retrive_units_system_from_dict(
         d = d, 
@@ -1036,10 +1045,9 @@ def reaction_to_dict(r):
     :rtype: dict
     """
     d = {"label" : r.label,
-         "stoechiometry" : r.to_string(),
+         "stoichiometry" : r.to_string(),
          "k+" : valproc.format_unitvar_for_save(r.kf, r.units_system),
          "k-" : valproc.format_unitvar_for_save(r.kr, r.units_system),
-         "environments" : r.environments,
          "units" : unitssystem_to_dict(r.units_system)
         }
     return d

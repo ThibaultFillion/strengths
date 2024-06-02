@@ -55,15 +55,12 @@ def compute_reaction_rates(system,
     
     volume = system.space.get_cell_vol_array().get_at(position_index)
     
-    if reaction.environments is not None :
-        environment_index = system.space.get_cell_env_array()[position_index]
-        environment_label = system.network.environments[environment_index]
-        if not environment_label in reaction.environments :
-            return [ UnitValue(0, Units(sys=units_system, dim=UnitsDimensions(quantity=1, space=0, time=-1))),
-                     UnitValue(0, Units(sys=units_system, dim=UnitsDimensions(quantity=1, space=0, time=-1))) ]
+    environment_index = system.space.get_cell_env_array()[position_index]
+    environment_label = system.network.environments[environment_index]
 
-    rf = reaction.kf * volume
-    rr = reaction.kr * volume
+    rf = valproc.get_value_in_env(reaction.kf, environment_label, UnitValue(0, Units(units_system, reaction.kf_units_dimensions()))) * volume
+    rr = valproc.get_value_in_env(reaction.kr, environment_label, UnitValue(0, Units(units_system, reaction.kr_units_dimensions()))) * volume
+
     for i in range(system.network.nspecies()) :
         state_index = system.get_state_index(species=i, position=position_index)
         rf *= (state.get_at(state_index)/volume)**ssto[i]
@@ -183,7 +180,7 @@ def _compute_dspeciesdt_grid(system,
     d = 0
     for reaction in system.network.reactions :
         rates = compute_reaction_rates(system, reaction, position, state, units_system)
-        d += (rates[0] - rates[1]) * (reaction.get_product_stoechiometry(species_label)-reaction.get_substrate_stoechiometry(species_label))
+        d += (rates[0] - rates[1]) * (reaction.get_product_stoichiometry(species_label)-reaction.get_substrate_stoichiometry(species_label))
         
     p = system.space.get_cell_coordinates(system.space.get_cell_index(position))
     for c in [[p[0]+1,p[1],p[2]],
@@ -223,7 +220,7 @@ def _compute_dspeciesdt_graph(system,
     d = 0
     for reaction in system.network.reactions :
         rates = compute_reaction_rates(system, reaction, position, state, units_system)
-        d += (rates[0] - rates[1]) * (reaction.get_product_stoechiometry(species_label)-reaction.get_substrate_stoechiometry(species_label))
+        d += (rates[0] - rates[1]) * (reaction.get_product_stoichiometry(species_label)-reaction.get_substrate_stoichiometry(species_label))
             
     neighbor_indices = []
     for j in range(system.space.size()):

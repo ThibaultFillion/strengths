@@ -573,13 +573,11 @@ class RDSystem :
         #rates that already account for the volume
         k = []
         for r in reactions :
-            k_r = 0
-            if (r.environments is None) or (env in r.environments) :
-                k_r = r.kf.convert(units_system).value
+            k_r = valproc.get_value_in_env(r.kf, i, UnitValue(0, Units(units_system, r.kf_units_dimensions()))).convert(units_system).value
             k_r *= vol**(1-r.order())
             k.append(k_r)
         
-        #stoechiometry
+        #stoichiometry
         sub = [list(r.ssto(sl)) for r in reactions]
         sto = [list(r.dsto(sl)) for r in reactions]
         
