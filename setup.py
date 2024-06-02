@@ -9,19 +9,19 @@ setup(
              define_macros = [("CPYEMVER", None)],
              extra_compile_args = ["-std=c++11"],
              export_symbols = [
-                "Initialize3D",
-                "InitializeGraph",
-                "Run",
-                "IterateN",
-                "Iterate",
-                "GetProgress",
-                "GetOutput",
-                "GetState",
-                "GetT",
-                "GetTSample",
-                "GetNSamples",
-                "Sample",
-                "Finalize"
+                "engineexport_initialize_3D",
+                "engineexport_initialize_graph",
+                "engineexport_run",
+                "engineexport_iterate_n",
+                "engineexport_iterate",
+                "engineexport_get_progress",
+                "engineexport_get_output",
+                "engineexport_get_state",
+                "engineexport_get_time",
+                "engineexport_get_tsample",
+                "engineexport_get_nsamples",
+                "engineexport_sample",
+                "engineexport_finalize"
                 ]
              )
          ]
