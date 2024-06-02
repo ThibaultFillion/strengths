@@ -157,7 +157,7 @@ bool CompareStr(const char * str1, const char * str2)
     return (std::string(str1) == std::string(str2));
     }
 
-extern "C" int Initialize3D (
+extern "C" int engineexport_initialize_3D (
     int w,               //system width
     int h,               //system height
     int d,               //system depth
@@ -172,10 +172,9 @@ extern "C" int Initialize3D (
                          //species first array : x = [species[depth[height[width]]]] or [species[mesh]]
     int *    mesh_env,   //species chemostat flag //size N*width*height*depth
     double mesh_vol,     //volume of a square mesh
-    double * k,          //reaction rates //size M
+    double * k,          //reaction rates //size n_environments*M
     int * sub,           //N*M substrate matrix // (rows * columns) //size N*M
     int * sto,           //N*M stoechiometry matrix //size N*M
-    int * r_env,         //reactions environmenrs
     double * D,          //diffusion coefficient for each species in each mesh type
     const char * boundary_conditions_x, //boundary consitions to be applied along the x axis
     const char * boundary_conditions_y, //boundary consitions to be applied along the y axis
@@ -258,10 +257,9 @@ extern "C" int Initialize3D (
                                        n_meshes), //species first to mesh first
           MkVec<int,    int   >(mesh_env, n_meshes),
           mesh_vol,
-          MkVec<double, double>(k, n_reactions),
+          MkVec<double, double>(k, n_env*n_reactions),
           MkVec<double, int   >(sub, n_species*n_reactions),
           MkVec<double, int   >(sto, n_species*n_reactions),
-          MkVec<double, int   >(r_env, n_reactions*n_env),
           MkVec<double, double>(D, n_species*n_env),
           boundary_conditions,
           sample_n,
@@ -278,7 +276,7 @@ extern "C" int Initialize3D (
     return 0;
     }
 
-extern "C" int InitializeGraph (
+extern "C" int engineexport_initialize_graph (
     int n_nodes,         //system width
     int n_species,       //number of species
     int n_reactions,     //number of reactions
@@ -299,10 +297,9 @@ extern "C" int InitializeGraph (
     int *    mesh_env,   //species chemostat flag //size N*width*height*depth
     double * mesh_vol,     //volume of a square mesh
 
-    double * k,          //reaction rates //size M
+    double * k,          //reaction rates //size n_environments*M
     int * sub,           //N*M substrate matrix // (rows * columns) //size N*M
     int * sto,           //N*M stoechiometry matrix //size N*M
-    int * r_env,         //reactions environmenrs
     double * D,          //diffusion coefficient for each species in each mesh type
 
     int sample_n,        //number of sample timepoints
@@ -376,10 +373,9 @@ extern "C" int InitializeGraph (
           MkVec<double,    double>(mesh_vol, n_meshes),
 
 
-          MkVec<double, double>(k, n_reactions),
+          MkVec<double, double>(k, n_env*n_reactions),
           MkVec<double, int   >(sub, n_species*n_reactions),
           MkVec<double, int   >(sto, n_species*n_reactions),
-          MkVec<double, int   >(r_env, n_reactions*n_env),
           MkVec<double, double>(D, n_species*n_env),
 
           sample_n,
@@ -396,7 +392,7 @@ extern "C" int InitializeGraph (
     return 0;
     }
 
-extern "C" int Run(int breathe_dt)
+extern "C" int engineexport_run(int breathe_dt)
     {
     bool unfinished = true;
     auto t0 = std::chrono::system_clock::now();
@@ -411,7 +407,7 @@ extern "C" int Run(int breathe_dt)
     return unfinished;
     }
 
-extern "C" int IterateN(int n_iterations)
+extern "C" int engineexport_iterate_n(int n_iterations)
     {
     bool unfinished = true;
     for(int i=0; i<n_iterations; i++)
@@ -424,7 +420,7 @@ extern "C" int IterateN(int n_iterations)
     return unfinished;
     }
 
-extern "C" int Iterate()
+extern "C" int engineexport_iterate()
     {
     bool unfinished = true;
     if      (global_space_type == 0) unfinished = global_grid_algo->Iterate();
@@ -432,7 +428,7 @@ extern "C" int Iterate()
     return unfinished;
     }
 
-extern "C" double GetProgress()
+extern "C" double engineexport_get_progress()
     {
     //return t/tmax
     double progress=0;
@@ -441,7 +437,7 @@ extern "C" double GetProgress()
     return progress;
     }
 
-extern "C" int GetOutput(double * trajectory_data)
+extern "C" int engineexport_get_output(double * trajectory_data)
     {
     if (global_space_type == 0)
       {
@@ -487,7 +483,7 @@ extern "C" int GetOutput(double * trajectory_data)
       }
     }
 
-extern "C" int GetState(double * state_data)
+extern "C" int engineexport_get_state(double * state_data)
     {
     if (global_space_type == 0)
       {
@@ -527,7 +523,7 @@ extern "C" int GetState(double * state_data)
       }
     }
 
-extern "C" double GetT()
+extern "C" double engineexport_get_time()
     {
     if (global_space_type == 0)
       return global_grid_algo->GetT();
@@ -535,7 +531,7 @@ extern "C" double GetT()
       return global_graph_algo->GetT();
     }
 
-extern "C" int GetTSample(double * t_sample)
+extern "C" int engineexport_get_tsample(double * t_sample)
     {
     if (global_space_type == 0)
       {
@@ -566,7 +562,7 @@ extern "C" int GetTSample(double * t_sample)
 
     }
 
-extern "C" int GetNSamples()
+extern "C" int engineexport_get_nsamples()
     {
     if (global_space_type == 0)
       return global_grid_algo->NSamples();
@@ -574,7 +570,7 @@ extern "C" int GetNSamples()
       return global_graph_algo->NSamples();
     }
 
-extern "C" int Sample()
+extern "C" int engineexport_sample()
     {
     if (global_space_type == 0)
       global_grid_algo->Sample();
@@ -583,7 +579,7 @@ extern "C" int Sample()
     return 0;
     }
 
-extern "C" int Finalize ()
+extern "C" int engineexport_finalize ()
     {
     if(global_algo_freed)
       return 0;
