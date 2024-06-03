@@ -188,6 +188,7 @@ extern "C" int engineexport_initialize_grid (
 
     double time_step,    //time step
     int seed,            //rng seed
+    const char * init_state_processing, //describes how the initial state should be processed
     const char * option  //option
     )
     //return codes :
@@ -195,6 +196,7 @@ extern "C" int engineexport_initialize_grid (
     //  1 : invalid option
     //  2 : invalid boudary condition
     //  3 : invalid sampling policy
+    //  4 : invalid init state processing
     {
     global_space_type = 0;
     int n_meshes = w*h*d;
@@ -231,7 +233,24 @@ extern "C" int engineexport_initialize_grid (
     std::vector<double> mesh_x;
     bool is_stochastic = (CompareStr(option, "tauleap") || CompareStr(option, "gillespie"));
 
-    if(is_stochastic)
+    if     (CompareStr(init_state_processing, "Poisson"))
+      {
+      std::mt19937 rng(seed);
+      mesh_x.resize(mesh_state.size());
+      for(size_t i=0; i<mesh_state.size(); i++)
+        {
+        mesh_x[i] = std::poisson_distribution(mesh_state[i])(rng);
+        }
+      }
+    else if(CompareStr(init_state_processing, "floor"))
+      {
+      mesh_x.resize(mesh_state.size());
+      for(size_t i=0; i<mesh_state.size(); i++)
+        {
+        mesh_x[i] = floor(mesh_state[i]);
+        }
+      }
+    else if(CompareStr(init_state_processing, "redist") || (is_stochastic && CompareStr(init_state_processing, "auto")))
       {
       mesh_x = GenerateStochasticDistribution (
         SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes),
@@ -239,9 +258,13 @@ extern "C" int engineexport_initialize_grid (
         n_species,
         seed);
       }
-    else
+    else if(CompareStr(init_state_processing, "none") || (!is_stochastic && CompareStr(init_state_processing, "auto")))
       {
       mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes);
+      }
+    else
+      {
+      return 4;
       }
 
     global_grid_algo->Init(
@@ -311,6 +334,7 @@ extern "C" int engineexport_initialize_graph (
 
     double time_step,    //time step
     int seed,            //rng seed
+    const char * init_state_processing, //describes how the initial state should be processed
     const char * option  //option
     )
     //return codes :
@@ -318,6 +342,7 @@ extern "C" int engineexport_initialize_graph (
     //  1 : invalid option
     //  2 : invalid boudary condition
     //  3 : invalid sampling policy
+    //  4 : invalid init state processing
     {
     global_space_type = 1;
     int n_meshes = n_nodes;
@@ -339,7 +364,24 @@ extern "C" int engineexport_initialize_graph (
     std::vector<double> mesh_x;
     bool is_stochastic = (CompareStr(option, "tauleap") || CompareStr(option, "gillespie"));
 
-    if(is_stochastic)
+    if     (CompareStr(init_state_processing, "Poisson"))
+      {
+      std::mt19937 rng(seed);
+      mesh_x.resize(mesh_state.size());
+      for(size_t i=0; i<mesh_state.size(); i++)
+        {
+        mesh_x[i] = std::poisson_distribution(mesh_state[i])(rng);
+        }
+      }
+    else if(CompareStr(init_state_processing, "floor"))
+      {
+      mesh_x.resize(mesh_state.size());
+      for(size_t i=0; i<mesh_state.size(); i++)
+        {
+        mesh_x[i] = floor(mesh_state[i]);
+        }
+      }
+    else if(CompareStr(init_state_processing, "redist") || (is_stochastic && CompareStr(init_state_processing, "auto")))
       {
       mesh_x = GenerateStochasticDistribution (
         SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes),
@@ -347,9 +389,13 @@ extern "C" int engineexport_initialize_graph (
         n_species,
         seed);
       }
-    else
+    else if(CompareStr(init_state_processing, "none") || (!is_stochastic && CompareStr(init_state_processing, "auto")))
       {
       mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes);
+      }
+    else
+      {
+      return 4;
       }
 
     global_graph_algo->Init(
