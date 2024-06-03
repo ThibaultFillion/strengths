@@ -273,7 +273,7 @@ class LibRDEngine(RDEngineBase) :
             
     def _setup_grid(self, script, units_system, species, reactions, environments) :
         
-        res = self._lib.engineexport_initialize_3D(
+        res = self._lib.engineexport_initialize_grid(
             #w
                 ctypes.c_int(script.system.space.w),
                 
@@ -408,7 +408,7 @@ class LibRDEngine(RDEngineBase) :
         data_len = n_sample*self._script.system.state_size()
         
         data_ = (data_len*ctypes.c_double)()
-        self._lib.engineexport_get_output(data_)
+        self._lib.engineexport_get_trajectory(data_)
         data = np.zeros(data_len)
         for i in range(data_len):
             data[i] = data_[i]
