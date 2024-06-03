@@ -236,16 +236,16 @@ extern "C" int engineexport_initialize_grid (
     if     (CompareStr(init_state_processing, "Poisson"))
       {
       std::mt19937 rng(seed);
-      mesh_x.resize(mesh_state.size());
-      for(size_t i=0; i<mesh_state.size(); i++)
+      mesh_x.resize(n_meshes*n_species);
+      for(size_t i=0; i<mesh_x.size(); i++)
         {
         mesh_x[i] = std::poisson_distribution(mesh_state[i])(rng);
         }
       }
     else if(CompareStr(init_state_processing, "floor"))
       {
-      mesh_x.resize(mesh_state.size());
-      for(size_t i=0; i<mesh_state.size(); i++)
+      mesh_x.resize(n_meshes*n_species);
+      for(size_t i=0; i<mesh_x.size(); i++)
         {
         mesh_x[i] = floor(mesh_state[i]);
         }
@@ -367,16 +367,16 @@ extern "C" int engineexport_initialize_graph (
     if     (CompareStr(init_state_processing, "Poisson"))
       {
       std::mt19937 rng(seed);
-      mesh_x.resize(mesh_state.size());
-      for(size_t i=0; i<mesh_state.size(); i++)
+      mesh_x.resize(n_meshes*n_species);
+      for(size_t i=0; i<mesh_x.size(); i++)
         {
         mesh_x[i] = std::poisson_distribution(mesh_state[i])(rng);
         }
       }
     else if(CompareStr(init_state_processing, "floor"))
       {
-      mesh_x.resize(mesh_state.size());
-      for(size_t i=0; i<mesh_state.size(); i++)
+      mesh_x.resize(n_meshes*n_species);
+      for(size_t i=0; i<mesh_x.size(); i++)
         {
         mesh_x[i] = floor(mesh_state[i]);
         }
