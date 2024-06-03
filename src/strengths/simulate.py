@@ -106,6 +106,7 @@ def simulate(
     * t_max = "default"
     * rng_seed = None
     * units_system = UnitsSystem()
+    * init_state_processing = "auto"
 
     :return: system trajectory
     :rtype: RDTrajectory
