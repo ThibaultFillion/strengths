@@ -239,7 +239,7 @@ extern "C" int engineexport_initialize_grid (
       mesh_x.resize(n_meshes*n_species);
       for(size_t i=0; i<mesh_x.size(); i++)
         {
-        mesh_x[i] = std::poisson_distribution(mesh_state[i])(rng);
+        mesh_x[i] = static_cast<double>(std::poisson_distribution<int>(mesh_state[i])(rng));
         }
       }
     else if(CompareStr(init_state_processing, "floor"))
@@ -370,7 +370,7 @@ extern "C" int engineexport_initialize_graph (
       mesh_x.resize(n_meshes*n_species);
       for(size_t i=0; i<mesh_x.size(); i++)
         {
-        mesh_x[i] = std::poisson_distribution(mesh_state[i])(rng);
+        mesh_x[i] = static_cast<double>(std::poisson_distribution<int>(mesh_state[i])(rng));
         }
       }
     else if(CompareStr(init_state_processing, "floor"))
