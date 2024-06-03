@@ -263,7 +263,7 @@ class LibRDEngine(RDEngineBase) :
                 ctypes.c_int(script.rng_seed),
 
             #init_state_processing
-                ctypes.c_char_p(script.init_state_processing.encode())
+                ctypes.c_char_p(script.init_state_processing.encode()),
 
             #option
                 ctypes.c_char_p(self.option.encode())
@@ -350,7 +350,7 @@ class LibRDEngine(RDEngineBase) :
                 ctypes.c_int(script.rng_seed),
 
             #init_state_processing
-                ctypes.c_char_p(script.init_state_processing.encode())
+                ctypes.c_char_p(script.init_state_processing.encode()),
                                 
             #option
                 ctypes.c_char_p(self.option.encode())
