@@ -157,7 +157,7 @@ bool CompareStr(const char * str1, const char * str2)
     return (std::string(str1) == std::string(str2));
     }
 
-extern "C" int engineexport_initialize_3D (
+extern "C" int engineexport_initialize_grid (
     int w,               //system width
     int h,               //system height
     int d,               //system depth
@@ -437,7 +437,7 @@ extern "C" double engineexport_get_progress()
     return progress;
     }
 
-extern "C" int engineexport_get_output(double * trajectory_data)
+extern "C" int engineexport_get_trajectory(double * trajectory_data)
     {
     if (global_space_type == 0)
       {
