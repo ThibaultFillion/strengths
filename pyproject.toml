@@ -11,4 +11,4 @@ dependencies = [
 	"matplotlib"]
 
 [tool.cibuildwheel]
-skip = ["pp38-manylinux_x86_64", "pp39-manylinux_x86_64"]
+skip = ["pp38-manylinux_x86_64", "pp39-manylinux_x86_64", "pp38-macosx_arm64", "pp39-macosx_arm64"]
