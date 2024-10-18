@@ -398,7 +398,7 @@ class Reaction :
 
     def get_substrate_stoichiometry(self, species_label) :
         """
-        returns the substrate stoichimetry of a given species.
+        returns the substrate stoichiometry of a given species.
         :param species_label: label of the species
         :type species_label: str
         :returns: substrate side stoichiometric coefficient for the given species
@@ -410,7 +410,7 @@ class Reaction :
 
     def get_product_stoichiometry(self, species_label) :
         """
-        returns the product stoichimetry of a given species.
+        returns the product stoichiometry of a given species.
         :param species_label: label of the species
         :type species_label: str
         :returns: product side stoichiometric coefficient for the given species
@@ -422,7 +422,7 @@ class Reaction :
 
     def _fromstring(self, string) :
         """
-        Sets the stoichimetry of the reaction from a string representing its stoichimetric equation.
+        Sets the stoichiometry of the reaction from a string representing its stoichiometric equation.
         """
 
         def parse_side(side) :
@@ -448,14 +448,14 @@ class Reaction :
 
         sides = string.split('->')
         if len(sides) != 2 :
-            raise Exception("stoichimetry equation string must have exactly one '->'.")
+            raise Exception("stoichiometry equation string must have exactly one '->'.")
 
         self._substrates = parse_side(sides[0])
         self._products   = parse_side(sides[1])
 
     def to_string(self):
         """
-        Returns a string representing the reaction's stoichimetric equation (:py:class:`str`).
+        Returns a string representing the reaction's stoichiometric equation (:py:class:`str`).
         """
 
         def encode_side(d) :
