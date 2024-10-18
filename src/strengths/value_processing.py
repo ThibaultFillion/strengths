@@ -142,6 +142,8 @@ def process_input_dict_keys(d, synonyms, policy="error") :
     :rtype: dict
     """
     
+    d = copy.deepcopy(d)
+    
     #first step : search for unexpected keys
     for k in list(d) : 
         key_found = False

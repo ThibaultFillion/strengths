@@ -117,7 +117,7 @@ def _test_compute_reaction_rates_with_environments(spacetype) :
                     {"label" : "B"}
                 ],
             "reactions" : [
-                    {"eq" : "A -> B", "kf":1, "kr":1, "env":["b"]}
+                    {"eq" : "A -> B", "kf":{"b": 1}, "kr":{"b": 1}}
                 ]
             }
         }

@@ -157,7 +157,7 @@ bool CompareStr(const char * str1, const char * str2)
     return (std::string(str1) == std::string(str2));
     }
 
-extern "C" int Initialize3D (
+extern "C" int engineexport_initialize_grid (
     int w,               //system width
     int h,               //system height
     int d,               //system depth
@@ -172,10 +172,9 @@ extern "C" int Initialize3D (
                          //species first array : x = [species[depth[height[width]]]] or [species[mesh]]
     int *    mesh_env,   //species chemostat flag //size N*width*height*depth
     double mesh_vol,     //volume of a square mesh
-    double * k,          //reaction rates //size M
+    double * k,          //reaction rates //size n_environments*M
     int * sub,           //N*M substrate matrix // (rows * columns) //size N*M
     int * sto,           //N*M stoechiometry matrix //size N*M
-    int * r_env,         //reactions environmenrs
     double * D,          //diffusion coefficient for each species in each mesh type
     const char * boundary_conditions_x, //boundary consitions to be applied along the x axis
     const char * boundary_conditions_y, //boundary consitions to be applied along the y axis
@@ -189,6 +188,7 @@ extern "C" int Initialize3D (
 
     double time_step,    //time step
     int seed,            //rng seed
+    const char * init_state_processing, //describes how the initial state should be processed
     const char * option  //option
     )
     //return codes :
@@ -196,6 +196,7 @@ extern "C" int Initialize3D (
     //  1 : invalid option
     //  2 : invalid boudary condition
     //  3 : invalid sampling policy
+    //  4 : invalid init state processing
     {
     global_space_type = 0;
     int n_meshes = w*h*d;
@@ -232,7 +233,24 @@ extern "C" int Initialize3D (
     std::vector<double> mesh_x;
     bool is_stochastic = (CompareStr(option, "tauleap") || CompareStr(option, "gillespie"));
 
-    if(is_stochastic)
+    if     (CompareStr(init_state_processing, "Poisson"))
+      {
+      std::mt19937 rng(seed);
+      mesh_x.resize(n_meshes*n_species);
+      for(size_t i=0; i<mesh_x.size(); i++)
+        {
+        mesh_x[i] = static_cast<double>(std::poisson_distribution<int>(mesh_state[i])(rng));
+        }
+      }
+    else if(CompareStr(init_state_processing, "floor"))
+      {
+      mesh_x.resize(n_meshes*n_species);
+      for(size_t i=0; i<mesh_x.size(); i++)
+        {
+        mesh_x[i] = floor(mesh_state[i]);
+        }
+      }
+    else if(CompareStr(init_state_processing, "redist") || (is_stochastic && CompareStr(init_state_processing, "auto")))
       {
       mesh_x = GenerateStochasticDistribution (
         SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes),
@@ -240,9 +258,13 @@ extern "C" int Initialize3D (
         n_species,
         seed);
       }
-    else
+    else if(CompareStr(init_state_processing, "none") || (!is_stochastic && CompareStr(init_state_processing, "auto")))
       {
       mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes);
+      }
+    else
+      {
+      return 4;
       }
 
     global_grid_algo->Init(
@@ -258,10 +280,9 @@ extern "C" int Initialize3D (
                                        n_meshes), //species first to mesh first
           MkVec<int,    int   >(mesh_env, n_meshes),
           mesh_vol,
-          MkVec<double, double>(k, n_reactions),
+          MkVec<double, double>(k, n_env*n_reactions),
           MkVec<double, int   >(sub, n_species*n_reactions),
           MkVec<double, int   >(sto, n_species*n_reactions),
-          MkVec<double, int   >(r_env, n_reactions*n_env),
           MkVec<double, double>(D, n_species*n_env),
           boundary_conditions,
           sample_n,
@@ -278,7 +299,7 @@ extern "C" int Initialize3D (
     return 0;
     }
 
-extern "C" int InitializeGraph (
+extern "C" int engineexport_initialize_graph (
     int n_nodes,         //system width
     int n_species,       //number of species
     int n_reactions,     //number of reactions
@@ -299,10 +320,9 @@ extern "C" int InitializeGraph (
     int *    mesh_env,   //species chemostat flag //size N*width*height*depth
     double * mesh_vol,     //volume of a square mesh
 
-    double * k,          //reaction rates //size M
+    double * k,          //reaction rates //size n_environments*M
     int * sub,           //N*M substrate matrix // (rows * columns) //size N*M
     int * sto,           //N*M stoechiometry matrix //size N*M
-    int * r_env,         //reactions environmenrs
     double * D,          //diffusion coefficient for each species in each mesh type
 
     int sample_n,        //number of sample timepoints
@@ -314,6 +334,7 @@ extern "C" int InitializeGraph (
 
     double time_step,    //time step
     int seed,            //rng seed
+    const char * init_state_processing, //describes how the initial state should be processed
     const char * option  //option
     )
     //return codes :
@@ -321,6 +342,7 @@ extern "C" int InitializeGraph (
     //  1 : invalid option
     //  2 : invalid boudary condition
     //  3 : invalid sampling policy
+    //  4 : invalid init state processing
     {
     global_space_type = 1;
     int n_meshes = n_nodes;
@@ -342,7 +364,24 @@ extern "C" int InitializeGraph (
     std::vector<double> mesh_x;
     bool is_stochastic = (CompareStr(option, "tauleap") || CompareStr(option, "gillespie"));
 
-    if(is_stochastic)
+    if     (CompareStr(init_state_processing, "Poisson"))
+      {
+      std::mt19937 rng(seed);
+      mesh_x.resize(n_meshes*n_species);
+      for(size_t i=0; i<mesh_x.size(); i++)
+        {
+        mesh_x[i] = static_cast<double>(std::poisson_distribution<int>(mesh_state[i])(rng));
+        }
+      }
+    else if(CompareStr(init_state_processing, "floor"))
+      {
+      mesh_x.resize(n_meshes*n_species);
+      for(size_t i=0; i<mesh_x.size(); i++)
+        {
+        mesh_x[i] = floor(mesh_state[i]);
+        }
+      }
+    else if(CompareStr(init_state_processing, "redist") || (is_stochastic && CompareStr(init_state_processing, "auto")))
       {
       mesh_x = GenerateStochasticDistribution (
         SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes),
@@ -350,9 +389,13 @@ extern "C" int InitializeGraph (
         n_species,
         seed);
       }
-    else
+    else if(CompareStr(init_state_processing, "none") || (!is_stochastic && CompareStr(init_state_processing, "auto")))
       {
       mesh_x = SpeciesFirstToMeshFirstArray(MkVec<double, double>(mesh_state, n_meshes*n_species), n_species, n_meshes);
+      }
+    else
+      {
+      return 4;
       }
 
     global_graph_algo->Init(
@@ -376,10 +419,9 @@ extern "C" int InitializeGraph (
           MkVec<double,    double>(mesh_vol, n_meshes),
 
 
-          MkVec<double, double>(k, n_reactions),
+          MkVec<double, double>(k, n_env*n_reactions),
           MkVec<double, int   >(sub, n_species*n_reactions),
           MkVec<double, int   >(sto, n_species*n_reactions),
-          MkVec<double, int   >(r_env, n_reactions*n_env),
           MkVec<double, double>(D, n_species*n_env),
 
           sample_n,
@@ -396,7 +438,7 @@ extern "C" int InitializeGraph (
     return 0;
     }
 
-extern "C" int Run(int breathe_dt)
+extern "C" int engineexport_run(int breathe_dt)
     {
     bool unfinished = true;
     auto t0 = std::chrono::system_clock::now();
@@ -411,7 +453,7 @@ extern "C" int Run(int breathe_dt)
     return unfinished;
     }
 
-extern "C" int IterateN(int n_iterations)
+extern "C" int engineexport_iterate_n(int n_iterations)
     {
     bool unfinished = true;
     for(int i=0; i<n_iterations; i++)
@@ -424,7 +466,7 @@ extern "C" int IterateN(int n_iterations)
     return unfinished;
     }
 
-extern "C" int Iterate()
+extern "C" int engineexport_iterate()
     {
     bool unfinished = true;
     if      (global_space_type == 0) unfinished = global_grid_algo->Iterate();
@@ -432,7 +474,7 @@ extern "C" int Iterate()
     return unfinished;
     }
 
-extern "C" double GetProgress()
+extern "C" double engineexport_get_progress()
     {
     //return t/tmax
     double progress=0;
@@ -441,7 +483,7 @@ extern "C" double GetProgress()
     return progress;
     }
 
-extern "C" int GetOutput(double * trajectory_data)
+extern "C" int engineexport_get_trajectory(double * trajectory_data)
     {
     if (global_space_type == 0)
       {
@@ -487,7 +529,7 @@ extern "C" int GetOutput(double * trajectory_data)
       }
     }
 
-extern "C" int GetState(double * state_data)
+extern "C" int engineexport_get_state(double * state_data)
     {
     if (global_space_type == 0)
       {
@@ -527,7 +569,7 @@ extern "C" int GetState(double * state_data)
       }
     }
 
-extern "C" double GetT()
+extern "C" double engineexport_get_time()
     {
     if (global_space_type == 0)
       return global_grid_algo->GetT();
@@ -535,7 +577,7 @@ extern "C" double GetT()
       return global_graph_algo->GetT();
     }
 
-extern "C" int GetTSample(double * t_sample)
+extern "C" int engineexport_get_tsample(double * t_sample)
     {
     if (global_space_type == 0)
       {
@@ -566,7 +608,7 @@ extern "C" int GetTSample(double * t_sample)
 
     }
 
-extern "C" int GetNSamples()
+extern "C" int engineexport_get_nsamples()
     {
     if (global_space_type == 0)
       return global_grid_algo->NSamples();
@@ -574,7 +616,7 @@ extern "C" int GetNSamples()
       return global_graph_algo->NSamples();
     }
 
-extern "C" int Sample()
+extern "C" int engineexport_sample()
     {
     if (global_space_type == 0)
       global_grid_algo->Sample();
@@ -583,7 +625,7 @@ extern "C" int Sample()
     return 0;
     }
 
-extern "C" int Finalize ()
+extern "C" int engineexport_finalize ()
     {
     if(global_algo_freed)
       return 0;

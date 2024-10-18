@@ -4,6 +4,12 @@ from strengths.rdscript import RDScript
 from strengths import engine_collection
 from strengths.coarsegrain import coarsegrain_system, uncoarsegrain_trajectory
 
+def _print_progress(v) :
+    v = min(v, 100)
+    if   v<10  : print(f"\r00{v:.6f} %", end="")
+    elif v<100 : print(f"\r0{v:.6f} %", end="")
+    else       : print(f"\r{v:.6f} %", end="")
+            
 def simulate_script(
         script,
         engine,
@@ -41,14 +47,16 @@ def simulate_script(
             raise Exception("Invalid boundary conditions.")
             
         if print_progress :
-            print("0 %", end="")
+            _print_progress(0)
     
         # loop phase
         continue_simulation = True
         while continue_simulation :
             continue_simulation = engine.run(1000)
             if print_progress :
-                print("\r" + str(engine.get_progress()) + " %", end="")
+                _print_progress(engine.get_progress())
+                    
+        if print_progress: print("")
     
         # output phase
         output = engine.get_output()
@@ -98,6 +106,7 @@ def simulate(
     * t_max = "default"
     * rng_seed = None
     * units_system = UnitsSystem()
+    * init_state_processing = "auto"
 
     :return: system trajectory
     :rtype: RDTrajectory

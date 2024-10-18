@@ -90,11 +90,11 @@ Tests rely on the `pytest <https://docs.pytest.org>`_ package.
 To run the unit tests, run either :code:`run_all_tests.py` or :code:`pytest` in the 
 `tests` directory.
 
-Licence
+License
 -------
 
-Strengths's source code and documentation are licensed under the terms of the `MIT Licence <https://github.com/ThibaultFillion/strengths/blob/main/LICENCE>`_.
-You'll find the licence text in your strengths installation root file, or in the root file of the
+Strengths's source code and documentation are licensed under the terms of the `MIT License <https://github.com/ThibaultFillion/strengths/blob/main/LICENSE>`_.
+You'll find the license text in your strengths installation root file, or in the root file of the
 project's GitHub repository.
 
 Initial authors

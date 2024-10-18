@@ -100,7 +100,7 @@ class SimulationAlgorithm3DBase
             }
         }
 
-    void Build_mesh_kr(const std::vector<double> & k, const std::vector<double> & r_env)
+    void Build_mesh_kr(const std::vector<double> & k)
     // builds mesh_kr
         {
         mesh_kr.clear();
@@ -111,8 +111,10 @@ class SimulationAlgorithm3DBase
             {
             double q = 0;
             for(int s=0; s<n_species; s++)
+                {
                 q+=sub[s*n_reactions+r];
-            mesh_kr[i*n_reactions+r] = k[r]*pow(mesh_vol,1-q)*r_env[r*n_env+mesh_env[i]];
+                }
+            mesh_kr[i*n_reactions+r] = k[mesh_env[i]*n_reactions+r]*pow(mesh_vol,1-q);
             }
           }
         }
@@ -317,7 +319,6 @@ class SimulationAlgorithm3DBase
         std::vector<double> k,          //reaction rates
         std::vector<double> sub,        //N*M substrate matrix
         std::vector<double> sto,        //N*M stoechiometry matrix
-        std::vector<double> r_env,      //reactions environments
         std::vector<double> D,          //reactions diffusion coefficients
         std::vector<int> boundary_conditions,
         int sample_n,                   //number of sample timepoints
@@ -363,7 +364,7 @@ class SimulationAlgorithm3DBase
         this->t = 0.0;
         this->dt = time_step;
         this->complete = false;
-        Build_mesh_kr(k, r_env);
+        Build_mesh_kr(k);
         Build_mesh_kd(D);
         this->rng = std::mt19937(seed);
         this->uiud = std::uniform_real_distribution<double> (0.0, 1.0);
