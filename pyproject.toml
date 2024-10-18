@@ -13,3 +13,5 @@ dependencies = [
 [tool.cibuildwheel]
 
 skip = "pp38-manylinux_x86_64"
+
+skip = "pp39-manylinux_x86_64"
