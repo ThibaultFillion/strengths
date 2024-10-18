@@ -9,3 +9,7 @@ readme = "README.rst"
 dependencies = [
 	"numpy",
 	"matplotlib"]
+
+[tool.cibuildwheel]
+
+skip = "pp38-manylinux_x86_64"
