@@ -202,15 +202,12 @@ class RDGridSpace :
             rdspace.cell_env = [0,0,0]
         """
 
-        if isnumber(self._cell_env) :
-            return np.array([self._cell_env for i in range(self.size())], dtype=int)
-        elif isarray(self._cell_env) :
-            return self._cell_env
+        return self._cell_env
 
     @cell_env.setter        
     def cell_env(self, v) :
         if isnumber(v) :
-            self._cell_env = int(v)
+            self._cell_env = np.array([int(v) for i in range(self.size())], dtype=int)
         elif isarray(v) :
             if len(v) != self.size() : 
                 raise ValueError("cell_env size must match the system size.")
@@ -233,6 +230,23 @@ class RDGridSpace :
         """
         
         return copy.deepcopy(self.cell_env)
+
+    def get_cell_vol(self, position) :
+        """
+        Aims to be part of the general reaction-diffusion space interface.
+        Returns the volume of the cell at the given position.
+        """
+
+        return self.cell_vol.copy()
+    
+    def get_cell_env(self, position) :
+        """
+        Aims to be part of the general reaction-diffusion space interface.
+        Returns the environment index of the cell at the given position.
+        """
+
+        position_index = self.get_cell_index(position)
+        return self.cell_env[position_index]
     
     @property 
     def units_system(self): 

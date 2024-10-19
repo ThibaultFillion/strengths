@@ -226,6 +226,24 @@ class RDGraphSpace :
         
         return [node.environment for node in self.nodes]
 
+    def get_cell_vol(self, position) :
+        """
+        Aims to be part of the general reaction-diffusion space interface.
+        Returns the volume of the cell at the given position.
+        """
+
+        position_index = self.get_cell_index(position)
+        return self._nodes[position_index].volume.copy()
+    
+    def get_cell_env(self, position) :
+        """
+        Aims to be part of the general reaction-diffusion space interface.
+        Returns the environment index of the cell at the given position.
+        """
+
+        position_index = self.get_cell_index(position)
+        return self._nodes[position_index].environment
+
     def get_cell_index(self, position) :
         """
         Returns position if it is a valid cell index. raise an Exception otherwise.
@@ -238,6 +256,22 @@ class RDGraphSpace :
             raise ValueError("position "+str(cell_index)+" is not a valid graph node index.")
         
         return cell_index
+
+    def are_neighbors(self, position1, position2): 
+        """
+        tells if the two positions reffres to a couple of neighbor cells.
+        Return True is that is the case, False otherwise.
+        
+        :param position1: position of the first cell
+        :type position1: node index (int)
+        :param position2: position of the second cell
+        :type position2: node index (int)
+        """
+        
+        i = self.get_cell_index(position1)
+        j = self.get_cell_index(position2)
+        e = self.get_edge(i, j)
+        return not(e is None)
     
     def get_edge(self, i, j) : 
         """
