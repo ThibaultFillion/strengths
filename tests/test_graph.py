@@ -31,7 +31,7 @@ def test_graph() :
         
     graph2 = rdspace_from_dict(gsd)
     
-    for i in range(3) :
+    for i in range(3):
         assert graph1.nodes[i].volume == graph2.nodes[i].volume
         assert graph1.nodes[i].environment == graph2.nodes[i].environment
         
@@ -39,3 +39,7 @@ def test_graph() :
         assert graph1.edges[i].j == graph2.edges[i].j
         assert graph1.edges[i].surface == graph2.edges[i].surface
         assert graph1.edges[i].distance == graph2.edges[i].distance
+
+    for i in range(graph2.size()):
+        assert graph2.get_cell_env(i)==graph2.nodes[i].environment
+        assert graph2.get_cell_vol(i)==graph2.nodes[i].volume

@@ -44,36 +44,6 @@ def test_build_reaction_rate_constant_matrix() :
         ]
     assert list(k) == expected_k
     
-def test_build_reaction_environment_boolean_matrix() :
-    environments = ["a", "b", "c"]
-    reactions = [Reaction("A->"), 
-                 Reaction("A->"), 
-                 Reaction("A->")]
-    m = build_reaction_environment_boolean_matrix(reactions, environments)
-    assert list(m) == [1,1,1, 1,1,1, 1,1,1]
-
-    environments = ["a", "b", "c"]
-    reactions = [Reaction("A->", environments=[]), 
-                 Reaction("A->"), 
-                 Reaction("A->")]
-    m = build_reaction_environment_boolean_matrix(reactions, environments)
-    assert list(m) == [0,0,0, 1,1,1, 1,1,1]
-
-
-    environments = ["a", "b", "c"]
-    reactions = [Reaction("A->", environments=["a"]), 
-                 Reaction("A->", environments=["b"]), 
-                 Reaction("A->", environments=["c", "a"])]
-    m = build_reaction_environment_boolean_matrix(reactions, environments)
-    assert list(m) == [1,0,0, 0,1,0, 1,0,1]
-    
-    environments = ["c", "a", "b"]
-    reactions = [Reaction("A->", environments=["a"]), 
-                 Reaction("A->", environments=["b"]), 
-                 Reaction("A->", environments=["c", "a"])]
-    m = build_reaction_environment_boolean_matrix(reactions, environments)
-    assert list(m) == [0,1,0, 0,0,1, 1,1,0]
-
 def test_build_substrate_stoechiometric_matrix() :
     species = [
         Species("A"),

@@ -92,21 +92,18 @@ def test_reaction_split() :
                  kf=1.5, 
                  kr=0.3, 
                  label="test", 
-                 environments=["a"], 
                  units_system=UnitsSystem(space="dm", time="ns", quantity="nmol"))
     rf, rr = r.split()
 
     assert rf.to_string().strip() == "A -> 2 B"
     assert rf.kf == r.kf
     assert rf.kr == 0
-    assert rf.environments == r.environments
     assert isnone(rf.label)
     assert rf.units_system == r.units_system
 
     assert rr.to_string().strip() == "2 B -> A"
     assert rr.kf == r.kr
     assert rr.kr == 0
-    assert rr.environments == r.environments
     assert isnone(rr.label)
     assert rr.units_system == r.units_system
 
