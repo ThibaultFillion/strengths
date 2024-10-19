@@ -191,15 +191,12 @@ class Reaction :
     :param kr: reverse reaction rate constant (default 0)
     :param label: unique identifier for the reaction in a reaction network. (default None)
     :type label: str or None
-    :param environments: list of environment in which the reaction can occur (default None).
-        if None, the reaction can occur everywhere.
-    :type environments: None or list[str].
     :param units_system: default units system (default UnitsSystem())
     :type units_system: UnitSystem or dict
 
     """
 
-    def __init__ (self, stoichiometry, kf=0, kr=0, label = None, environments = None, units_system = UnitsSystem()) :
+    def __init__ (self, stoichiometry, kf=0, kr=0, label = None, units_system = UnitsSystem()) :
         """
         constructor
         """
@@ -217,7 +214,6 @@ class Reaction :
                 self._products[k] = int(stoichiometry[1][k])
 
         self._set_label(label)
-        self.environments = environments
         self.set_k(kf, kr)
 
     @property
@@ -249,6 +245,7 @@ class Reaction :
             accepts_singlevalue = True,
             accepts_dict = True,
             accepts_array = False)
+
     @property
     def kr(self) :
         """
@@ -506,7 +503,6 @@ class Reaction :
                      kf=2,
                      kr=1,
                      label="association",
-                     environments=["env1"],
                      units_system=UnitsSystem(space="m",
                                               time="min",
                                               quantity="mol")
@@ -520,7 +516,6 @@ class Reaction :
                      kf=2,
                      kr=0,
                      label=None,
-                     environments=["env1"],
                      units_system=UnitsSystem(space="m",
                                               time="min",
                                               quantity="mol")
@@ -530,7 +525,6 @@ class Reaction :
                      kf=1,
                      kr=0,
                      label=None,
-                     environments=["env1"],
                      units_system=UnitsSystem(space="m",
                                               time="min",
                                               quantity="mol")
@@ -546,7 +540,6 @@ class Reaction :
             kf = self.kf,
             kr = 0,
             label=None,
-            environments = self.environments,
             units_system = self.units_system
             )
         rev = Reaction(
@@ -554,9 +547,9 @@ class Reaction :
             kf = self.kr,
             kr = 0,
             label=None,
-            environments = self.environments,
             units_system = self.units_system
             )
+
         return fwd, rev
 
     def equilibrium_constant(self) : 
