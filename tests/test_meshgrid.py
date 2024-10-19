@@ -96,3 +96,16 @@ def test_periodicity():
 
     mg = rdspace_from_dict({"w":3,"h":3,"d":3,"boundary_conditions" : {"y" : "periodical"}})
     assert(mg.are_neighbors((1,0,0), (1,2,0))==True)    
+
+def test_get_cell_env():
+    mg = make_test_rdspace()
+    mg.cell_env = [i for i in range(mg.size())]
+    for i in range(mg.size()):        
+        assert mg.get_cell_env(i)==i
+        assert mg.get_cell_env(mg.get_cell_coordinates(i))==i
+
+def test_get_cell_vol():
+    mg = make_test_rdspace()
+    for i in range(mg.size()):
+        assert mg.get_cell_vol(i)==mg.cell_vol
+        assert mg.get_cell_vol(mg.get_cell_coordinates(i))==mg.cell_vol
