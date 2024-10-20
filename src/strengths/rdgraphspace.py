@@ -272,7 +272,24 @@ class RDGraphSpace :
         j = self.get_cell_index(position2)
         e = self.get_edge(i, j)
         return not(e is None)
-    
+
+    def get_neighbors(self, position):
+        """
+        Returns the indices of all neighbors of the cell
+        at the given position.
+        """
+        
+        i = self.get_cell_index(position)
+        neighbors = []
+
+        for edge in self.edges:
+            if i == edge.i:
+                neighbors.append(edge.j)
+            if i == edge.j:
+                neighbors.append(edge.i)
+
+        return neighbors    
+
     def get_edge(self, i, j) : 
         """
         return the edge (i,j) or (j,i) if it exists, None otherwise.

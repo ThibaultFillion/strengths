@@ -354,6 +354,34 @@ class RDGridSpace :
             
         return ((dx + dy + dz) == 1)
 
+    def get_neighbors(self, position):
+        """
+        Returns the indices of all neighbors of the cell
+        at the given position.
+        """
+        
+        i = self.get_cell_index(position)
+        x, y, z = self.get_cell_coordinates(i)
+        neighbors = []
+
+        if x>0 : neighbors.append(self.get_cell_index((x-1, y, z)))
+        if y>0 : neighbors.append(self.get_cell_index((x, y-1, z)))
+        if z>0 : neighbors.append(self.get_cell_index((x, y, z-1)))
+        
+        if x<self.w-1 : neighbors.append(self.get_cell_index((x+1, y, z)))
+        if y<self.h-1 : neighbors.append(self.get_cell_index((x, y+1, z)))
+        if z<self.d-1 : neighbors.append(self.get_cell_index((x, y, z+1)))
+        
+        if self._boundary_conditions["x"]=="periodical" and x == 0: neighbors.append(self.get_cell_index((self.w-1, y, z)))
+        if self._boundary_conditions["y"]=="periodical" and y == 0: neighbors.append(self.get_cell_index((x, self.h-1, z)))
+        if self._boundary_conditions["z"]=="periodical" and z == 0: neighbors.append(self.get_cell_index((x, y, self.d-1)))
+        
+        if self._boundary_conditions["x"]=="periodical" and x == self.w-1: neighbors.append(self.get_cell_index((0, y, z)))
+        if self._boundary_conditions["y"]=="periodical" and y == self.h-1: neighbors.append(self.get_cell_index((x, 0, z)))
+        if self._boundary_conditions["z"]=="periodical" and z == self.d-1: neighbors.append(self.get_cell_index((x, y, 0)))
+        
+        return neighbors
+        
     def get_boundary_conditions(self) :
         """
         Returns a dict of boundary conditions associated with each axis.

@@ -1,6 +1,7 @@
 import sys
 sys.path.append("../src/")
 from strengths import *
+import strengths.coarsegrain as strncg
 
 def make_test_rdspace() : 
     cell_vol = 1.3
@@ -109,3 +110,46 @@ def test_get_cell_vol():
     for i in range(mg.size()):
         assert mg.get_cell_vol(i)==mg.cell_vol
         assert mg.get_cell_vol(mg.get_cell_coordinates(i))==mg.cell_vol
+
+def test_space_get_neighbors_():
+    def _test_space_get_neighbors_makegrid(bc):
+        return RDGridSpace(
+            w=3,
+            h=3,
+            d=3,
+            boundary_conditions={"x": bc, "y":bc, "z":bc}
+            )
+    grid = _test_space_get_neighbors_makegrid("reflecting")
+    graph = strncg.grid_to_graph(grid)
+    
+    assert grid.get_cell_index((1,0,0)) in grid.get_neighbors(0) 
+    assert grid.get_cell_index((1,0,0)) in graph.get_neighbors(0)     
+    assert grid.get_cell_index((0,1,0)) in grid.get_neighbors(0) 
+    assert grid.get_cell_index((0,1,0)) in graph.get_neighbors(0)
+    assert grid.get_cell_index((0,0,1)) in grid.get_neighbors(0) 
+    assert grid.get_cell_index((0,0,1)) in graph.get_neighbors(0)    
+        
+    assert grid.get_cell_index((2,0,0)) not in grid.get_neighbors(0) 
+    assert grid.get_cell_index((2,0,0)) not in graph.get_neighbors(0) 
+    assert grid.get_cell_index((0,2,0)) not in grid.get_neighbors(0) 
+    assert grid.get_cell_index((0,2,0)) not in graph.get_neighbors(0)
+    assert grid.get_cell_index((0,0,2)) not in grid.get_neighbors(0) 
+    assert grid.get_cell_index((0,0,2)) not in graph.get_neighbors(0)    
+    
+    grid = _test_space_get_neighbors_makegrid("periodical")
+    graph = strncg.grid_to_graph(grid)
+    
+    assert grid.get_cell_index((1,0,0)) in grid.get_neighbors(0) 
+    assert grid.get_cell_index((1,0,0)) in graph.get_neighbors(0)     
+    assert grid.get_cell_index((0,1,0)) in grid.get_neighbors(0) 
+    assert grid.get_cell_index((0,1,0)) in graph.get_neighbors(0)
+    assert grid.get_cell_index((0,0,1)) in grid.get_neighbors(0) 
+    assert grid.get_cell_index((0,0,1)) in graph.get_neighbors(0)    
+        
+    assert grid.get_cell_index((2,0,0)) in grid.get_neighbors(0) 
+    assert grid.get_cell_index((2,0,0)) in graph.get_neighbors(0) 
+    assert grid.get_cell_index((0,2,0)) in grid.get_neighbors(0) 
+    assert grid.get_cell_index((0,2,0)) in graph.get_neighbors(0)
+    assert grid.get_cell_index((0,0,2)) in grid.get_neighbors(0)
+    assert grid.get_cell_index((0,0,2)) in graph.get_neighbors(0)
+
