@@ -1,7 +1,7 @@
 import scipy
 import time as python_time
-from sampler import create_sampler
-from ode import build_ode_function
+from strengths.sampler import create_sampler
+from strengths.ode import build_ode_function
 from strengths.units import *
 from strengths.rdengine import *
 from strengths.rdoutput import RDTrajectory
