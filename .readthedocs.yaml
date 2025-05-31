@@ -5,3 +5,5 @@ build :
     python : "3.10"
 python :
   install : [ { requirements : requirements.txt } ]
+sphinx :
+  configuration : documentation/conf.py
