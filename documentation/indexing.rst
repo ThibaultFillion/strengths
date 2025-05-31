@@ -12,7 +12,7 @@ Let N, w, h and d be respectively the number of species in a system, and the sys
 Space cell index
 ----------------
 
-The index of a cell at coordinates (x,y,z) of a grid space of dimensions (w, h, d) is given by
+The index of a cell at coordinates (x, y, z) of a grid space of dimensions (w, h, d) is given by
 
 .. math::
 
