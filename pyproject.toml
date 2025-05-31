@@ -21,5 +21,6 @@ skip = [
       	"pp310-macosx_arm64",
         "pp38-macosx_x86_64", 
      	"pp39-macosx_x86_64", 
-      	"pp310-macosx_x86_64"
+      	"pp310-macosx_x86_64",
+        "pp38-manylinux_aarch64"
        ]
