@@ -1,6 +1,6 @@
 [project]
 name = "strengths"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
 	{name = "Thibault Fillion"},
 	{name = "Francesco Piazza"}]
@@ -16,10 +16,15 @@ skip = [
  	"pp39-manylinux_x86_64", 
   	"pp38-manylinux_i686", 
    	"pp39-manylinux_i686", 
+	"pp38-manylinux_aarch64",
+        "pp39-manylinux_aarch64",
+	
     	"pp38-macosx_arm64", 
      	"pp39-macosx_arm64", 
       	"pp310-macosx_arm64",
+        "pp311-macosx_arm64",
         "pp38-macosx_x86_64", 
      	"pp39-macosx_x86_64", 
-      	"pp310-macosx_x86_64"
+      	"pp310-macosx_x86_64",
+        "pp311-macosx_x86_64"
        ]
