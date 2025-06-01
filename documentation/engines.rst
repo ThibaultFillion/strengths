@@ -72,8 +72,8 @@ While the simulate function takes an engine as well as script parameters:
 Engine implementations installed with Strengths
 -----------------------------------------------
 
-All the engines implement diffusion using the method described by David Bernstein [1].
-Strengths come with 4 engines implementing different methods, relying on a shared library compiled from C++. 
+All engines implement diffusion using the method described by David Bernstein [1].
+Strengths comes with 4 engines implementing different methods, relying on a shared library compiled from C++. 
 Those can be instantiated using the four following methods, from the engine_collection submodule,
 which are directly imported with ``import strengths``: 
 
@@ -82,9 +82,15 @@ which are directly imported with ``import strengths``:
 * strenghts.engine_collection.gillespie_engine(), implementing the Gillespie algorithm [3]
 * strenghts.engine_collection.tauleap_engine(), implementing the tau leap approximation to the Gillespie algorithm [2]
 
+Another engine relies on the ODE solvers [5] from the SciPy package [4] for deterministic simulations:
+
+* strengths.scipyrdengine.ScipyRDEngine()
+
 References
 ----------
 
 * [1] Bernstein, D. (2005). Simulating mesoscopic reaction-diffusion systems using the Gillespie algorithm. Physical Review E, 71(4), Article 041103. https://doi.org/10.1103/PhysRevE.71.041103
 * [2] Gillespie, D. T. (2001). Approximate accelerated stochastic simulation of chemically reacting systems. The Journal of Chemical Physics, 115(4), 1716-1733. https://doi.org/10.1063/1.1378322
 * [3] Gillespie, D. T. (1977). Exact stochastic simulation of coupled chemical reactions. The Journal of Physical Chemistry, 81(25), 2340-2361. https://doi.org/10.1021/j100540a008
+* [4] Scipy website. (accessed in 2025). https://scipy.org/
+* [5] Scipy online documentation. (accessed in 2025). https://docs.scipy.org/doc/scipy/reference/integrate.html#module-scipy.integrate
